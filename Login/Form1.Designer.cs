@@ -37,6 +37,7 @@
             ImagemGoogle = new PictureBox();
             labelResultado = new Label();
             printPreviewDialog1 = new PrintPreviewDialog();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)ImagemGoogle).BeginInit();
             SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             // 
             // textBoxSenha
             // 
-            textBoxSenha.Location = new Point(323, 274);
+            textBoxSenha.Location = new Point(323, 261);
             textBoxSenha.Name = "textBoxSenha";
             textBoxSenha.Size = new Size(199, 23);
             textBoxSenha.TabIndex = 1;
@@ -59,7 +60,7 @@
             Logar.FlatStyle = FlatStyle.System;
             Logar.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Logar.ForeColor = SystemColors.ActiveCaptionText;
-            Logar.Location = new Point(379, 313);
+            Logar.Location = new Point(381, 301);
             Logar.Name = "Logar";
             Logar.Size = new Size(86, 30);
             Logar.TabIndex = 2;
@@ -82,7 +83,7 @@
             // 
             Senha.AutoSize = true;
             Senha.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Senha.Location = new Point(260, 277);
+            Senha.Location = new Point(261, 264);
             Senha.Name = "Senha";
             Senha.Size = new Size(56, 20);
             Senha.TabIndex = 4;
@@ -117,12 +118,26 @@
             printPreviewDialog1.Name = "printPreviewDialog1";
             printPreviewDialog1.Visible = false;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = SystemColors.HighlightText;
+            label1.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DodgerBlue;
+            label1.Location = new Point(361, 344);
+            label1.Name = "label1";
+            label1.Size = new Size(123, 16);
+            label1.TabIndex = 7;
+            label1.Text = "Esqueceu sua senha?";
+            label1.Click += label1_Click;
+            // 
             // Formulario_login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.HighlightText;
             ClientSize = new Size(792, 460);
+            Controls.Add(label1);
             Controls.Add(labelResultado);
             Controls.Add(ImagemGoogle);
             Controls.Add(Senha);
@@ -147,5 +162,6 @@
         private PictureBox ImagemGoogle;
         private Label labelResultado;
         private PrintPreviewDialog printPreviewDialog1;
+        private Label label1;
     }
 }
