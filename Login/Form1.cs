@@ -6,7 +6,7 @@ namespace Login
     {
 
         List<string> listaUsuarios = new List<string>() { "Neymar.jr", "Pablo.Vitar", "Sukuna.Silva" };
-        List<string> listasenhas = new List<string>() { "bruna", "12345", "777" };
+        List<string> listaSenhas = new List<string>() { "bruna", "12345", "777" };
 
         public Formulario_login()
         {
@@ -21,7 +21,7 @@ namespace Login
 
 
             //MODOS DIFERENTES DE EXERCUTAR UM PROGRAMA COM DIFERENTES FORMULAS.
-            
+
             /*
             if (usuarioBuscado == null || usuarioBuscado == "")
             {
@@ -74,7 +74,7 @@ namespace Login
             */
 
 
-           
+
             if (usuarioBuscado == null || usuarioBuscado == "")
             {
                 _ = labelResultado.Text = "E-mail é obrigatória";
@@ -94,26 +94,26 @@ namespace Login
                 {
                     posicaoUsuarioEncontrado = i;
                 }
-                
+
             }
-            
+
             //f (usuarioBuscado == listaUsuarios[posicaoUsuarioEncontrado] && senha == "1234")
             //NÃO FUNCIONA, USUARIO AQUI É O PRINCIPAL POR TANTO "usuarioBuscado" ou "listaUsuarios" NÃO É NECESSARIO
             //HÁ A NECESSIDADE DE MUDAR RESULTADO DE USUARIO PARA"!=" POIS ASSIM O PROGRAMA NÃO APLICARÁ UMA EXEÇÃO EM MEIO A EXECUÇÃO
             //E CASSO O USUARIO NÃO SEJA ENCONTRADO, NÃO HAVERÁ ERRO POR NÃO SER ASSOCIADO A UM NUMERO INEXISTENTE NA LISTA QUE É "-1"
-            
-            if (posicaoUsuarioEncontrado != -1 && senha == "1234")
+
+            if (posicaoUsuarioEncontrado != -1 && senha == listaSenhas[posicaoUsuarioEncontrado])
             {
                 labelResultado.Text = "Autenticado com Sucesso!";
                 labelResultado.ForeColor = Color.Green;
-                
+
             }
             else
             {
                 labelResultado.Text = "Usuário ou senha Incorreto";
                 labelResultado.ForeColor = Color.Red;
             }
-            
+
 
 
 
@@ -140,10 +140,48 @@ namespace Login
 
 
         }
-
-        private void label1_Click(object sender, EventArgs e)
+        private void BotaoCriar_Click(object sender, EventArgs e)
         {
+            string novoUsuario = txbCadUsu.Text;
+            string novaSenha = txbCadSen.Text;
+            bool usuarioEncontrado = false;
 
+            if (string.IsNullOrWhiteSpace(novoUsuario))
+            {
+                _ = labResultado.Text = "Crie um E-mail" +
+                    "";
+                labResultado.ForeColor = Color.Red;
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(novaSenha))
+            {
+                _ = labResultado.Text = "Crie uma senha";
+                labResultado.ForeColor = Color.Red;
+                return;
+            }
+
+            for (int i = 0; i < listaUsuarios.Count; i++)
+            {
+                if (novoUsuario == listaUsuarios[i])
+                {
+                    usuarioEncontrado = true;
+                }
+
+            }
+
+            if (!usuarioEncontrado)
+            {
+                listaUsuarios.Add(novoUsuario);
+                listaSenhas.Add(novaSenha);
+                labResultado.Text = "Criado com sucesso!";
+                labResultado.ForeColor = Color.Green;
+            }
+            else
+            {
+                labResultado.Text = "Usuario já existente";
+                labResultado.ForeColor = Color.Red;
+            }
         }
+
     }
 }
