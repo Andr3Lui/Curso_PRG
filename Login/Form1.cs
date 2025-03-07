@@ -7,15 +7,8 @@ namespace Login
     {
 
         List<string> listaUsuarios = new List<string>() { "Neymar.jr", "Pablo.Vitar", "Sukuna.Silva" };
-        List<string> listaSenhas = new List<string>() { "bruna", "12345", "777" };
-        List<string> listamin = new List<string>() {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-        List<string> listamais = new List<string>() {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-        List<string> listanum = new List<string>() { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-        List<string> listacarac = new List<string>() { "!", "@", "#", "$", "%", "&", "*", "/", "{", "}", "[", "]"};
-
-
-
-
+        List<string> listaSenhas = new List<string>() { "Bruna22@", "paBlito_17", "Itad0r!" };
+       
         public Formulario_login()
         {
             InitializeComponent();
@@ -88,13 +81,13 @@ namespace Login
 
             if (usuarioBuscado == null || usuarioBuscado == "")
             {
-                _ = labelResultado.Text = "E-mail é obrigatória";
+                labelResultado.Text = "E-mail é obrigatória";
                 labelResultado.ForeColor = Color.Red;
                 return;
             }
             if (senha == null || senha == "")
             {
-                _ = labelResultado.Text = "Senha é obrigatória";
+                labelResultado.Text = "Senha é obrigatória";
                 labelResultado.ForeColor = Color.Red;
                 return;
             }
@@ -105,7 +98,7 @@ namespace Login
                 {
                     posicaoUsuarioEncontrado = i;
                 }
-
+                continue;
             }
 
             //f (usuarioBuscado == listaUsuarios[posicaoUsuarioEncontrado] && senha == "1234")
@@ -156,18 +149,18 @@ namespace Login
             string novoUsuario = txbCadUsu.Text;
             string novaSenha = txbCadSen.Text;
             bool usuarioEncontrado = false;
-          //string caractereEspecial = ("@!#$%&*{}[]?/|_-");
+            string caractereEspecial = ("@!#$%&*{}[]?/|_-");
 
             if (string.IsNullOrWhiteSpace(novoUsuario))
             {
-                _ = labResultado.Text = "Crie um E-mail" +
+                labResultado.Text = "Crie um E-mail" +
                     "";
                 labResultado.ForeColor = Color.Red;
                 return;
             }
             if (string.IsNullOrWhiteSpace(novaSenha))
             {
-                _ = labResultado.Text = "Crie uma senha";
+                labResultado.Text = "Crie uma senha";
                 labResultado.ForeColor = Color.Red;
                 return;
             }
@@ -213,16 +206,16 @@ namespace Login
                 return;
             }
             */
-            /*
+            
             if (novaSenha.Length < 8)
             {
-                _ = labResultado.Text = "A senha deve ter ao menos 8 caracteres";
+                labResultado.Text = "A senha deve ter ao menos 8 caracteres";
                 labResultado.ForeColor = Color.Red;
                 return;
             }
             if (!novaSenha.Any(char.IsUpper))
             {
-                _ = labResultado.Text = "A senha deve ter ao menos 1 letra maiúscula";
+                labResultado.Text = "A senha deve ter ao menos 1 letra maiúscula";
                 labResultado.ForeColor = Color.Red;
                 return;
             }
@@ -234,53 +227,38 @@ namespace Login
             }
             if (!novaSenha.Any(char.IsNumber))
             {
-                _ = labResultado.Text = "A senha deve ter ao menos 1 número";
+                labResultado.Text = "A senha deve ter ao menos 1 número";
                 labResultado.ForeColor = Color.Red;
                 return;
             }
-
-            if (!novaSenha.Any(c => caractereEspecial.Contains(c)))
+            //UMA SOLUÇÃO FEITA COM LAMINA, CRIANDO UMA SOLUÇÃO.
+            /*if (!novaSenha.Any(c => caractereEspecial.Contains(c)))
             {
-                _ = labResultado.Text = "A senha deve ter ao menos 1 caractere especial";
+                labResultado.Text = "A senha deve ter ao menos 1 caractere especial";
                 labResultado.ForeColor = Color.Red;
                 return;
             }
             */
-
-            bool letraMin = false;
-            bool letraMai = false;
-            bool umNum = false;
-            bool umCar = false;
-
-            if (novaSenha.Length < 8)
+            if(!novaSenha.Any(char.IsSymbol) && !novaSenha.Any(char.IsPunctuation) && !novaSenha.Contains("@"))
             {
-                _ = labResultado.Text = "A senha deve conter ao menos 8 caracteres";
+                labResultado.Text = "A senha deve ter ao menos 1 caractere especial";
                 labResultado.ForeColor = Color.Red;
+                return;
             }
-
-            for (int i = 0; i < listamin.Count; i++)
+            if (novaSenha.Any(char.IsWhiteSpace))
             {
-                if ( novaSenha == listamin[i])
-                {
-                    letraMin = true;
-                    labResultado.Text = "A senha deve haver ao menos 1 letra minúscula";
-                    labResultado.ForeColor = Color.Red;
-                    return;
-                }
-                
+                labResultado.Text = "A senha não pode ter espaços em branco";
+                labResultado.ForeColor = Color.Red;
+                return;
             }
-
-
-
-
-
+            
             for (int i = 0; i < listaUsuarios.Count; i++)
             {
                 if (novoUsuario == listaUsuarios[i])
                 {
                     usuarioEncontrado = true;
                 }
-               
+                continue;
             }
             if (!usuarioEncontrado)
             {
@@ -288,6 +266,8 @@ namespace Login
                 listaSenhas.Add(novaSenha);
                 labResultado.Text = "Criado com sucesso!";
                 labResultado.ForeColor = Color.Green;
+                txbCadUsu.Clear();
+                txbCadSen.Clear();
             }
             else
             {
