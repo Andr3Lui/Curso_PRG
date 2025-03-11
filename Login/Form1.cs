@@ -17,10 +17,10 @@ namespace Login
 
         private void Logar_Click(object sender, EventArgs e)
         {
-            
+
             string usuarioBuscado = textBoxUsuario.Text;
             string senha = textBoxSenha.Text;
-            
+
             //MODOS DIFERENTES DE EXERCUTAR UM PROGRAMA COM DIFERENTES FORMULAS.
             /*
             if (usuarioBuscado == null || usuarioBuscado == "")
@@ -57,22 +57,22 @@ namespace Login
                 return;
             }
 
-      
-           /*
-            if (usuarioBuscado == null || usuarioBuscado == "")
-            {
-                labelResultado.Text = "E-mail é obrigatória";
-                labelResultado.ForeColor = Color.Red;
-                return;
-            }
-            if (senha == null || senha == "")
-            {
-                labelResultado.Text = "Senha é obrigatória";
-                labelResultado.ForeColor = Color.Red;
-                return;
-            }
-           */
-            int posicaoUsuarioEncontrado = listaUsuarios.IndexOf(usuarioBuscado);
+
+            /*
+             if (usuarioBuscado == null || usuarioBuscado == "")
+             {
+                 labelResultado.Text = "E-mail é obrigatória";
+                 labelResultado.ForeColor = Color.Red;
+                 return;
+             }
+             if (senha == null || senha == "")
+             {
+                 labelResultado.Text = "Senha é obrigatória";
+                 labelResultado.ForeColor = Color.Red;
+                 return;
+             }
+            */
+            bool autenticado = false;
             /*
             int posicaoUsuarioEncontrado = -1 
             
@@ -88,18 +88,27 @@ namespace Login
             //HÁ A NECESSIDADE DE MUDAR RESULTADO DE USUARIO PARA"!=" POIS ASSIM O PROGRAMA NÃO APLICARÁ UMA EXEÇÃO EM MEIO A EXECUÇÃO
             //E CASSO O USUARIO NÃO SEJA ENCONTRADO, NÃO HAVERÁ ERRO POR NÃO SER ASSOCIADO A UM NUMERO INEXISTENTE NA LISTA QUE É "-1"
 
-            if (posicaoUsuarioEncontrado != -1 && senha == listaSenhas[posicaoUsuarioEncontrado])
+            for (int i = 0; i < usuarios.Count; i++)
             {
-                labelResultado.Text = "Autenticado com Sucesso!";
-                labelResultado.ForeColor = Color.Green;
+                if (usuarios[i].Email == usuarioBuscado && usuarios[i].Senha == senha)
+                {
+                    autenticado = true;
 
+                }
+            }
+
+
+            if (!autenticado)
+            {
+                labelResultado.Text = "Usuario ou senha incorretos";
+                labelResultado.ForeColor = Color.Red;
+                return;
             }
             else
             {
-                labelResultado.Text = "Usuário ou senha Incorreto";
-                labelResultado.ForeColor = Color.Red;
+                labelResultado.Text = "Usuario Autenticado com sucesso";
+                labelResultado.ForeColor = Color.Green;
             }
-
             /*
             if (usuario == string.Empty || senha == string.Empty)
             {
@@ -120,15 +129,15 @@ namespace Login
                 labelResultado.ForeColor = Color.Red;
             }
             */
-
-
+            textBoxUsuario.Clear();
+            textBoxSenha.Clear();
         }
         private void BotaoCriar_Click(object sender, EventArgs e)
         {
             string novoUsuario = txbCadUsu.Text;
             string novaSenha = txbCadSen.Text;
-            bool usuarioEncontrado = false;
-           //string caractereEspecial = ("@!#$%&*{}[]?/|_-");
+
+            //string caractereEspecial = ("@!#$%&*{}[]?/|_-");
 
             if (string.IsNullOrWhiteSpace(novoUsuario))
             {
@@ -185,7 +194,7 @@ namespace Login
                 return;
             }
             */
-            
+
             if (novaSenha.Length < 8)
             {
                 labResultado.Text = "A senha deve ter ao menos 8 caracteres";
@@ -218,7 +227,7 @@ namespace Login
                 return;
             }
             */
-            if(!novaSenha.Any(char.IsSymbol) && !novaSenha.Any(char.IsPunctuation) && !novaSenha.Contains("@"))
+            if (!novaSenha.Any(char.IsSymbol) && !novaSenha.Any(char.IsPunctuation) && !novaSenha.Contains("@"))
             {
                 labResultado.Text = "A senha deve ter ao menos 1 caractere especial";
                 labResultado.ForeColor = Color.Red;
@@ -230,32 +239,36 @@ namespace Login
                 labResultado.ForeColor = Color.Red;
                 return;
             }
-            
-            for (int i = 0; i < listaUsuarios.Count; i++)
+
+            bool usuarioEncontrado = false;
+            for (int i = 0; i < usuarios.Count; i++)
             {
-                if (novoUsuario == listaUsuarios[i])
+                if (usuarios[i].Email == novoUsuario)
                 {
                     usuarioEncontrado = true;
                 }
                 continue;
             }
-            if (!usuarioEncontrado)
-            {
-                listaUsuarios.Add(novoUsuario);
-                listaSenhas.Add(novaSenha);
-                labResultado.Text = "Criado com sucesso!";
-                labResultado.ForeColor = Color.Green;
-                txbCadUsu.Clear();
-                txbCadSen.Clear();
-            }
-            else
+            if (usuarioEncontrado)
             {
                 labResultado.Text = "Usuario já existente";
                 labResultado.ForeColor = Color.Red;
             }
-
+            else
+            {
+                usuarios.Add(new Usuario1() { Email = novoUsuario, Senha = novaSenha });
+                labelResultado.Text = "Usuário cadastrado com sucesso!";
+                labelResultado.ForeColor = Color.Green;
+            }
+            txbCadUsu.Clear();
+            txbCadSen.Clear();
 
         }
 
+        private void EsqSenha_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
+        }
     }
 }

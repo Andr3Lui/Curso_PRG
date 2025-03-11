@@ -16,3 +16,4 @@ D:\Curso_PRG\Curso_PRG\Login\obj\Debug\net8.0-windows\Login.genruntimeconfig.cac
 D:\Curso_PRG\Curso_PRG\Login\obj\Debug\net8.0-windows\ref\Login.dll
 D:\Curso_PRG\Curso_PRG\Login\obj\Debug\net8.0-windows\Login.Formulario_login.resources
 D:\Curso_PRG\Curso_PRG\Login\obj\Debug\net8.0-windows\Login.Properties.Resources.resources
+D:\Curso_PRG\Curso_PRG\Login\obj\Debug\net8.0-windows\Login.Form2.resources

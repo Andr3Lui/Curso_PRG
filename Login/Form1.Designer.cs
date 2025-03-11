@@ -138,6 +138,7 @@
             EsqSenha.Size = new Size(123, 16);
             EsqSenha.TabIndex = 7;
             EsqSenha.Text = "Esqueceu sua senha?";
+            EsqSenha.Click += EsqSenha_Click;
             // 
             // ImagemGoogle2
             // 
