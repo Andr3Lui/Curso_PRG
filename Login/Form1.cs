@@ -5,13 +5,14 @@ namespace Login
 {
     public partial class Formulario_login : Form
     {
+        List<Usuario1> usuarios = new List<Usuario1>();
 
-        List<string> listaUsuarios = new List<string>() { "Neymar.jr", "Pablo.Vitar", "Sukuna.Silva" };
-        List<string> listaSenhas = new List<string>() { "Bruna22@", "paBlito_17", "Itad0r!" };
-       
         public Formulario_login()
         {
             InitializeComponent();
+            usuarios.Add(new Usuario1() { Email = "neymar.jr@email.com", Senha = "Bruna22@" });
+            usuarios.Add(new Usuario1() { Email = "pablo.vitar@email.com", Senha = "paBlito_17@" });
+            usuarios.Add(new Usuario1() { Email = "sukuna.silva@email.com", Senha = "Itad0r!@" });
         }
 
         private void Logar_Click(object sender, EventArgs e)
@@ -19,13 +20,8 @@ namespace Login
             
             string usuarioBuscado = textBoxUsuario.Text;
             string senha = textBoxSenha.Text;
-            int posicaoUsuarioEncontrado = -1;
-           
-
-
-
+            
             //MODOS DIFERENTES DE EXERCUTAR UM PROGRAMA COM DIFERENTES FORMULAS.
-
             /*
             if (usuarioBuscado == null || usuarioBuscado == "")
             {
@@ -48,37 +44,21 @@ namespace Login
                 labelResultado.ForeColor = Color.Red;
             }
             */
-
-
-            /*
-            if (string.IsNullOrWhiteSpace(usuario))
+            if (string.IsNullOrWhiteSpace(usuarioBuscado))
             {
-                _ = labelResultado.Text = "E-mail é obrigatória";
+                labelResultado.Text = "E-mail é obrigatória";
+                labelResultado.ForeColor = Color.Red;
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(senha))
+            {
+                labelResultado.Text = "Senha é obrigatória";
                 labelResultado.ForeColor = Color.Red;
                 return;
             }
 
-            if (senha == null || senha == "")
-            {
-                _ = labelResultado.Text = "Senha é obrigatória";
-                labelResultado.ForeColor = Color.Red;
-
-            }
-            else if (usuario == "andre.luiz" && senha == "1234")
-            {
-                labelResultado.Text = "Autenticado com Sucesso!";
-                labelResultado.ForeColor = Color.Green;
-
-            }
-            else
-            {
-                labelResultado.Text = "Usuário ou senha Incorreto";
-                labelResultado.ForeColor = Color.Red;
-            }
-            */
-
-
-
+      
+           /*
             if (usuarioBuscado == null || usuarioBuscado == "")
             {
                 labelResultado.Text = "E-mail é obrigatória";
@@ -91,16 +71,18 @@ namespace Login
                 labelResultado.ForeColor = Color.Red;
                 return;
             }
-
+           */
+            int posicaoUsuarioEncontrado = listaUsuarios.IndexOf(usuarioBuscado);
+            /*
+            int posicaoUsuarioEncontrado = -1 
+            
             for (int i = 0; i < listaUsuarios.Count; i++)
             {
-                if (usuarioBuscado == listaUsuarios[i])
+                if(usuarioBuscado == listaUsuarios[i])
                 {
                     posicaoUsuarioEncontrado = i;
                 }
-                continue;
-            }
-
+            }*/
             //f (usuarioBuscado == listaUsuarios[posicaoUsuarioEncontrado] && senha == "1234")
             //NÃO FUNCIONA, USUARIO AQUI É O PRINCIPAL POR TANTO "usuarioBuscado" ou "listaUsuarios" NÃO É NECESSARIO
             //HÁ A NECESSIDADE DE MUDAR RESULTADO DE USUARIO PARA"!=" POIS ASSIM O PROGRAMA NÃO APLICARÁ UMA EXEÇÃO EM MEIO A EXECUÇÃO
@@ -117,9 +99,6 @@ namespace Login
                 labelResultado.Text = "Usuário ou senha Incorreto";
                 labelResultado.ForeColor = Color.Red;
             }
-
-
-
 
             /*
             if (usuario == string.Empty || senha == string.Empty)
@@ -149,7 +128,7 @@ namespace Login
             string novoUsuario = txbCadUsu.Text;
             string novaSenha = txbCadSen.Text;
             bool usuarioEncontrado = false;
-            string caractereEspecial = ("@!#$%&*{}[]?/|_-");
+           //string caractereEspecial = ("@!#$%&*{}[]?/|_-");
 
             if (string.IsNullOrWhiteSpace(novoUsuario))
             {
@@ -231,7 +210,7 @@ namespace Login
                 labResultado.ForeColor = Color.Red;
                 return;
             }
-            //UMA SOLUÇÃO FEITA COM LAMINA, CRIANDO UMA SOLUÇÃO.
+            //UMA SOLUÇÃO FEITA COM LAMINA, CRIANDO UM MÉTODO.
             /*if (!novaSenha.Any(c => caractereEspecial.Contains(c)))
             {
                 labResultado.Text = "A senha deve ter ao menos 1 caractere especial";
