@@ -33,25 +33,27 @@
             labelCalcular = new Button();
             labelResultado = new Label();
             comboBoxOperacoes = new ComboBox();
+            textBoxResultado = new TextBox();
+            label1 = new Label();
             SuspendLayout();
             // 
             // textBoxn1
             // 
-            textBoxn1.Location = new Point(234, 113);
+            textBoxn1.Location = new Point(202, 113);
             textBoxn1.Name = "textBoxn1";
-            textBoxn1.Size = new Size(170, 23);
+            textBoxn1.Size = new Size(69, 23);
             textBoxn1.TabIndex = 0;
             // 
             // textBoxn2
             // 
-            textBoxn2.Location = new Point(234, 171);
+            textBoxn2.Location = new Point(333, 113);
             textBoxn2.Name = "textBoxn2";
-            textBoxn2.Size = new Size(170, 23);
+            textBoxn2.Size = new Size(69, 23);
             textBoxn2.TabIndex = 1;
             // 
             // labelCalcular
             // 
-            labelCalcular.Location = new Point(275, 204);
+            labelCalcular.Location = new Point(265, 142);
             labelCalcular.Name = "labelCalcular";
             labelCalcular.Size = new Size(75, 23);
             labelCalcular.TabIndex = 3;
@@ -63,7 +65,7 @@
             // 
             labelResultado.AutoSize = true;
             labelResultado.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelResultado.Location = new Point(199, 245);
+            labelResultado.Location = new Point(310, 257);
             labelResultado.Name = "labelResultado";
             labelResultado.Size = new Size(0, 23);
             labelResultado.TabIndex = 4;
@@ -72,16 +74,35 @@
             // 
             comboBoxOperacoes.FormattingEnabled = true;
             comboBoxOperacoes.Items.AddRange(new object[] { "+", "-", "*", "/" });
-            comboBoxOperacoes.Location = new Point(260, 142);
+            comboBoxOperacoes.Location = new Point(277, 113);
             comboBoxOperacoes.Name = "comboBoxOperacoes";
-            comboBoxOperacoes.Size = new Size(121, 23);
+            comboBoxOperacoes.Size = new Size(50, 23);
             comboBoxOperacoes.TabIndex = 5;
+            // 
+            // textBoxResultado
+            // 
+            textBoxResultado.Location = new Point(429, 113);
+            textBoxResultado.Name = "textBoxResultado";
+            textBoxResultado.ReadOnly = true;
+            textBoxResultado.Size = new Size(69, 23);
+            textBoxResultado.TabIndex = 6;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(408, 116);
+            label1.Name = "label1";
+            label1.Size = new Size(15, 15);
+            label1.TabIndex = 7;
+            label1.Text = "=";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
+            Controls.Add(textBoxResultado);
             Controls.Add(comboBoxOperacoes);
             Controls.Add(labelResultado);
             Controls.Add(labelCalcular);
@@ -100,5 +121,7 @@
         private Button labelCalcular;
         private Label labelResultado;
         private ComboBox comboBoxOperacoes;
+        private TextBox textBoxResultado;
+        private Label label1;
     }
 }
