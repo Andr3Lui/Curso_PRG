@@ -30,13 +30,13 @@ namespace Calculadora
             {
                 case "+":
                     resultado = valor1 + valor2;
-                    return;
+                    break;
                 case "-":
                     resultado = valor1 - valor2;
-                    return;
+                    break;
                 case "*":
                     resultado = valor1 * valor2;
-                    return;
+                    break;
                 case "/":
                     resultado = valor1 / valor2;
                     if (valor2 != 0)
@@ -48,7 +48,7 @@ namespace Calculadora
                         labelResultado.Text = "Erro: Não é possivel dividir por zero";
                         labelResultado.ForeColor = Color.Red;
                     }
-                    return;
+                    break;
 
 
                 default:
