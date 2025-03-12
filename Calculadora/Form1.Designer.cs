@@ -35,6 +35,7 @@
             comboBoxOperacoes = new ComboBox();
             textBoxResultado = new TextBox();
             label1 = new Label();
+            labelLink = new Label();
             SuspendLayout();
             // 
             // textBoxn1
@@ -96,11 +97,24 @@
             label1.TabIndex = 7;
             label1.Text = "=";
             // 
+            // labelLink
+            // 
+            labelLink.AutoSize = true;
+            labelLink.Font = new Font("Arial Narrow", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            labelLink.ForeColor = Color.DodgerBlue;
+            labelLink.Location = new Point(237, 180);
+            labelLink.Name = "labelLink";
+            labelLink.Size = new Size(125, 20);
+            labelLink.TabIndex = 8;
+            labelLink.Text = "Calcular Quadrado";
+            labelLink.Click += labelLink_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelLink);
             Controls.Add(label1);
             Controls.Add(textBoxResultado);
             Controls.Add(comboBoxOperacoes);
@@ -123,5 +137,6 @@
         private ComboBox comboBoxOperacoes;
         private TextBox textBoxResultado;
         private Label label1;
+        private Label labelLink;
     }
 }

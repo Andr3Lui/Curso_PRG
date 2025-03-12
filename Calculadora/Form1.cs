@@ -14,13 +14,11 @@ namespace Calculadora
             double valor1, valor2, resultado = 0;
 
             if (!double.TryParse(textBoxn1.Text, out valor1))
-
-                if (!double.TryParse(textBoxn1.Text, out valor1))
-                {
-                    labelResultado.Text = "O valor 1 deve ser um número";
-                    labelResultado.ForeColor = Color.Red;
-                    return;
-                }
+            {
+                labelResultado.Text = "O valor 1 deve ser um número";
+                labelResultado.ForeColor = Color.Red;
+                return;
+            }
             if (!double.TryParse(textBoxn2.Text, out valor2))
             {
                 labelResultado.Text = "O valor 2 deve ser um número";
@@ -41,7 +39,7 @@ namespace Calculadora
                     break;
                 case "/":
                     resultado = valor1 / valor2;
-                    if (valor2 != 0)
+                    if (valor2 != 0 || valor1 != 0)
                     {
                         resultado = valor1 / valor2;
                     }
@@ -67,5 +65,10 @@ namespace Calculadora
             textBoxn2.Clear();
         }
 
+        private void labelLink_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.ShowDialog();
+        }
     }
 }

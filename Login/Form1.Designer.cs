@@ -214,6 +214,7 @@
             PrecAjuda.Size = new Size(166, 16);
             PrecAjuda.TabIndex = 16;
             PrecAjuda.Text = "Precisa de ajuda? Clique aqui.";
+            PrecAjuda.Click += PrecAjuda_Click;
             // 
             // Formulario_login
             // 
