@@ -33,13 +33,25 @@
             textBoxn1 = new TextBox();
             textBoxResultado = new TextBox();
             labelNotificacao = new Label();
+            textBoxComprimento = new TextBox();
+            textBoxAltura = new TextBox();
+            textBoxLargura = new TextBox();
+            comboBoxOperacoes2 = new ComboBox();
+            botaoCalcular = new Button();
+            boxResultado = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            opcoesForms = new ComboBox();
+            opcoesFormas = new ComboBox();
             SuspendLayout();
             // 
             // buttonCalcular
             // 
-            buttonCalcular.Location = new Point(304, 193);
+            buttonCalcular.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            buttonCalcular.Location = new Point(76, 177);
             buttonCalcular.Name = "buttonCalcular";
-            buttonCalcular.Size = new Size(75, 23);
+            buttonCalcular.Size = new Size(100, 23);
             buttonCalcular.TabIndex = 0;
             buttonCalcular.Text = "Calcular";
             buttonCalcular.UseVisualStyleBackColor = true;
@@ -50,22 +62,22 @@
             comboBoxOperacoes.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBoxOperacoes.FormattingEnabled = true;
             comboBoxOperacoes.Items.AddRange(new object[] { "Perímetro", "Área", "Volume" });
-            comboBoxOperacoes.Location = new Point(292, 159);
+            comboBoxOperacoes.Location = new Point(76, 143);
             comboBoxOperacoes.Name = "comboBoxOperacoes";
-            comboBoxOperacoes.Size = new Size(98, 28);
+            comboBoxOperacoes.Size = new Size(100, 28);
             comboBoxOperacoes.TabIndex = 1;
             comboBoxOperacoes.Text = "operações";
             // 
             // textBoxn1
             // 
-            textBoxn1.Location = new Point(290, 130);
+            textBoxn1.Location = new Point(76, 114);
             textBoxn1.Name = "textBoxn1";
             textBoxn1.Size = new Size(100, 23);
             textBoxn1.TabIndex = 3;
             // 
             // textBoxResultado
             // 
-            textBoxResultado.Location = new Point(292, 222);
+            textBoxResultado.Location = new Point(76, 226);
             textBoxResultado.Name = "textBoxResultado";
             textBoxResultado.ReadOnly = true;
             textBoxResultado.Size = new Size(100, 23);
@@ -74,21 +86,139 @@
             // labelNotificacao
             // 
             labelNotificacao.AutoSize = true;
-            labelNotificacao.Location = new Point(304, 306);
+            labelNotificacao.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelNotificacao.Location = new Point(76, 281);
             labelNotificacao.Name = "labelNotificacao";
             labelNotificacao.Size = new Size(13, 15);
             labelNotificacao.TabIndex = 5;
             labelNotificacao.Text = "  ";
+            // 
+            // textBoxComprimento
+            // 
+            textBoxComprimento.Location = new Point(339, 117);
+            textBoxComprimento.Name = "textBoxComprimento";
+            textBoxComprimento.Size = new Size(100, 23);
+            textBoxComprimento.TabIndex = 8;
+            // 
+            // textBoxAltura
+            // 
+            textBoxAltura.Enabled = false;
+            textBoxAltura.Location = new Point(551, 117);
+            textBoxAltura.Name = "textBoxAltura";
+            textBoxAltura.Size = new Size(100, 23);
+            textBoxAltura.TabIndex = 9;
+            // 
+            // textBoxLargura
+            // 
+            textBoxLargura.Location = new Point(445, 117);
+            textBoxLargura.Name = "textBoxLargura";
+            textBoxLargura.Size = new Size(100, 23);
+            textBoxLargura.TabIndex = 10;
+            // 
+            // comboBoxOperacoes2
+            // 
+            comboBoxOperacoes2.Enabled = false;
+            comboBoxOperacoes2.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            comboBoxOperacoes2.FormattingEnabled = true;
+            comboBoxOperacoes2.Items.AddRange(new object[] { "Perímetro", "Área", "Volume" });
+            comboBoxOperacoes2.Location = new Point(445, 146);
+            comboBoxOperacoes2.Name = "comboBoxOperacoes2";
+            comboBoxOperacoes2.Size = new Size(100, 28);
+            comboBoxOperacoes2.TabIndex = 11;
+            comboBoxOperacoes2.Text = "operações";
+            // 
+            // botaoCalcular
+            // 
+            botaoCalcular.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            botaoCalcular.Location = new Point(445, 180);
+            botaoCalcular.Name = "botaoCalcular";
+            botaoCalcular.Size = new Size(100, 23);
+            botaoCalcular.TabIndex = 12;
+            botaoCalcular.Text = "Calcular";
+            botaoCalcular.UseVisualStyleBackColor = true;
+            botaoCalcular.Click += botaoCalcular_Click;
+            // 
+            // boxResultado
+            // 
+            boxResultado.Location = new Point(445, 226);
+            boxResultado.Name = "boxResultado";
+            boxResultado.ReadOnly = true;
+            boxResultado.Size = new Size(100, 23);
+            boxResultado.TabIndex = 13;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(339, 99);
+            label1.Name = "label1";
+            label1.Size = new Size(84, 15);
+            label1.TabIndex = 14;
+            label1.Text = "Comprimento";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(445, 99);
+            label2.Name = "label2";
+            label2.Size = new Size(49, 15);
+            label2.TabIndex = 15;
+            label2.Text = "Largura";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(551, 99);
+            label3.Name = "label3";
+            label3.Size = new Size(41, 15);
+            label3.TabIndex = 16;
+            label3.Text = "Altura";
+            // 
+            // opcoesForms
+            // 
+            opcoesForms.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            opcoesForms.FormattingEnabled = true;
+            opcoesForms.Items.AddRange(new object[] { "Quadrado", "Cubo" });
+            opcoesForms.Location = new Point(76, 47);
+            opcoesForms.Name = "opcoesForms";
+            opcoesForms.Size = new Size(100, 28);
+            opcoesForms.TabIndex = 17;
+            opcoesForms.Text = "Formas";
+            // 
+            // opcoesFormas
+            // 
+            opcoesFormas.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            opcoesFormas.FormattingEnabled = true;
+            opcoesFormas.Items.AddRange(new object[] { "Retângulo", "Paralelepipedo" });
+            opcoesFormas.Location = new Point(445, 47);
+            opcoesFormas.Name = "opcoesFormas";
+            opcoesFormas.Size = new Size(100, 28);
+            opcoesFormas.TabIndex = 18;
+            opcoesFormas.Text = "Formas";
+            opcoesFormas.SelectedIndexChanged += opcoesFormas2_SelectedIndexChanged;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(comboBoxOperacoes);
+            Controls.Add(opcoesFormas);
+            Controls.Add(opcoesForms);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(boxResultado);
+            Controls.Add(botaoCalcular);
+            Controls.Add(comboBoxOperacoes2);
+            Controls.Add(textBoxLargura);
+            Controls.Add(textBoxAltura);
+            Controls.Add(textBoxComprimento);
             Controls.Add(labelNotificacao);
             Controls.Add(textBoxResultado);
             Controls.Add(textBoxn1);
-            Controls.Add(comboBoxOperacoes);
             Controls.Add(buttonCalcular);
             Name = "Form2";
             Text = "Form2";
@@ -103,5 +233,16 @@
         private TextBox textBoxn1;
         private TextBox textBoxResultado;
         private Label labelNotificacao;
+        private TextBox textBoxComprimento;
+        private TextBox textBoxAltura;
+        private TextBox textBoxLargura;
+        private ComboBox comboBoxOperacoes2;
+        private Button botaoCalcular;
+        private TextBox boxResultado;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private ComboBox opcoesForms;
+        private ComboBox opcoesFormas;
     }
 }

@@ -12,7 +12,7 @@ namespace Calculadora
         private void button1_Click(object sender, EventArgs e)
         {
             double valor1, valor2, resultado = 0;
-
+            
             if (!double.TryParse(textBoxn1.Text, out valor1))
             {
                 labelResultado.Text = "O valor 1 deve ser um número";
@@ -25,6 +25,7 @@ namespace Calculadora
                 labelResultado.ForeColor = Color.Red;
                 return;
             }
+
 
             switch (comboBoxOperacoes.SelectedItem?.ToString())
             {
@@ -59,7 +60,7 @@ namespace Calculadora
 
             }
 
-            labelResultado.ForeColor = Color.Black;
+
             textBoxResultado.Text = resultado.ToString();
             textBoxn1.Clear();
             textBoxn2.Clear();
@@ -70,5 +71,7 @@ namespace Calculadora
             Form2 form2 = new Form2();
             form2.ShowDialog();
         }
+
+ 
     }
 }

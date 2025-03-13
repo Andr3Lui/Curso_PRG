@@ -100,13 +100,14 @@
             // labelLink
             // 
             labelLink.AutoSize = true;
+            labelLink.Cursor = Cursors.Hand;
             labelLink.Font = new Font("Arial Narrow", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             labelLink.ForeColor = Color.DodgerBlue;
-            labelLink.Location = new Point(237, 180);
+            labelLink.Location = new Point(218, 184);
             labelLink.Name = "labelLink";
-            labelLink.Size = new Size(125, 20);
+            labelLink.Size = new Size(163, 20);
             labelLink.TabIndex = 8;
-            labelLink.Text = "Calcular Quadrado";
+            labelLink.Text = "Calculadora Mais Melhor";
             labelLink.Click += labelLink_Click;
             // 
             // Form1
