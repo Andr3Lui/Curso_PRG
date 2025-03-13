@@ -42,8 +42,9 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
-            opcoesForms = new ComboBox();
-            opcoesFormas = new ComboBox();
+            label4 = new Label();
+            label5 = new Label();
+            labelNotificacao2 = new Label();
             SuspendLayout();
             // 
             // buttonCalcular
@@ -117,7 +118,6 @@
             // 
             // comboBoxOperacoes2
             // 
-            comboBoxOperacoes2.Enabled = false;
             comboBoxOperacoes2.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             comboBoxOperacoes2.FormattingEnabled = true;
             comboBoxOperacoes2.Items.AddRange(new object[] { "Perímetro", "Área", "Volume" });
@@ -126,6 +126,7 @@
             comboBoxOperacoes2.Size = new Size(100, 28);
             comboBoxOperacoes2.TabIndex = 11;
             comboBoxOperacoes2.Text = "operações";
+            comboBoxOperacoes2.SelectedIndexChanged += comboBoxOperacoes2_SelectedIndexChanged;
             // 
             // botaoCalcular
             // 
@@ -176,37 +177,45 @@
             label3.TabIndex = 16;
             label3.Text = "Altura";
             // 
-            // opcoesForms
+            // label4
             // 
-            opcoesForms.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            opcoesForms.FormattingEnabled = true;
-            opcoesForms.Items.AddRange(new object[] { "Quadrado", "Cubo" });
-            opcoesForms.Location = new Point(76, 47);
-            opcoesForms.Name = "opcoesForms";
-            opcoesForms.Size = new Size(100, 28);
-            opcoesForms.TabIndex = 17;
-            opcoesForms.Text = "Formas";
+            label4.AutoSize = true;
+            label4.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(76, 49);
+            label4.Name = "label4";
+            label4.Size = new Size(103, 22);
+            label4.TabIndex = 19;
+            label4.Text = "Quadrado";
             // 
-            // opcoesFormas
+            // label5
             // 
-            opcoesFormas.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            opcoesFormas.FormattingEnabled = true;
-            opcoesFormas.Items.AddRange(new object[] { "Retângulo", "Paralelepipedo" });
-            opcoesFormas.Location = new Point(445, 47);
-            opcoesFormas.Name = "opcoesFormas";
-            opcoesFormas.Size = new Size(100, 28);
-            opcoesFormas.TabIndex = 18;
-            opcoesFormas.Text = "Formas";
-            opcoesFormas.SelectedIndexChanged += opcoesFormas2_SelectedIndexChanged;
+            label5.AutoSize = true;
+            label5.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(445, 49);
+            label5.Name = "label5";
+            label5.Size = new Size(104, 22);
+            label5.TabIndex = 20;
+            label5.Text = "Retângulo";
+            // 
+            // labelNotificacao2
+            // 
+            labelNotificacao2.AutoSize = true;
+            labelNotificacao2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelNotificacao2.Location = new Point(445, 281);
+            labelNotificacao2.Name = "labelNotificacao2";
+            labelNotificacao2.Size = new Size(13, 15);
+            labelNotificacao2.TabIndex = 21;
+            labelNotificacao2.Text = "  ";
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelNotificacao2);
+            Controls.Add(label5);
+            Controls.Add(label4);
             Controls.Add(comboBoxOperacoes);
-            Controls.Add(opcoesFormas);
-            Controls.Add(opcoesForms);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -242,7 +251,8 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private ComboBox opcoesForms;
-        private ComboBox opcoesFormas;
+        private Label label4;
+        private Label label5;
+        private Label labelNotificacao2;
     }
 }

@@ -24,7 +24,7 @@ namespace Calculadora
 
             if (!double.TryParse(textBoxn1.Text, out valor1))
             {
-                labelNotificacao.Text = "Insira um valor";
+                labelNotificacao.Text = "Insira um valor válido";
                 labelNotificacao.ForeColor = Color.Red;
                 return;
             }
@@ -33,6 +33,13 @@ namespace Calculadora
 
             {
                 labelNotificacao.Text = "Insira um valor maior que zero";
+                labelNotificacao.ForeColor = Color.Red;
+                return;
+            }
+
+            if (comboBoxOperacoes.SelectedItem == null)
+            {
+                labelNotificacao.Text = "selecione uma operação";
                 labelNotificacao.ForeColor = Color.Red;
                 return;
             }
@@ -51,45 +58,48 @@ namespace Calculadora
                     resultado1 = Math.Pow(valor1, 3);
                     break;
 
-                default:
-                    labelNotificacao.Text = "Selecione uma operação";
-                    labelNotificacao.ForeColor = Color.Red;
-                    break;
 
             }
 
             textBoxResultado.Text = resultado1.ToString();
             textBoxn1.Clear();
+            labelNotificacao.Text = "";
         }
 
         private void botaoCalcular_Click(object sender, EventArgs e)
         {
             double comprimento, largura, altura = 0, resultado2 = 0;
-            bool volume = false;
+
 
             if (!double.TryParse(textBoxComprimento.Text, out comprimento) || comprimento <= 0)
             {
-                labelNotificacao.Text = "Insira um valor";
-                labelNotificacao.ForeColor = Color.Red;
+                labelNotificacao2.Text = "Insira um valor válido em comprimento";
+                labelNotificacao2.ForeColor = Color.Red;
                 return;
             }
+
             if (!double.TryParse(textBoxLargura.Text, out largura) || largura <= 0)
             {
-                labelNotificacao.Text = "Insira um valor";
-                labelNotificacao.ForeColor = Color.Red;
+                labelNotificacao2.Text = "Insira um valor válido em largura";
+                labelNotificacao2.ForeColor = Color.Red;
                 return;
             }
 
-            if (comboBoxOperacoes2.SelectedItem.ToString() == "Volume")
+            if (comboBoxOperacoes2.SelectedText.ToString() == "Volume")
             {
-                volume = true;
                 if (!double.TryParse(textBoxAltura.Text, out altura) || altura <= 0)
                 {
-                    labelNotificacao.Text = "Insira um valor";
-                    labelNotificacao.ForeColor = Color.Red;
+                    labelNotificacao2.Text = "Insira um valor válido em altura";
+                    labelNotificacao2.ForeColor = Color.Red;
                     return;
                 }
+            }
 
+            if (comboBoxOperacoes2.SelectedItem == null)
+            {
+                labelNotificacao2.Text = "selecione uma operação";
+                labelNotificacao2.ForeColor = Color.Red;
+                return;
             }
 
             switch (comboBoxOperacoes2.SelectedItem.ToString())
@@ -106,10 +116,6 @@ namespace Calculadora
                     resultado2 = comprimento * largura * altura;
                     break;
 
-                default:
-                    labelNotificacao.Text = "Selecione uma operação";
-                    labelNotificacao.ForeColor = Color.Red;
-                    return;
 
             }
 
@@ -117,20 +123,19 @@ namespace Calculadora
             textBoxComprimento.Clear();
             textBoxLargura.Clear();
             textBoxAltura.Clear();
+            labelNotificacao2.Text = "";
 
         }
 
-        private void opcoesFormas2_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxOperacoes2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (opcoesFormas.SelectedItem.ToString() == "Paralelepipedo" && opcoesFormas.SelectedItem != null)
+            if (comboBoxOperacoes2.SelectedItem == "Volume")
             {
                 textBoxAltura.Enabled = true;
-                comboBoxOperacoes2.SelectedItem = "Volume";
             }
             else
             {
                 textBoxAltura.Enabled = false;
-                comboBoxOperacoes2.SelectedItem = ("Perímetro", "Área");
             }
         }
     }
