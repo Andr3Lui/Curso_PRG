@@ -16,3 +16,4 @@ D:\Curso_PRG\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\Calculadora.pdb
 D:\Curso_PRG\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\Calculadora.genruntimeconfig.cache
 D:\Curso_PRG\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\ref\Calculadora.dll
 D:\Curso_PRG\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\Calculadora.Form2.resources
+D:\Curso_PRG\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\Calculadora.Form3.resources

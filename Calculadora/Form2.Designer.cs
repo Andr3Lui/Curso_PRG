@@ -45,6 +45,7 @@
             label4 = new Label();
             label5 = new Label();
             labelNotificacao2 = new Label();
+            labelLado = new Label();
             SuspendLayout();
             // 
             // buttonCalcular
@@ -191,7 +192,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(445, 49);
+            label5.Location = new Point(441, 49);
             label5.Name = "label5";
             label5.Size = new Size(104, 22);
             label5.TabIndex = 20;
@@ -207,11 +208,22 @@
             labelNotificacao2.TabIndex = 21;
             labelNotificacao2.Text = "  ";
             // 
+            // labelLado
+            // 
+            labelLado.AutoSize = true;
+            labelLado.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelLado.Location = new Point(76, 96);
+            labelLado.Name = "labelLado";
+            labelLado.Size = new Size(33, 15);
+            labelLado.TabIndex = 22;
+            labelLado.Text = "Lado";
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelLado);
             Controls.Add(labelNotificacao2);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -254,5 +266,6 @@
         private Label label4;
         private Label label5;
         private Label labelNotificacao2;
+        private Label labelLado;
     }
 }

@@ -129,7 +129,7 @@ namespace Calculadora
 
         private void comboBoxOperacoes2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxOperacoes2.SelectedItem == "Volume")
+            if (comboBoxOperacoes2.SelectedItem?.ToString() == "Volume")
             {
                 textBoxAltura.Enabled = true;
             }
@@ -137,6 +137,12 @@ namespace Calculadora
             {
                 textBoxAltura.Enabled = false;
             }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+            Form3 forms3 = new Form3();
+            forms3.ShowDialog();
         }
     }
 } 
