@@ -115,6 +115,7 @@
             // 
             // textBoxResultado
             // 
+            textBoxResultado.Enabled = false;
             textBoxResultado.Location = new Point(325, 135);
             textBoxResultado.Name = "textBoxResultado";
             textBoxResultado.Size = new Size(100, 23);

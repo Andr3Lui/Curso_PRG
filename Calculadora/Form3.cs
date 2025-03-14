@@ -19,7 +19,6 @@ namespace Calculadora
 
         private void buttonCalcular_Click(object sender, EventArgs e)
         {
-            //Diâmetro
             string raio = textBoxRaio.Text;
 
             labelErro.Text = "";
@@ -27,11 +26,44 @@ namespace Calculadora
             if (string.IsNullOrWhiteSpace(raio) || !raio.All(char.IsNumber))
             {
                 labelErro.Text = "Insira um valor válido";
-                labelErro.ForeColor = Color.Red;    
+                labelErro.ForeColor = Color.Red;
+                return;
             }
 
-            double resultado = Convert.ToDouble(raio) * 2;
-            textBoxResultado.Text = resultado.ToString();
+            if (!radioButtonPerimetro.Checked && !radioButtonDiametro.Checked && !radioButtonArea.Checked && !radioButtonVolume.Checked)
+            {
+                labelErro.Text = "Escolha uma opção de calculo";
+                labelErro.ForeColor = Color.Red;
+                return;
+            }
+
+            if (radioButtonPerimetro.Checked)
+            {
+                double resultado = Convert.ToDouble(raio) * 2 * Math.PI;
+                textBoxResultado.Text = resultado.ToString();
+                return;
+            }
+            else if (radioButtonDiametro.Checked)
+            {
+                double resultado = Convert.ToDouble(raio) * 2;
+                textBoxResultado.Text = resultado.ToString();
+                return;
+            }
+            else if (radioButtonArea.Checked)
+            {
+                double resultado = Convert.ToDouble(raio) * Convert.ToDouble(raio) * Math.PI;
+                textBoxResultado.Text = resultado.ToString();
+                return;
+            }
+            else if (radioButtonVolume.Checked)
+            {
+                double resultado = Convert.ToDouble(raio) * Convert.ToDouble(raio) * Convert.ToDouble(raio) * (4.0 / 3.0) * Math.PI;
+                textBoxResultado.Text = resultado.ToString();
+                return;
+            }
+
+            textBoxRaio.Clear();
+            
         }
     }
 }

@@ -104,11 +104,11 @@
             labelLink.Cursor = Cursors.Hand;
             labelLink.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             labelLink.ForeColor = Color.DodgerBlue;
-            labelLink.Location = new Point(233, 189);
+            labelLink.Location = new Point(185, 191);
             labelLink.Name = "labelLink";
-            labelLink.Size = new Size(141, 15);
+            labelLink.Size = new Size(238, 15);
             labelLink.TabIndex = 8;
-            labelLink.Text = "Calculadora Mais Melhor";
+            labelLink.Text = "Calcular medidas de quadrado e retângulo";
             labelLink.Click += labelLink_Click;
             // 
             // label2
