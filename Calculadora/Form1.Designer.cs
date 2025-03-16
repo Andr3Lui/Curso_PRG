@@ -36,6 +36,7 @@
             textBoxResultado = new TextBox();
             label1 = new Label();
             labelLink = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // textBoxn1
@@ -101,20 +102,34 @@
             // 
             labelLink.AutoSize = true;
             labelLink.Cursor = Cursors.Hand;
-            labelLink.Font = new Font("Arial Narrow", 12F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            labelLink.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
             labelLink.ForeColor = Color.DodgerBlue;
-            labelLink.Location = new Point(218, 184);
+            labelLink.Location = new Point(185, 191);
             labelLink.Name = "labelLink";
-            labelLink.Size = new Size(163, 20);
+            labelLink.Size = new Size(238, 15);
             labelLink.TabIndex = 8;
-            labelLink.Text = "Calculadora Mais Melhor";
+            labelLink.Text = "Calcular medidas de quadrado e retângulo";
             labelLink.Click += labelLink_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Cursor = Cursors.Hand;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.DodgerBlue;
+            label2.Location = new Point(218, 217);
+            label2.Name = "label2";
+            label2.Size = new Size(177, 15);
+            label2.TabIndex = 9;
+            label2.Text = "Calcular medidas de um circulo";
+            label2.Click += label2_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
             Controls.Add(labelLink);
             Controls.Add(label1);
             Controls.Add(textBoxResultado);
@@ -139,5 +154,6 @@
         private TextBox textBoxResultado;
         private Label label1;
         private Label labelLink;
+        private Label label2;
     }
 }

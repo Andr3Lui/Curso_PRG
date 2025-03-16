@@ -12,7 +12,7 @@ namespace Calculadora
         private void button1_Click(object sender, EventArgs e)
         {
             double valor1, valor2, resultado = 0;
-            
+
             if (!double.TryParse(textBoxn1.Text, out valor1))
             {
                 labelResultado.Text = "O valor 1 deve ser um número";
@@ -72,6 +72,10 @@ namespace Calculadora
             form2.ShowDialog();
         }
 
- 
+        private void label2_Click(object sender, EventArgs e)
+        {
+            Form3 form3 = new Form3();
+            form3.ShowDialog();
+        }
     }
 }

@@ -16,6 +16,7 @@ D:\Curso_PRG\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\Calculadora.pdb
 D:\Curso_PRG\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\Calculadora.genruntimeconfig.cache
 D:\Curso_PRG\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\ref\Calculadora.dll
 D:\Curso_PRG\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\Calculadora.Form2.resources
+<<<<<<< HEAD
 C:\Curso_Prog\Curso_PRG\Calculadora\bin\Debug\net8.0-windows\Calculadora.exe
 C:\Curso_Prog\Curso_PRG\Calculadora\bin\Debug\net8.0-windows\Calculadora.deps.json
 C:\Curso_Prog\Curso_PRG\Calculadora\bin\Debug\net8.0-windows\Calculadora.runtimeconfig.json
@@ -34,3 +35,7 @@ C:\Curso_Prog\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\refint\Calculadora.
 C:\Curso_Prog\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\Calculadora.pdb
 C:\Curso_Prog\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\Calculadora.genruntimeconfig.cache
 C:\Curso_Prog\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\ref\Calculadora.dll
+=======
+D:\Curso_PRG\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\Calculadora.Form3.resources
+>>>>>>> 81749abbe8205ce580ad398f532d9db9b9855914
+C:\Curso_Prog\Curso_PRG\Calculadora\obj\Debug\net8.0-windows\Calculadora.Form3.resources
