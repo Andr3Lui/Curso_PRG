@@ -11,16 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Calculadora")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("CadastrCliente")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae8361695d945b1bd50524c05b975892ce0d94bc")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81749abbe8205ce580ad398f532d9db9b9855914")]
->>>>>>> 3f035bf (Projeto Cadastrar Cliente)
-[assembly: System.Reflection.AssemblyProductAttribute("Calculadora")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Calculadora")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c01272ce31b8f3f3b491fc7b9105e502464f6b0")]
+[assembly: System.Reflection.AssemblyProductAttribute("CadastrCliente")]
+[assembly: System.Reflection.AssemblyTitleAttribute("CadastrCliente")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
