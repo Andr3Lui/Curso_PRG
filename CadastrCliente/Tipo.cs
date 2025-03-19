@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CadastrCliente
 {
-    internal class EnumTipoCliente
+    enum TipoCliente
     {
+        PF,
+        PJ
     }
 }
