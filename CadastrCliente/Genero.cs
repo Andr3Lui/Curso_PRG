@@ -11,7 +11,8 @@ namespace CadastrCliente
         Masculino,
         Feminino,
         NaoBinario,
-        Outro
+        Outro,
+        NaoDeclarar
         
     }
 }

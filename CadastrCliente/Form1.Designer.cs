@@ -62,7 +62,7 @@
             textBoxMunicipio = new TextBox();
             textBoxBairro = new TextBox();
             comboBoxEstado = new ComboBox();
-            maskedTextBoxCep = new MaskedTextBox();
+            maskedtBoxCep = new MaskedTextBox();
             label17 = new Label();
             label18 = new Label();
             labelErro = new Label();
@@ -209,7 +209,7 @@
             // comboBoxGenero
             // 
             comboBoxGenero.FormattingEnabled = true;
-            comboBoxGenero.Items.AddRange(new object[] { "Masculino", "Feminino", "Não Binário", "Outro" });
+            comboBoxGenero.Items.AddRange(new object[] { "Masculino", "Feminino", "Não Binário", "Outro", "Não quero declarar" });
             comboBoxGenero.Location = new Point(174, 445);
             comboBoxGenero.Name = "comboBoxGenero";
             comboBoxGenero.Size = new Size(100, 23);
@@ -381,13 +381,13 @@
             comboBoxEstado.Size = new Size(100, 23);
             comboBoxEstado.TabIndex = 36;
             // 
-            // maskedTextBoxCep
+            // maskedtBoxCep
             // 
-            maskedTextBoxCep.Location = new Point(456, 474);
-            maskedTextBoxCep.Mask = "00000-000";
-            maskedTextBoxCep.Name = "maskedTextBoxCep";
-            maskedTextBoxCep.Size = new Size(100, 23);
-            maskedTextBoxCep.TabIndex = 37;
+            maskedtBoxCep.Location = new Point(456, 474);
+            maskedtBoxCep.Mask = "00000-000";
+            maskedtBoxCep.Name = "maskedtBoxCep";
+            maskedtBoxCep.Size = new Size(100, 23);
+            maskedtBoxCep.TabIndex = 37;
             // 
             // label17
             // 
@@ -412,6 +412,7 @@
             // labelErro
             // 
             labelErro.AutoSize = true;
+            labelErro.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelErro.Location = new Point(274, 610);
             labelErro.Name = "labelErro";
             labelErro.Size = new Size(0, 15);
@@ -425,7 +426,7 @@
             Controls.Add(labelErro);
             Controls.Add(label18);
             Controls.Add(label17);
-            Controls.Add(maskedTextBoxCep);
+            Controls.Add(maskedtBoxCep);
             Controls.Add(comboBoxEstado);
             Controls.Add(textBoxBairro);
             Controls.Add(textBoxMunicipio);
@@ -503,7 +504,7 @@
         private TextBox textBoxMunicipio;
         private TextBox textBoxBairro;
         private ComboBox comboBoxEstado;
-        private MaskedTextBox maskedTextBoxCep;
+        private MaskedTextBox maskedtBoxCep;
         private Label label17;
         private Label label18;
         private Label labelErro;

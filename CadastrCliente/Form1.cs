@@ -18,75 +18,279 @@ namespace CadastrCliente
             clientes.Add(new Cliente() { Id = 3, Nome = "Sukuna Nakima", DataNascimento = "30/01/2000", Telefone = "(11)94567-8512", Email = "Sukuna77#@email.com", Endereco = endereco3, Genero = GeneroCliente.Masculino, Estrangeiro = true, Etnia = EtniaCliente.Amarelo, NomeSocial = "Paulo Silva", Tipo = TipoCliente.PJ });
 
         }
-        private void buttonCadastrar_Click(object sender, EventArgs e)
+        private bool LimparLabelErro()
         {
             labelErro.Text = "";
-            //nome
+            return true;
+        }
+        private bool Nome()
+        {
             if (string.IsNullOrWhiteSpace(textBoxNome.Text))
             {
                 labelErro.Text = "Preencha Nome";
                 labelErro.ForeColor = Color.Red;
-                return;
+                return false;
             }
             if (!textBoxNome.Text.All(char.IsLetter))
             {
                 labelErro.Text = "Preencha somente com letras";
                 labelErro.ForeColor = Color.Red;
-                return;
+                return false;
             }
-            /*
-            //Data de Nascimento
-            if (string.IsNullOrWhiteSpace(maskedBoxNasc.Text))
+
+            return true;
+        }
+        private bool NomeSocial()
+        {
+            if (!textBoxNS.Text.All(char.IsLetter))
             {
-                labelErro.Text = "Preencha Data de Nascimento";
+                labelErro.Text = "Preencha somente com letras";
                 labelErro.ForeColor = Color.Red;
-                return;
+                return false;
             }
-            //Email
+            return true;
+        }
+        private bool DatadeNascimento()
+        {
+            if(string.IsNullOrWhiteSpace(maskedBoxNasc.Text))
+            {
+                labelErro.Text = "Preencha Campo 'Data de Nascimento'";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            
+            return true;
+        }
+        private bool Telefone()
+        {
+            if (string.IsNullOrWhiteSpace(maskedBoxTel.Text))
+            {
+                labelErro.Text = "Preencha Campo 'Telefone'";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+        private bool Email()
+        {
             if (string.IsNullOrWhiteSpace(textBoxEmail.Text))
             {
                 labelErro.Text = "Preencha Email";
                 labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            if (textBoxEmail.Text.EndsWith("@email.com"))
+            {
+                labelErro.Text = "Email deve conter (@email.com)";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            if(textBoxEmail.Text.Length >= 18)
+            {
+                labelErro.Text = "Email deve conter ao menos 8 caracteres";
+                labelErro.ForeColor = Color.Red;
+                return false;
+
+            }
+            return true;
+        }
+        private bool Genero()
+        {
+            if(comboBoxGenero.SelectedItem == null)
+            {
+                labelErro.Text = "selecione uma opção no Campo Gênero";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+        private bool Etnia()
+        {
+            if (comboBoxEtnia.SelectedItem == null)
+            {
+                labelErro.Text = "selecione uma opção no Campo Etnia";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+        private bool Estrangeiro()
+        {
+            if (checkBoxEstrangeiro.Checked)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
+        }
+        private bool Tipo()
+        {
+            if (!radioButtonPF.Checked && !radioButtonPJ.Checked)
+            {
+                labelErro.Text = "Selecione entre PF ou PJ";
+                return false;
+            }
+            
+               return true;
+        }
+        private bool Logradouro()
+        {
+            if (string.IsNullOrWhiteSpace(textBoxLogradouro.Text))
+            {
+                labelErro.Text = "Preencha 'Logradouro'";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+                return true;
+        }
+        private bool Numero()
+        {
+           if (string.IsNullOrWhiteSpace(textBoxNumero.Text))
+           {
+                labelErro.Text = "Preencha o Campo 'Número'";
+                labelErro.ForeColor = Color.Red;
+                return false;
+           }
+           if (textBoxNumero.Text.All(char.IsLetter))
+           {
+                labelErro.Text = "Não é possível preencher o Campo 'Número' somente com letras";
+                labelErro.ForeColor = Color.Red;
+                return false;
+           }
+
+
+            return true;
+        }
+        private bool Bairro()
+        {
+            if (string.IsNullOrWhiteSpace(textBoxBairro.Text))
+            {
+                labelErro.Text = "Preencha o Campo 'Bairro'";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            if (!textBoxBairro.Text.Any(char.IsLetter))
+            {
+                labelErro.Text = "Preencha o Campo 'Bairro' somente com letras";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+        private bool Municipio()
+        {
+            if (string.IsNullOrWhiteSpace(textBoxMunicipio.Text))
+            {
+                labelErro.Text = "Preencha o Campo 'Municipio'";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            if (!textBoxMunicipio.Text.Any(char.IsLetter))
+            {
+                labelErro.Text = "Preencha o Campo 'Municipio' somente com letras";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+            return true;
+        }
+        private bool Estado()
+        {
+            if (comboBoxEstado.SelectedItem == null)
+            {
+                labelErro.Text = "Selecione seu Estado";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
+
+            return true;
+        }
+        private bool CEP()
+        {
+            return true;
+        }
+
+        private void buttonCadastrar_Click(object sender, EventArgs e)
+        {
+           
+            if(!LimparLabelErro())
+            {
                 return;
             }
-            if (string.IsNullOrWhiteSpace(textBoxEmail.Text))
+            //
+            //Informações Pessoais
+            //
+            if (!Nome())
             {
-                labelErro.Text = "Preencha Email";
-                labelErro.ForeColor = Color.Red;
+                return;
+            }
+            if (!NomeSocial())
+            {
+                return;
+            }
+            if (!DatadeNascimento())
+            {
+                return;
+            }
+            if (!Telefone())
+            {
+                return;
+            }
+            if (!Email())
+            {
+                return;
+            }
+            if (!Genero())
+            {
+                return;
+            }
+            if (!Etnia())
+            {
+                return;
+            }
+            if (!Estrangeiro())
+            {
+                return;
+            }
+            if (!Tipo())
+            {
+                return;
+            }
+            //
+            //Endereço
+            //
+            if (!Logradouro())
+            {
+                return;
+            }
+            if (!Numero())
+            {
+                return;
+            }
+            if (!Bairro())
+            {
+                return;
+            }
+            if (!Municipio())
+            {
+                return;
+            }
+            if (!Estado())
+            {
+                return;
+            }
+            if (!CEP())
+            {
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(textBoxNome.Text))
-            {
-                labelErro.Text = "Preencha nome";
-                labelErro.ForeColor = Color.Red;
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(textBoxNome.Text))
-            {
-                labelErro.Text = "Preencha nome";
-                labelErro.ForeColor = Color.Red;
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(textBoxNome.Text))
-            {
-                labelErro.Text = "Preencha nome";
-                labelErro.ForeColor = Color.Red;
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(textBoxNome.Text))
-            {
-                labelErro.Text = "Preencha nome";
-                labelErro.ForeColor = Color.Red;
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(textBoxNome.Text))
-            {
-                labelErro.Text = "Preencha nome";
-                labelErro.ForeColor = Color.Red;
-                return;
-            }
-            */
+
+
+            labelErro.Text = "Cadastrado com Sucesso";
+            labelErro.ForeColor = Color.Green; 
+           
         }
     }
 }
