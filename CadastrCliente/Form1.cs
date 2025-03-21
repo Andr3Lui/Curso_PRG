@@ -26,43 +26,24 @@ namespace CadastrCliente
             labelErro.Text = "";
             return true;
         }
-        private bool Id()
-        {
-            bool Idencontrado = false;
-            for (int i = 0; i < clientes.Count; i++)
-            {
-                if (clientes[i].Id == 3 + 1)
-                {
-                    Idencontrado = true;
-                }
-            }
-            if (Idencontrado)
-            {
-                labelErro.Text = "Este cliente já existe";
-                labelErro.ForeColor = Color.Red;
-                return false;
-            }
-
-            return true;
-        }
         private bool Nome()
         {
             if (string.IsNullOrWhiteSpace(textBoxNome.Text))
             {
-                labelErro.Text = "Preencha Nome";
+                labelErro.Text = "Preencha 'Nome'";
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
             if (textBoxNome.Text.Any(char.IsNumber) || textBoxNome.Text.Any(char.IsSymbol) ||
                 textBoxNome.Text.Contains('@') || textBoxNome.Text.Any(char.IsPunctuation))
             {
-                labelErro.Text = "Preencha somente com letras";
+                labelErro.Text = "Preencha 'Nome' somente com letras";
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
             if (!textBoxNome.Text.Contains(" "))
             {
-                labelErro.Text = "Insira o Nome Completo";
+                labelErro.Text = "Insira o Nome e Sobrenome";
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
@@ -100,6 +81,7 @@ namespace CadastrCliente
                 return false;
             }
 
+
             return true;
         }
         private bool Telefone()
@@ -117,22 +99,7 @@ namespace CadastrCliente
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
-            
-            bool telefoneEncontrado = false;
-            for (int i = 0; i < clientes.Count; i++)
-            {
-                if (clientes[i].Telefone == maskedBoxTel.Text)
-                {
-                    telefoneEncontrado = true;
-                }
-                if (telefoneEncontrado)
-                {
-                    labelErro.Text = "Telefone já cadastrado";
-                    labelErro.ForeColor = Color.Red;
-                    return false;
-                }
 
-            }
             return true;
         }
         private bool Email()
@@ -145,35 +112,18 @@ namespace CadastrCliente
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
+            if (textBoxEmail.Text.Length <= 17)
+            {
+                labelErro.Text = "Insira um Email válido";
+                labelErro.ForeColor = Color.Red;
+                return false;
+            }
             if (!textBoxEmail.Text.EndsWith("@email.com"))
             {
                 labelErro.Text = "Email deve conter (@email.com)";
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
-            if (textBoxEmail.Text.Length <= 17)
-            {
-                labelErro.Text = "Email deve conter ao menos 8 caracteres";
-                labelErro.ForeColor = Color.Red;
-                return false;
-            }
-
-            bool emailEncontrado = false;
-
-            for (int i = 0; i < clientes.Count; i++)
-            {
-                if (clientes[i].Email == textBoxEmail.Text)
-                {
-                    emailEncontrado = true;
-                }
-            }
-            if (emailEncontrado)
-            {
-                labelErro.Text = " Email já cadastrado";
-                labelErro.ForeColor = Color.Red;
-                return false;
-            }
-
             return true;
         }
         private bool Genero()
@@ -208,12 +158,12 @@ namespace CadastrCliente
         }
         private bool Tipo()
         {
-            if(!radioButtonPF.Checked || !radioButtonPJ.Checked)
+            if (!radioButtonPF.Checked && !radioButtonPJ.Checked)
             {
                 labelErro.Text = "Selecione entre 'PF' ou 'PJ'";
                 labelErro.ForeColor = Color.Red;
                 return false;
-            } 
+            }
             return true;
         }
         private bool Logradouro()
@@ -224,8 +174,8 @@ namespace CadastrCliente
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
-            if (textBoxLogradouro.Text.All(char.IsNumber) || textBoxLogradouro.Text.Any(char.IsSymbol) || 
-                textBoxLogradouro.Text.Contains("@") || textBoxLogradouro.Text.Any(char.IsPunctuation) || 
+            if (textBoxLogradouro.Text.All(char.IsNumber) || textBoxLogradouro.Text.Any(char.IsSymbol) ||
+                textBoxLogradouro.Text.Contains("@") || textBoxLogradouro.Text.Any(char.IsPunctuation) ||
                 !textBoxLogradouro.Text.Contains(' '))
             {
                 labelErro.Text = "Preencha 'Logradouro' válido";
@@ -248,7 +198,7 @@ namespace CadastrCliente
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
-            if (textBoxNumero.Text.Any(char.IsPunctuation) || textBoxNumero.Text.Any(char.IsSymbol) 
+            if (textBoxNumero.Text.Any(char.IsPunctuation) || textBoxNumero.Text.Any(char.IsSymbol)
                 || textBoxNumero.Text.Contains('@'))
             {
                 labelErro.Text = "Insira um 'número' válido";
@@ -267,7 +217,7 @@ namespace CadastrCliente
                 return false;
             }
             if (textBoxLogradouro.Text.All(char.IsNumber) || textBoxLogradouro.Text.Any(char.IsSymbol) ||
-                 textBoxLogradouro.Text.Contains("@") || textBoxLogradouro.Text.Any(char.IsPunctuation))
+                 textBoxLogradouro.Text.Contains('@') || textBoxLogradouro.Text.Any(char.IsPunctuation))
             {
                 labelErro.Text = "Preencha 'Bairro' válido";
                 labelErro.ForeColor = Color.Red;
@@ -289,6 +239,7 @@ namespace CadastrCliente
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
+
             return true;
         }
         private bool Estado()
@@ -306,17 +257,21 @@ namespace CadastrCliente
         {
             if (!maskedBoxCep.Text.Any(char.IsNumber))
             {
-                labelErro.Text = "Preencha Campo 'Telefone'";
+                labelErro.Text = "Preencha Campo 'CEP'";
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
-            if (maskedBoxCep.Text.Contains(' '))
+            if (maskedBoxCep.Text.Contains(' ') || maskedBoxCep.Text.Length < 9)
             {
-                labelErro.Text = "Insira um 'Telefone' válido";
+                labelErro.Text = "Insira um 'CEP' válido";
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
             return true;
+        }
+        private int GerarNovoID()
+        {
+            return clientes.Max(cliente => cliente.Id) + 1;
         }
 
         private void buttonCadastrar_Click(object sender, EventArgs e)
@@ -331,86 +286,166 @@ namespace CadastrCliente
             //
             if (!Nome())
             {
-                return;
+                return ;
             }
             if (!NomeSocial())
             {
-                return;
+                return ;
             }
             if (!DatadeNascimento())
             {
-                return;
+                return ;
             }
             if (!Telefone())
             {
-                return;
+                return ;
             }
             if (!Email())
             {
-                return;
+                return ;
             }
             if (!Genero())
             {
-                return;
+                return ;
             }
             if (!Etnia())
             {
-                return;
+                return ;
             }
             if (!Estrangeiro())
             {
-                return;
+                return ;
             }
             if (!Tipo())
             {
-                return;
+                return ;
             }
             //
             //Endereço
             //
             if (!Logradouro())
             {
-                return;
+                return ;
             }
             if (!Numero())
             {
-                return;
+                return ;
             }
             if (!Bairro())
             {
-                return;
+                return ;
             }
             if (!Municipio())
             {
-                return;
+                return ;
             }
             if (!Estado())
             {
-                return;
+                return ;
             }
             if (!CEP())
             {
-                return;
+                return ;
             }
 
+            //ID
+            bool Idencontrado = false;
+            for (int i = 0; i < clientes.Count; i++)
+            {
+                if (clientes[i].Id == 3)
+                {
+                    Idencontrado = true;
+                    return;
+                }
+                continue;
+            }
+            if (Idencontrado)
+            {
+                labelErro.Text = "Este cliente já existe";
+                labelErro.ForeColor = Color.Red;
+                return ;
+            }
+            //Telefone
+            bool telefoneEncontrado = false;
+            for (int i = 0; i < clientes.Count; i++)
+            {
+                if (clientes[i].Telefone == maskedBoxTel.Text)
+                {
+                    telefoneEncontrado = true;
+                }
+                if (telefoneEncontrado)
+                {
+                    labelErro.Text = "Telefone já cadastrado";
+                    labelErro.ForeColor = Color.Red;
+                    return ;
+                }
+                continue;
+            }
+            //Email
+            bool emailEncontrado = false;
 
-            //clientes.Add( new Cliente() 
-            //{ 
-            //   Nome = textBoxNome.Text,
+            for (int i = 0; i < clientes.Count; i++)
+            {
+                if (clientes[i].Email == textBoxEmail.Text)
+                {
+                    emailEncontrado = true;
+                    return;
+                }
+                continue;
+            }
+            if (emailEncontrado)
+            {
+                labelErro.Text = " Email já cadastrado";
+                labelErro.ForeColor = Color.Red;
+                return ;
+            }
+           
 
+            int novoId = GerarNovoID();
 
+            TipoCliente tipo = 0;
+            if (radioButtonPF.Checked)
+            {
+                tipo = TipoCliente.PF;
+            }
+            if (radioButtonPJ.Checked)
+            {
+                tipo = TipoCliente.PJ;
+            }
 
+            EnderecoCliente endereco = new()
+            {
+                Logradouro = textBoxLogradouro.Text,
+                Numero = textBoxNumero.Text,
+                Complemento = textBoxComple.Text,
+                Bairro = textBoxBairro.Text,
+                Municipio = textBoxMunicipio.Text,
+                Estado = comboBoxEstado.Text,
+                CEP = maskedBoxCep.Text,
 
+            };
 
-            //}
-            //);
+            clientes.Add(new Cliente()
+            {
+                Id = novoId,
+                Nome = textBoxNome.Text,
+                DataNascimento = maskedBoxNasc.Text,
+                Telefone = maskedBoxTel.Text,
+                Email = textBoxEmail.Text,
+                Endereco = endereco,
+                Genero = (GeneroCliente)comboBoxGenero.SelectedIndex,
+                Estrangeiro = checkBoxEstrangeiro.Checked,
+                Etnia = (EtniaCliente)comboBoxEtnia.SelectedIndex,
+                NomeSocial = textBoxNS.Text,
+                Tipo = tipo
+            }
+            );
 
-            labelErro.Text = "Cadastrado com Sucesso";
+            labelErro.Text = "Cliente Cadastrado com Sucesso";
             labelErro.ForeColor = Color.Green;
-            labelErro.Text = "";
-
 
             BindingSource.ResetBindings(false);
         }
+
     }
 }
