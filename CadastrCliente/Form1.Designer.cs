@@ -66,7 +66,9 @@
             label17 = new Label();
             label18 = new Label();
             labelErro = new Label();
+            dataGridViewClientes = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewClientes).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -418,11 +420,20 @@
             labelErro.Size = new Size(0, 15);
             labelErro.TabIndex = 40;
             // 
+            // dataGridViewClientes
+            // 
+            dataGridViewClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewClientes.Location = new Point(654, 254);
+            dataGridViewClientes.Name = "dataGridViewClientes";
+            dataGridViewClientes.Size = new Size(448, 284);
+            dataGridViewClientes.TabIndex = 41;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(711, 729);
+            ClientSize = new Size(1196, 729);
+            Controls.Add(dataGridViewClientes);
             Controls.Add(labelErro);
             Controls.Add(label18);
             Controls.Add(label17);
@@ -464,6 +475,7 @@
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewClientes).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -508,5 +520,6 @@
         private Label label17;
         private Label label18;
         private Label labelErro;
+        private DataGridView dataGridViewClientes;
     }
 }
