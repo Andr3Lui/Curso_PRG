@@ -21,6 +21,7 @@ namespace CadastrCliente
             dataGridViewClientes.DataSource = BindingSource;
 
         }
+       
         private bool LimparLabelErro()
         {
             labelErro.Text = "";
@@ -80,6 +81,12 @@ namespace CadastrCliente
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
+            int index = 6;
+            string ano = maskedBoxNasc.Text.Substring(index);
+            if (Convert.ToInt32(ano) > 2025 || Convert.ToInt32(ano) < 1950)
+            {
+                return false;
+            }
 
 
             return true;
@@ -100,29 +107,57 @@ namespace CadastrCliente
                 return false;
             }
 
+            bool telefoneEncontrado = false;
+            for (int i = 0; i < clientes.Count; i++)
+            {
+                if (clientes[i].Telefone == maskedBoxTel.Text)
+                {
+                    telefoneEncontrado = true;
+                }
+                if (telefoneEncontrado)
+                {
+                    labelErro.Text = "Telefone já cadastrado";
+                    labelErro.ForeColor = Color.Red;
+                    return false;
+                }
+                continue;
+            }
+
             return true;
         }
         private bool Email()
         {
 
 
+           
             if (string.IsNullOrWhiteSpace(textBoxEmail.Text))
             {
                 labelErro.Text = "Preencha Email";
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
-            if (textBoxEmail.Text.Length <= 17)
+            if (!textBoxEmail.Text.EndsWith("@email.com"))
             {
-                labelErro.Text = "Insira um Email válido";
+                labelErro.Text = "Insira um '@email.com' válido";
                 labelErro.ForeColor = Color.Red;
                 return false;
             }
-            if (!textBoxEmail.Text.EndsWith("@email.com"))
+
+            bool emailEncontrado = false;
+            for (int i = 0; i < clientes.Count; i++)
             {
-                labelErro.Text = "Email deve conter (@email.com)";
-                labelErro.ForeColor = Color.Red;
-                return false;
+                if (clientes[i].Email == textBoxEmail.Text)
+                {
+                    emailEncontrado = true;
+                    
+                }
+                if (emailEncontrado)
+                {
+                    labelErro.Text = " Email já cadastrado";
+                    labelErro.ForeColor = Color.Red;
+                    return false;
+                }
+                continue;
             }
             return true;
         }
@@ -284,125 +319,75 @@ namespace CadastrCliente
             //
             //Informações Pessoais
             //
+           
             if (!Nome())
             {
-                return ;
+                return;
             }
             if (!NomeSocial())
             {
-                return ;
+                return;
             }
             if (!DatadeNascimento())
             {
-                return ;
+                return;
             }
             if (!Telefone())
             {
-                return ;
+                return;
             }
             if (!Email())
             {
-                return ;
+                return;
             }
             if (!Genero())
             {
-                return ;
+                return;
             }
             if (!Etnia())
             {
-                return ;
+                return;
             }
             if (!Estrangeiro())
             {
-                return ;
+                return;
             }
             if (!Tipo())
             {
-                return ;
+                return;
             }
             //
             //Endereço
             //
             if (!Logradouro())
             {
-                return ;
+                return;
             }
             if (!Numero())
             {
-                return ;
+                return;
             }
             if (!Bairro())
             {
-                return ;
+                return;
             }
             if (!Municipio())
             {
-                return ;
+                return;
             }
             if (!Estado())
             {
-                return ;
+                return;
             }
             if (!CEP())
             {
-                return ;
+                return;
             }
 
-            //ID
-            bool Idencontrado = false;
-            for (int i = 0; i < clientes.Count; i++)
-            {
-                if (clientes[i].Id == 3)
-                {
-                    Idencontrado = true;
-                    return;
-                }
-                continue;
-            }
-            if (Idencontrado)
-            {
-                labelErro.Text = "Este cliente já existe";
-                labelErro.ForeColor = Color.Red;
-                return ;
-            }
-            //Telefone
-            bool telefoneEncontrado = false;
-            for (int i = 0; i < clientes.Count; i++)
-            {
-                if (clientes[i].Telefone == maskedBoxTel.Text)
-                {
-                    telefoneEncontrado = true;
-                }
-                if (telefoneEncontrado)
-                {
-                    labelErro.Text = "Telefone já cadastrado";
-                    labelErro.ForeColor = Color.Red;
-                    return ;
-                }
-                continue;
-            }
-            //Email
-            bool emailEncontrado = false;
-
-            for (int i = 0; i < clientes.Count; i++)
-            {
-                if (clientes[i].Email == textBoxEmail.Text)
-                {
-                    emailEncontrado = true;
-                    return;
-                }
-                continue;
-            }
-            if (emailEncontrado)
-            {
-                labelErro.Text = " Email já cadastrado";
-                labelErro.ForeColor = Color.Red;
-                return ;
-            }
-           
+            
 
             int novoId = GerarNovoID();
-
+           
             TipoCliente tipo = 0;
             if (radioButtonPF.Checked)
             {
