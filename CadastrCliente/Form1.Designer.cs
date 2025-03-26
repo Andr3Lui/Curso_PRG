@@ -158,7 +158,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.SerasaExperian_removebg_preview;
-            pictureBox1.Location = new Point(336, 12);
+            pictureBox1.Location = new Point(174, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(447, 190);
             pictureBox1.TabIndex = 8;
@@ -265,7 +265,7 @@
             // 
             buttonCadastrar.Cursor = Cursors.Hand;
             buttonCadastrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            buttonCadastrar.Location = new Point(298, 549);
+            buttonCadastrar.Location = new Point(355, 559);
             buttonCadastrar.Name = "buttonCadastrar";
             buttonCadastrar.Size = new Size(97, 28);
             buttonCadastrar.TabIndex = 21;
@@ -431,7 +431,7 @@
             dataGridViewClientes.AllowUserToOrderColumns = true;
             dataGridViewClientes.AllowUserToResizeRows = false;
             dataGridViewClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewClientes.Location = new Point(859, 275);
+            dataGridViewClientes.Location = new Point(764, 245);
             dataGridViewClientes.MultiSelect = false;
             dataGridViewClientes.Name = "dataGridViewClientes";
             dataGridViewClientes.ReadOnly = true;
