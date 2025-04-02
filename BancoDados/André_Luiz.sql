@@ -150,7 +150,7 @@ WHERE
             
 --
 SELECT 
-    pedido.id, cliente.nome AS cliente, pedido.valor
+    pedido.id, cliente.nome, pedido.valor
 FROM
     pedido
         INNER JOIN

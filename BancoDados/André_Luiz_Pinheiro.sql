@@ -151,9 +151,15 @@ FROM
 */
 --
 SELECT 
-    *
+    empregado.id,
+    empregado.nome,
+    empregado.salario,
+    departamento.nome AS departamento
 FROM
     empregado
+INNER JOIN 
+departamento ON empregado.id_departamento = departamento.id
+         
 WHERE
     salario > (SELECT 
             AVG(salario)
@@ -161,7 +167,21 @@ WHERE
             empregado);
 
 --
+ 
+SELECT 
+   empregado.id, empregado.nome, departamento.nome AS departamento
+FROM
+    empregado
+INNER JOIN 
+ departamento on empregado.id_departamento = departamento.id
 
+WHERE
+    empregado.id_departamento = (SELECT 
+            empregado.id_departamento
+        FROM
+            empregado
+        WHERE
+            empregado.nome = 'Sarah');
 
 
 /*//EXERCICIO 6
@@ -169,10 +189,10 @@ WHERE
 
 INSERT INTO empregado
 (
-nome, id_departamento, salario
+nome, idade, id_departamento, salario
 )
 values
-('Tomás','3','58000');
+('Tomás','32','3','58000');
 
 SELECT empregado.nome, (salario * 0.05) + salario AS TI
 FROM empregado
