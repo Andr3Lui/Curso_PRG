@@ -17,8 +17,7 @@ VALUES
 ('João', '30', '1', '50000'),
 ('Sarah', '28','2','60000'),
 ('Miguel','35','3','55000'),
-('Ana','27','2','62000'),
-('Tomás','42','3','58000');
+('Ana','27','2','62000');
 SELECT * FROM empregado;
 
 
@@ -162,16 +161,23 @@ WHERE
             empregado);
 
 --
-SELECT id_departamento FROM empregado WHERE nome = 'Sarah';
+
+
 
 /*//EXERCICIO 6
 */
 
-SELECT 
-   *
-FROM
-    empregado
-WHERE
-    id_departamento = 'TI'; 
+INSERT INTO empregado
+(
+nome, id_departamento, salario
+)
+values
+('Tomás','3','58000');
 
+SELECT empregado.nome, (salario * 0.05) + salario AS TI
+FROM empregado
+WHERE id_departamento = 2;
+
+DELETE FROM empregado
+WHERE idade > 40;
 
