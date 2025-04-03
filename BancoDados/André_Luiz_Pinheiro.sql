@@ -75,7 +75,7 @@ SELECT
     *
 FROM
     empregado
-ORDER BY idade ASC;
+ORDER BY idade DESC;
 
 /*//EXERCICIO 2
 */
@@ -107,11 +107,12 @@ WHERE
 
 */
 -- SELECIONE O NUMERO DE EMPREGADOS POR DEPARTAMENTO
-SELECT COUNT(id) FROM empregado WHERE departamento = 'RH';
+SELECT empregado.nome, departamento.nome, COUNT(departamento.id) AS departamento FROM empregado 
+INNER JOIN
+departamento ON empregado.id_departamento = departamento.id 
+GROUP BY id_departamento;
 
-SELECT COUNT(id) FROM empregado WHERE departamento = 'TI';
 
-SELECT COUNT(id) FROM empregado WHERE departamento = 'VENDAS';
 
 -- MÉDIA SALARIAL
 SELECT AVG(salario) FROM empregado;
@@ -136,11 +137,11 @@ FROM
     departamento ON empregado.id_departamento = departamento.id;
 
 -- TODOS OS DEPARTAMENTOS, MESMO QUE SEM EMPREGADOS
-SELECT 
-    empregado.id,
+SELECT     
+	departamento.nome AS departamento,
     empregado.nome,
-    empregado.salario,
-    departamento.nome AS departamento
+    empregado.salario
+
 FROM
     departamento
         LEFT JOIN
