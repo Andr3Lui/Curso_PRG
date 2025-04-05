@@ -157,13 +157,17 @@ FROM
     produto
 group BY categoria;
 
--- 4 --voltar para verififcar valores
+-- 4 
 SELECT 
-    pedido.id, produto.nome, quantidade
+ pedido.id, cliente.nome, produto.nome as produto, quantidade
 FROM
     pedido
-inner join 
-produto on pedido.id_produto = produto.id;
+        INNER JOIN
+    produto ON pedido.id_produto = produto.id
+        INNER JOIN
+    cliente ON pedido.id_cliente = cliente.id
+order by quantidade desc 
+limit 1;
 
 -- 5
 SELECT 
@@ -173,7 +177,7 @@ FROM
 GROUP BY cidade
 ORDER BY id ASC;
 
-/*//Junções
+/*//JUNÇÕES
 */
 -- 1
 SELECT 
@@ -214,3 +218,113 @@ FROM
 	inner join 
     fornecedor on produto.id_fornecedor = fornecedor.id
 order by pedido.id asc;
+
+-- 4
+SELECT 
+    pedido.id AS pedido,
+    cliente.nome AS cliente,
+    produto.nome AS produto,
+    SUM(pedido.quantidade) AS quantidade
+FROM
+    pedido
+        INNER JOIN
+    cliente ON pedido.id_cliente = cliente.id
+        INNER JOIN
+    produto ON pedido.id_produto = produto.id
+GROUP BY produto.nome;
+
+/*//SUBCONSULTAS E MODIFICAÇÃO DE DADOS
+
+*/
+
+-- 1
+SELECT 
+    nome, categoria, preco
+FROM
+    produto
+WHERE
+    preco > (SELECT 
+            AVG(preco)
+        FROM
+            produto
+        WHERE
+            categoria = 'Eletrônico')
+        AND preco > (SELECT 
+            AVG(preco)
+        FROM
+            produto
+        WHERE
+            categoria = 'Móveis')
+        OR preco > (SELECT 
+            AVG(preco)
+        FROM
+            produto
+        WHERE
+            categoria = 'Móveis')
+        AND preco > (SELECT 
+            AVG(preco)
+        FROM
+            produto
+        WHERE
+            categoria = 'Eletrônico')
+      
+;
+
+-- 2
+UPDATE produto 
+SET 
+    preco = (preco * 0.1) + preco
+WHERE
+    categoria = 'eletronico';
+    
+-- 3 
+DELETE FROM pedido 
+WHERE
+    id_cliente = (SELECT 
+        id
+    FROM
+        cliente
+    
+    WHERE
+        cidade = 'curitiba');
+
+-- 4 
+INSERT INTO cliente
+(
+nome, cidade, idade
+)
+VALUES
+('Ricardo Lopes', 'Porto Alegre', '38');
+
+-- 5
+INSERT INTO pedido
+(
+id_produto, quantidade, data_pedido, id_cliente
+)
+VALUES
+('2', '2', '2024-03-25', '1');
+
+-- 6
+SELECT 
+    cliente.nome AS cliente,
+    produto.nome AS produto,
+    produto.categoria AS categoria
+FROM
+    pedido
+        INNER JOIN
+    cliente ON pedido.id_cliente = cliente.id
+        INNER JOIN
+    produto ON pedido.id_produto = produto.id
+WHERE
+    pedido.id_produto IN (SELECT 
+            produto.id
+        FROM
+            produto
+        WHERE
+            produto.categoria = 'Moveis');
+
+
+
+
+
+
