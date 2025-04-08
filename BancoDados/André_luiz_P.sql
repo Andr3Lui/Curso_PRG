@@ -8,6 +8,10 @@ CREATE TABLE IF NOT EXISTS produto (
     FOREIGN KEY (id_fornecedor) REFERENCES fornecedor (id)
 );
 DROP TABLE produto;
+SELECT 
+    *
+FROM
+    produto;
 
 INSERT INTO produto
 (
@@ -18,7 +22,8 @@ VALUES
 ('Notebook Y', 'Eletrônico', '4800.00', '15', '2'),
 ('Mesa de Madeira', 'Móveis', '750.00', '10', '3'),
 ('Cadeira Z', 'Móveis', '300.00', '25', '3'),
-('TV 50"', 'Eletrônico', '3500.00', '8', '1');
+('TV 50"', 'Eletrônico', '3500.00', '8', '1'),
+('Colher', 'Utensilio', '5.00', '45', '4');
 
 CREATE TABLE IF NOT EXISTS fornecedor (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -26,6 +31,10 @@ CREATE TABLE IF NOT EXISTS fornecedor (
     cidade VARCHAR(50) NOT NULL
 ); 
 DROP TABLE fornecedor;
+SELECT 
+    *
+FROM
+    fornecedor;
 
 INSERT INTO fornecedor 
 (
@@ -34,7 +43,8 @@ INSERT INTO fornecedor
 VALUES 
 ('TechBrasil', 'São Paulo'),
 ('CompuTech', 'Rio de Janeiro'),
-('Móveis&Co', 'Curitiba');
+('Móveis&Co', 'Curitiba'),
+('UtilidadeFam', 'Paraná');
 
 CREATE TABLE IF NOT EXISTS pedido (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -46,6 +56,10 @@ CREATE TABLE IF NOT EXISTS pedido (
     FOREIGN KEY (id_cliente) REFERENCES cliente (id)
 );
 DROP TABLE pedido;
+SELECT 
+    *
+FROM
+    pedido;
 
 INSERT INTO pedido
 (
@@ -67,6 +81,10 @@ CREATE TABLE IF NOT EXISTS cliente (
     idade INT NOT NULL
 );
 DROP TABLE cliente;
+SELECT 
+    *
+FROM
+    cliente;
 
 INSERT INTO cliente
 (
@@ -103,14 +121,13 @@ SELECT
 FROM
     cliente
 WHERE
-    cidade <> 'São Paulo' AND idade > 29;
+    cidade <> 'São Paulo' AND idade > 30;
 
 -- 3
 SELECT 
  *
 FROM
     pedido 
-
 WHERE
     data_pedido BETWEEN '2024-03-10' AND '2024-03-15'
 ORDER BY data_pedido ASC;
@@ -159,13 +176,14 @@ group BY categoria;
 
 -- 4 
 SELECT 
- pedido.id, cliente.nome, produto.nome as produto, quantidade
+ pedido.id, cliente.nome, produto.nome as produto, max(quantidade)
 FROM
     pedido
         INNER JOIN
     produto ON pedido.id_produto = produto.id
         INNER JOIN
     cliente ON pedido.id_cliente = cliente.id
+group by pedido.id
 order by quantidade desc 
 limit 1;
 
@@ -241,46 +259,27 @@ GROUP BY produto.nome;
 SELECT 
     nome, categoria, preco
 FROM
-    produto
+    produto p
 WHERE
     preco > (SELECT 
             AVG(preco)
         FROM
-            produto
+            produto pr
         WHERE
-            categoria = 'Eletrônico')
-        AND preco > (SELECT 
-            AVG(preco)
-        FROM
-            produto
-        WHERE
-            categoria = 'Móveis')
-        OR preco > (SELECT 
-            AVG(preco)
-        FROM
-            produto
-        WHERE
-            categoria = 'Móveis')
-        AND preco > (SELECT 
-            AVG(preco)
-        FROM
-            produto
-        WHERE
-            categoria = 'Eletrônico')
-      
-;
-
+           p.categoria = pr.categoria);
+       
+        
 -- 2
 UPDATE produto 
 SET 
-    preco = (preco * 0.1) + preco
+    preco = (preco * 0.1) + preco -- preco = preco * 1.1 adicionar / preco = preco * 0.90 retirar
 WHERE
     categoria = 'eletronico';
     
 -- 3 
 DELETE FROM pedido 
 WHERE
-    id_cliente = (SELECT 
+    id_cliente IN (SELECT 
         id
     FROM
         cliente
@@ -302,7 +301,9 @@ INSERT INTO pedido
 id_produto, quantidade, data_pedido, id_cliente
 )
 VALUES
-('2', '2', '2024-03-25', '1');
+((select id from produto where nome = 'Notebook Y'), '2', '2024-03-25', (select id from cliente where nome = 'João Silva'));
+
+
 
 -- 6
 SELECT 
@@ -321,7 +322,7 @@ WHERE
         FROM
             produto
         WHERE
-            produto.categoria = 'Moveis');
+            produto.categoria = 'Eletrônico');
 
 
 

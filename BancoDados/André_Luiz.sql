@@ -146,7 +146,8 @@ WHERE
     valor > (SELECT 
             AVG(valor)
         FROM
-            pedido);
+            pedido
+            where categoria = 'Eletronico');
             
 --
 SELECT 
