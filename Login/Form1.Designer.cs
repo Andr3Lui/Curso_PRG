@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Formulario_login));
             textBoxUsuario = new TextBox();
             textBoxSenha = new TextBox();
-            Logar = new Button();
             Email = new Label();
             Senha = new Label();
             ImagemGoogle = new PictureBox();
@@ -46,6 +45,7 @@
             CadSenha = new Label();
             Criar = new Button();
             PrecAjuda = new Label();
+            Logar = new Button();
             ((System.ComponentModel.ISupportInitialize)ImagemGoogle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ImagemGoogle2).BeginInit();
             SuspendLayout();
@@ -63,19 +63,6 @@
             textBoxSenha.Name = "textBoxSenha";
             textBoxSenha.Size = new Size(199, 23);
             textBoxSenha.TabIndex = 1;
-            // 
-            // Logar
-            // 
-            Logar.FlatStyle = FlatStyle.System;
-            Logar.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Logar.ForeColor = SystemColors.ActiveCaptionText;
-            Logar.Location = new Point(292, 294);
-            Logar.Name = "Logar";
-            Logar.Size = new Size(86, 30);
-            Logar.TabIndex = 2;
-            Logar.Text = "Logar";
-            Logar.UseVisualStyleBackColor = true;
-            Logar.Click += Logar_Click;
             // 
             // Email
             // 
@@ -216,6 +203,19 @@
             PrecAjuda.Text = "Precisa de ajuda? Clique aqui.";
             PrecAjuda.Click += PrecAjuda_Click;
             // 
+            // Logar
+            // 
+            Logar.FlatStyle = FlatStyle.System;
+            Logar.Font = new Font("Arial Narrow", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Logar.ForeColor = SystemColors.ActiveCaptionText;
+            Logar.Location = new Point(292, 294);
+            Logar.Name = "Logar";
+            Logar.Size = new Size(86, 30);
+            Logar.TabIndex = 2;
+            Logar.Text = "Logar";
+            Logar.UseVisualStyleBackColor = true;
+            Logar.Click += Logar_Click;
+            // 
             // Formulario_login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -250,7 +250,6 @@
 
         private TextBox textBoxUsuario;
         private TextBox textBoxSenha;
-        private Button Logar;
         private Label Email;
         private Label Senha;
         private PictureBox ImagemGoogle;
@@ -265,5 +264,6 @@
         private Label CadSenha;
         private Button Criar;
         private Label PrecAjuda;
+        private Button Logar;
     }
 }

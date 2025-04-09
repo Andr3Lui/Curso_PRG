@@ -1,25 +1,24 @@
-using System.Diagnostics.Eventing.Reader;
-using System.Text.RegularExpressions;
+using MySql.Data.MySqlClient;
 
 namespace Login
 {
     public partial class Formulario_login : Form
     {
-        List<Usuario1> usuarios = new List<Usuario1>();
+        private static readonly string ConnectionString = "datasource=localhost;username=root;password=;database=senac;";
+        private readonly MySqlConnection Connection = new MySqlConnection(ConnectionString);
+
+       
 
         public Formulario_login()
         {
             InitializeComponent();
-            usuarios.Add(new Usuario1() { Email = "neymar.jr@email.com", Senha = "Bruna22@" });
-            usuarios.Add(new Usuario1() { Email = "pablo.vitar@email.com", Senha = "paBlito_17@" });
-            usuarios.Add(new Usuario1() { Email = "sukuna.silva@email.com", Senha = "Itad0r!@" });
         }
-
         private void Logar_Click(object sender, EventArgs e)
         {
 
             string usuarioBuscado = textBoxUsuario.Text;
             string senha = textBoxSenha.Text;
+
 
             //MODOS DIFERENTES DE EXERCUTAR UM PROGRAMA COM DIFERENTES FORMULAS.
             /*
@@ -83,20 +82,39 @@ namespace Login
                     posicaoUsuarioEncontrado = i;
                 }
             }*/
-            //f (usuarioBuscado == listaUsuarios[posicaoUsuarioEncontrado] && senha == "1234")
-            //NÃO FUNCIONA, USUARIO AQUI É O PRINCIPAL POR TANTO "usuarioBuscado" ou "listaUsuarios" NÃO É NECESSARIO
-            //HÁ A NECESSIDADE DE MUDAR RESULTADO DE USUARIO PARA"!=" POIS ASSIM O PROGRAMA NÃO APLICARÁ UMA EXEÇÃO EM MEIO A EXECUÇÃO
-            //E CASSO O USUARIO NÃO SEJA ENCONTRADO, NÃO HAVERÁ ERRO POR NÃO SER ASSOCIADO A UM NUMERO INEXISTENTE NA LISTA QUE É "-1"
+            /*
+             * f (usuarioBuscado == listaUsuarios[posicaoUsuarioEncontrado] && senha == "1234")
+            NÃO FUNCIONA, USUARIO AQUI É O PRINCIPAL POR TANTO "usuarioBuscado" ou "listaUsuarios" NÃO É NECESSARIO
+            HÁ A NECESSIDADE DE MUDAR RESULTADO DE USUARIO PARA"!=" POIS ASSIM O PROGRAMA NÃO APLICARÁ UMA EXEÇÃO EM MEIO A EXECUÇÃO
+            E CASSO O USUARIO NÃO SEJA ENCONTRADO, NÃO HAVERÁ ERRO POR NÃO SER ASSOCIADO A UM NUMERO INEXISTENTE NA LISTA QUE É "-1"*/
 
-            for (int i = 0; i < usuarios.Count; i++)
+            /*for (int i = 0; i < usuarios.Count; i++)
             {
                 if (usuarios[i].Email == usuarioBuscado && usuarios[i].Senha == senha)
                 {
                     autenticado = true;
 
                 }
-            }
+            }*/
+            try
+            {
+                Connection.Open();
 
+                string query = $"SELECT senha FROM usuario  WHERE email = '{usuarioBuscado}';";
+
+                MySqlCommand mySqlCommand = new MySqlCommand(query, Connection);
+                MySqlDataReader reader = mySqlCommand.ExecuteReader();
+
+                autenticado = reader.Read() && reader.GetString(0) == senha;
+            }
+            catch 
+            {
+                MessageBox.Show("Erro no Banco de Dados");
+            }
+            finally
+            {
+                Connection.Close();
+            }
 
             if (!autenticado)
             {
@@ -220,7 +238,8 @@ namespace Login
                 return;
             }
             //UMA SOLUÇÃO FEITA COM LAMINA, CRIANDO UM MÉTODO.
-            /*if (!novaSenha.Any(c => caractereEspecial.Contains(c)))
+            /*
+             * if (!novaSenha.Any(c => caractereEspecial.Contains(c)))
             {
                 labResultado.Text = "A senha deve ter ao menos 1 caractere especial";
                 labResultado.ForeColor = Color.Red;
@@ -241,25 +260,55 @@ namespace Login
             }
 
             bool usuarioEncontrado = false;
-            for (int i = 0; i < usuarios.Count; i++)
+
+            try
             {
-                if (usuarios[i].Email == novoUsuario)
-                {
-                    usuarioEncontrado = true;
-                }
-                continue;
+                Connection.Open();
+
+                string query = $"SELECT email FROM usuario  WHERE email = '{usuarioEncontrado}';";
+
+                MySqlCommand mySqlCommand = new MySqlCommand(query, Connection);
+                MySqlDataReader reader = mySqlCommand.ExecuteReader();
             }
+            catch
+            {
+                MessageBox.Show("Erro no Banco de Dados");
+            }
+            finally
+            {
+                Connection.Close();
+
+            }
+
             if (usuarioEncontrado)
             {
                 labResultado.Text = "Usuario já existente";
                 labResultado.ForeColor = Color.Red;
             }
-            else
+
+            try
             {
-                usuarios.Add(new Usuario1() { Email = novoUsuario, Senha = novaSenha });
-                labelResultado.Text = "Usuário cadastrado com sucesso!";
+                Connection.Open();
+
+                string query = $"INSERT INTO usuario (email, senha) VALUES ('{novoUsuario}', '{novaSenha}');";
+
+                MySqlCommand mySqlCommand = new MySqlCommand(query, Connection);
+                mySqlCommand.ExecuteNonQuery();
+
+                 labelResultado.Text = "Usuário cadastrado com sucesso!";
                 labelResultado.ForeColor = Color.Green;
+
             }
+            catch
+            {
+                MessageBox.Show("Erro no Banco de Dados");
+            }
+            finally
+            {
+                Connection.Close();
+
+            }
+           
             txbCadUsu.Clear();
             txbCadSen.Clear();
 
