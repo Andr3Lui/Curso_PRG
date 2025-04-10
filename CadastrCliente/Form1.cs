@@ -1,3 +1,5 @@
+using CadastrCliente.Dominio;
+
 namespace CadastrCliente
 {
     public partial class Form1 : Form
@@ -13,8 +15,8 @@ namespace CadastrCliente
 
             EnderecoCliente endereco2 = new EnderecoCliente() { Logradouro = "Av. Brasil", Numero = "78", Complemento = "Ao Lado da Igreja da Penha", Bairro = "Penha", Municipio = "Madureira", Estado = "RJ", CEP = "09563-451" };
             clientes.Add(new Cliente() { Id = 2, Nome = "Pedro Nascimento", DataNascimento = "26/04/1998", Telefone = "(11)97884-2341", Email = "P&dr0Nasc@email.com", Endereco = endereco2, Genero = GeneroCliente.Masculino, Estrangeiro = false, Etnia = EtniaCliente.Preto, NomeSocial = " ", Tipo = TipoCliente.PF });
-
-            EnderecoCliente endereco3 = new EnderecoCliente() { Logradouro = "Rua ", Numero = "14", Complemento = "Bloco C", Bairro = "Jd. Macedonia", Municipio = "Itapecerica da Serra", Estado = "SP", CEP = "05823-659" };
+            
+            EnderecoCliente endereco3 = new EnderecoCliente() { Logradouro = "Rua Medeiros", Numero = "14", Complemento = "Bloco C", Bairro = "Jd.Macedonia", Municipio = "Itapecerica da Serra", Estado = "SP", CEP = "05823-659" };
             clientes.Add(new Cliente() { Id = 3, Nome = "Sukuna Nakima", DataNascimento = "30/01/2000", Telefone = "(11)94567-8512", Email = "Sukuna77#@email.com", Endereco = endereco3, Genero = GeneroCliente.Masculino, Estrangeiro = true, Etnia = EtniaCliente.Amarelo, NomeSocial = "Paulo Silva", Tipo = TipoCliente.PJ });
 
             BindingSource.DataSource = clientes;

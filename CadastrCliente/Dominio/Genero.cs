@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CadastrCliente
+namespace CadastrCliente.Dominio
 {
     enum GeneroCliente
     {
@@ -13,6 +13,6 @@ namespace CadastrCliente
         NaoBinario,
         Outro,
         NaoDeclarar
-        
+
     }
 }
