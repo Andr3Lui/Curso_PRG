@@ -71,6 +71,7 @@
             label20 = new Label();
             label21 = new Label();
             label22 = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClientes).BeginInit();
             SuspendLayout();
@@ -481,11 +482,21 @@
             label22.TabIndex = 45;
             label22.Text = "opcional";
             // 
+            // button1
+            // 
+            button1.Location = new Point(502, 559);
+            button1.Name = "button1";
+            button1.Size = new Size(100, 28);
+            button1.TabIndex = 46;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1350, 729);
+            Controls.Add(button1);
             Controls.Add(label22);
             Controls.Add(label21);
             Controls.Add(label20);
@@ -531,6 +542,7 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClientes).EndInit();
             ResumeLayout(false);
@@ -582,5 +594,6 @@
         private Label label20;
         private Label label21;
         private Label label22;
+        private Button button1;
     }
 }

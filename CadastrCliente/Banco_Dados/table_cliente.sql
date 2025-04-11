@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS cliente (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
-    data_nascimento VARCHAR(8) NOT NULL,
+    data_nascimento DATETIME NOT NULL,
     nome_social VARCHAR(100) NULL,
     telefone VARCHAR(11) NOT NULL UNIQUE,
     email VARCHAR(50) NOT NULL UNIQUE,
@@ -24,12 +24,10 @@ VALUES
 ('Sukuna Nakima', '30012000', 'Paulo Silva', '11945678512', 'Sukuna77#@email.com', '3');
 
 SELECT 
-    c.id,
-    c.data_nascimento,
-    c.nome_social,
-    c.telefone,
-    c.email
+    *
 FROM
     cliente c
 join
-endereco e on c.id_endereco = c.id
+endereco e on c.id_endereco = e.id
+
+group by nome
