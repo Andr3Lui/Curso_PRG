@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS cliente (
     nome_social VARCHAR(100) NULL,
     telefone VARCHAR(11) NOT NULL UNIQUE,
     email VARCHAR(50) NOT NULL UNIQUE,
-    estrangeiro BIT,
+    estrangeiro BIT NULL,
     genero INT NOT NULL,
     etnia INT NOT NULL,
     tipo INT NOT NULL,
