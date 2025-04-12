@@ -10,3 +10,4 @@ INSERT INTO usuario  (email, senha) VALUES
 ('pablo.vitar@email.com', '12345Abc!'), 
 ('sukuna.silva@email.com', 'Sete7Sete!');
 
+select * from usuario;

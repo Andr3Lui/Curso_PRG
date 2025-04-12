@@ -80,7 +80,7 @@ namespace CadastrCliente
             if (Convert.ToInt32(ano) > 2025 || Convert.ToInt32(ano) < 1950)
             {
                 return false;
-            }
+            } 
 
 
             return true;
