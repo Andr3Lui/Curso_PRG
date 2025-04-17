@@ -16,7 +16,7 @@ namespace ListaAtividades.Repositorio
 
                 using (var cmd = new MySqlCommand(query, con)) 
                 {
-                    cmd.Parameters.AddWithValue("@titulo", query);
+                    cmd.Parameters.AddWithValue("@titulo", titulo);
                     cmd.ExecuteNonQuery();
                 }
             }

@@ -33,3 +33,4 @@ D:\Curso_PRG\Curso_PRG\ListaAtividades\obj\Debug\net8.0-windows\refint\ListaAtiv
 D:\Curso_PRG\Curso_PRG\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.pdb
 D:\Curso_PRG\Curso_PRG\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.genruntimeconfig.cache
 D:\Curso_PRG\Curso_PRG\ListaAtividades\obj\Debug\net8.0-windows\ref\ListaAtividades.dll
+D:\Curso_PRG\Curso_PRG\ListaAtividades\obj\Debug\net8.0-windows\ListaAtividades.CriarAtividades.resources

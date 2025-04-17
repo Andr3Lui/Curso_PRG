@@ -39,7 +39,6 @@ namespace ListaAtividades.Dominio
             if (atividadeEmAndamento.Id > 0 && atividadeEmAndamento.Situacao == BuscarProximoSituacao())
             {
                 return false;
-
             }
 
             repositorio.AtualizarSituacao(Id, (int) novaSituacao);

@@ -28,22 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBoxAtividade = new TextBox();
+            textBoxAtividadeEmAndamento = new TextBox();
             buttonFinalizar = new Button();
             buttonAtualizar = new Button();
             buttonCriar = new Button();
             dataGridViewAtividades = new DataGridView();
+            labelErro = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewAtividades).BeginInit();
             SuspendLayout();
             // 
-            // textBoxAtividade
+            // textBoxAtividadeEmAndamento
             // 
-            textBoxAtividade.Enabled = false;
-            textBoxAtividade.Location = new Point(35, 89);
-            textBoxAtividade.Name = "textBoxAtividade";
-            textBoxAtividade.ReadOnly = true;
-            textBoxAtividade.Size = new Size(421, 23);
-            textBoxAtividade.TabIndex = 0;
+            textBoxAtividadeEmAndamento.Enabled = false;
+            textBoxAtividadeEmAndamento.Location = new Point(35, 89);
+            textBoxAtividadeEmAndamento.Name = "textBoxAtividadeEmAndamento";
+            textBoxAtividadeEmAndamento.ReadOnly = true;
+            textBoxAtividadeEmAndamento.Size = new Size(421, 23);
+            textBoxAtividadeEmAndamento.TabIndex = 0;
             // 
             // buttonFinalizar
             // 
@@ -77,22 +78,37 @@
             // 
             // dataGridViewAtividades
             // 
+            dataGridViewAtividades.AllowUserToAddRows = false;
+            dataGridViewAtividades.AllowUserToDeleteRows = false;
+            dataGridViewAtividades.AllowUserToResizeColumns = false;
+            dataGridViewAtividades.AllowUserToResizeRows = false;
             dataGridViewAtividades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAtividades.Location = new Point(35, 159);
+            dataGridViewAtividades.MultiSelect = false;
             dataGridViewAtividades.Name = "dataGridViewAtividades";
+            dataGridViewAtividades.ReadOnly = true;
             dataGridViewAtividades.Size = new Size(421, 210);
             dataGridViewAtividades.TabIndex = 4;
+            // 
+            // labelErro
+            // 
+            labelErro.AutoSize = true;
+            labelErro.Location = new Point(51, 397);
+            labelErro.Name = "labelErro";
+            labelErro.Size = new Size(0, 15);
+            labelErro.TabIndex = 5;
             // 
             // ListaDeAtividades
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(labelErro);
             Controls.Add(dataGridViewAtividades);
             Controls.Add(buttonCriar);
             Controls.Add(buttonAtualizar);
             Controls.Add(buttonFinalizar);
-            Controls.Add(textBoxAtividade);
+            Controls.Add(textBoxAtividadeEmAndamento);
             Name = "ListaDeAtividades";
             Text = "Lista de Atividades";
             Load += ListaDeAtividades_Load;
@@ -103,10 +119,11 @@
 
         #endregion
 
-        private TextBox textBoxAtividade;
+        private TextBox textBoxAtividadeEmAndamento;
         private Button buttonFinalizar;
         private Button buttonAtualizar;
         private Button buttonCriar;
         private DataGridView dataGridViewAtividades;
+        private Label labelErro;
     }
 }
