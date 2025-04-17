@@ -36,7 +36,7 @@ namespace ListaAtividades.Dominio
             Atividade atividadeEmAndamento = BuscarAtividadeEmAndamento();
             Situacao novaSituacao = BuscarProximoSituacao();
 
-            if (atividadeEmAndamento.Id > 0 && atividadeEmAndamento.Situacao == BuscarProximoSituacao())
+            if (atividadeEmAndamento.Id > 0 && atividadeEmAndamento.Situacao == novaSituacao)
             {
                 return false;
             }

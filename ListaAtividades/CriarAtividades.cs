@@ -42,6 +42,7 @@ namespace ListaAtividades
                 labelErro.ForeColor = Color.Red;
                 return;
             }
+            
 
             this.DialogResult = DialogResult.OK;
             this.Close();
