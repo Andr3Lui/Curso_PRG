@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("ListaAtividades")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("CadastrCliente")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18147b4fded4edd09112065d0caaa1cf2257aa92")]
-[assembly: System.Reflection.AssemblyProductAttribute("ListaAtividades")]
-[assembly: System.Reflection.AssemblyTitleAttribute("ListaAtividades")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59702caff2a7a59504709f86ea2e4384becf7ca2")]
+[assembly: System.Reflection.AssemblyProductAttribute("CadastrCliente")]
+[assembly: System.Reflection.AssemblyTitleAttribute("CadastrCliente")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
