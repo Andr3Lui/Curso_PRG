@@ -7,7 +7,7 @@ namespace Projeto_Integrador_Dominio.Dominio
     internal class Pedido
     {
         public int Id { get; set; }
-        public Cliente Nome  { get; set; }
+        public Cliente Cliente { get; set; }
         public string Produto { get; set; }
         public string Servico { get; set; }
         public DateTime DataDoPedido  { get; set; }
@@ -18,6 +18,7 @@ namespace Projeto_Integrador_Dominio.Dominio
             return Id > 0;
         }
 
+        
         public bool ValidarEstado()
         {
             return Estado != Estado.Realizado;

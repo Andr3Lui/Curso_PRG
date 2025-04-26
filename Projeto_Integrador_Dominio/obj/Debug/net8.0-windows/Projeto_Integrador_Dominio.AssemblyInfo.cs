@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Projeto_Integrador_Dominio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+24fb37b77399f4c67f7f8b67f89e1ec5a811399d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83fe5020e59968e3fb2e9f460c66529b8b081c10")]
 [assembly: System.Reflection.AssemblyProductAttribute("Projeto_Integrador_Dominio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Projeto_Integrador_Dominio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

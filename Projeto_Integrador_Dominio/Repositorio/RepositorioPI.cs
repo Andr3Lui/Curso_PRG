@@ -2,23 +2,26 @@
 using Projeto_Integrador_Dominio.BancoDados;
 using Projeto_Integrador_Dominio.Dominio;
 
+
 namespace Projeto_Integrador_Dominio.Repositorio
 {
     internal class RepositorioPI
     {
+
         public void InserirCliente(Cliente NovoCliente)
         {
             using (var con = DataBase.GetConnection())
             {
                 con.Open();
 
-                string query = $"INSERT INTO cliente(nome, email, cpf) VALUES(@nome, @email, @cpf);";
+                string query = $"INSERT INTO cliente(nome, email, cpf, telefone) VALUES(@nome, @email, @cpf, @telefone);";
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@nome", NovoCliente.Nome);
                     cmd.Parameters.AddWithValue("@email", NovoCliente.Email);
                     cmd.Parameters.AddWithValue("@cpf", NovoCliente.CPF);
+                    cmd.Parameters.AddWithValue("@telefone", NovoCliente.Telefone); 
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -34,7 +37,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@c.nome", NovoPedido.Nome);
+                    cmd.Parameters.AddWithValue("@c.nome", NovoPedido.Cliente.Nome);
                     cmd.Parameters.AddWithValue("@p.dataDoPedido", NovoPedido.DataDoPedido);
                     cmd.Parameters.AddWithValue("@estado", NovoPedido.Estado);
                     cmd.ExecuteNonQuery();
@@ -71,6 +74,37 @@ namespace Projeto_Integrador_Dominio.Repositorio
             }
 
             return new Pedido();
+        }
+
+        public List<Cliente> ListarClientes()
+        {
+            var clientes = new List<Cliente>();
+
+            using (var conn = DataBase.GetConnection())
+            {
+                conn.Open();
+
+                string query = "SELECT * FROM cliente";
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            clientes.Add(new Cliente
+                            {
+                                Id = reader.GetInt32("id"),
+                                Nome = reader.GetString("nome"),
+                                Email = reader.GetString("email"),
+                                Telefone = reader.GetString("telefone"),
+                                CPF = reader.GetString("cpf")
+                            });
+                        };
+                    }
+                }
+            }
+            return clientes;
         }
 
         public void AtualizarPedido(int id, bool novoEstado)
