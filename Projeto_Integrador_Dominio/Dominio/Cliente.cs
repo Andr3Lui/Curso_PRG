@@ -43,17 +43,17 @@ namespace Projeto_Integrador_Dominio.Dominio
                 return "'Email' não foi preenchido";
             }
 
-            if (Email.Contains("@") && Email.EndsWith(".com"))
-            {
-                return "Insira um 'Email' válido";
-            }
+            //if (Email.Contains("@"))
+            //{
+            //    return "Insira um 'Email' válido";
+            //}
 
             if (Telefone.Length != 11)
             {
                 return "número de 'Telefone' inválido";
             }
 
-            if (CPF.Length != 11)
+            if (CPF.Length < 11)
             {
                 return "CPF invalido";
             }

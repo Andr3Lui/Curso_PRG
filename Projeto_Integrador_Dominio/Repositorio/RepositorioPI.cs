@@ -46,35 +46,38 @@ namespace Projeto_Integrador_Dominio.Repositorio
 
         }
 
-        public Pedido BuscarPedidoPendente(int Id)
-        {
-            using (var con = DataBase.GetConnection())
-            {
-                con.Open();
+        //public List<Pedido> BuscarPedidosPendentes()
+        //{
+        //    var pedidos = new List<Pedido>();
 
-                string query = $"SELECT * FROM pedido WHERE estado = {Estado.Pendente};";
+        //    using (var conn = DataBase.GetConnection())
+        //    {
+        //        conn.Open();
 
-                using (var cmd = new MySqlCommand(query, con))
-                {
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                               
-                            return new Pedido()
-                            {
-                                Id = reader.GetInt32("id"),
-                                DataDoPedido = reader.GetDateTime("dataDoPedido"),
-                                Estado = (Estado)reader.GetSByte("estado"),
+        //        string query = "SELECT * FROM pedido WHERE estado = {Estado.Pendente};";
 
-                            };
-                        }; 
-                    }
-                }
-            }
-
-            return new Pedido();
-        }
+        //        using (var cmd = new MySqlCommand(query, conn))
+        //        {
+        //            using (var reader = cmd.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    pedidos.Add(new Pedido
+        //                    {
+        //                        Id = reader.GetInt32("id"),
+        //                        Cliente = (Cliente.Id)reader.("cliente"),
+        //                        Produto = (Produto)reader.GetByte("produto"),
+        //                        Quantidade = reader.GetString("quantidade"),
+        //                        Servico = (Servico)reader.GetByte("servico"),
+        //                        DataDoPedido = reader.GetDateTime("dataDoPedido"),
+        //                        Estado = (Estado)reader.GetByte("estado")
+        //                    });
+        //                };
+        //            }
+        //        }
+        //    }
+        //    return pedidos;
+        //}
 
         public List<Cliente> ListarClientes()
         {
@@ -140,6 +143,8 @@ namespace Projeto_Integrador_Dominio.Repositorio
                 }
             }
         }
+
+
 
     }
 }

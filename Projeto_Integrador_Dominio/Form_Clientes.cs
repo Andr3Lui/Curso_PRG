@@ -60,7 +60,7 @@ namespace Projeto_Integrador_Dominio
         private void buttonPedidos_Click(object sender, EventArgs e)
         {
             Form_Pedido Form = new();
-            ShowDialog(Form);
+            Form.ShowDialog();
         }
     }
 }
