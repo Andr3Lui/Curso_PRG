@@ -34,3 +34,39 @@ D:\Curso_PRG - André\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\refint
 D:\Curso_PRG - André\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.pdb
 D:\Curso_PRG - André\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.genruntimeconfig.cache
 D:\Curso_PRG - André\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\ref\Projeto_Integrador_Dominio.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\Projeto_Integrador_Dominio.exe
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\Projeto_Integrador_Dominio.deps.json
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\Projeto_Integrador_Dominio.runtimeconfig.json
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\Projeto_Integrador_Dominio.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\Projeto_Integrador_Dominio.pdb
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\BouncyCastle.Cryptography.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\Google.Protobuf.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\K4os.Compression.LZ4.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\K4os.Compression.LZ4.Streams.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\K4os.Hash.xxHash.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\MySql.Data.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\System.IO.Pipelines.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\System.Text.Encodings.Web.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\System.Text.Json.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\ZstdSharp.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\runtimes\win-x64\native\comerr64.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\runtimes\win-x64\native\gssapi64.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\runtimes\win-x64\native\k5sprt64.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\runtimes\win-x64\native\krb5_64.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.csproj.AssemblyReference.cache
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.Form_Clientes.resources
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.Form_Pedido.resources
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.csproj.GenerateResource.cache
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.AssemblyInfoInputs.cache
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.AssemblyInfo.cs
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.csproj.CoreCompileInputs.cache
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.sourcelink.json
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_.3CF20ABF.Up2Date
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\refint\Projeto_Integrador_Dominio.dll
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.pdb
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.genruntimeconfig.cache
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\ref\Projeto_Integrador_Dominio.dll

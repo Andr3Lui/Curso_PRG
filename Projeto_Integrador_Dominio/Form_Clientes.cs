@@ -1,5 +1,4 @@
 using Projeto_Integrador_Dominio.Dominio;
-using Projeto_Integrador_Dominio.Repositorio;
 
 namespace Projeto_Integrador_Dominio
 {
@@ -21,24 +20,29 @@ namespace Projeto_Integrador_Dominio
             maskedBoxTel.Clear();
             labelErro.Text = "";
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            labelErro.Text = "";
 
+            BindingSource.DataSource = Cliente.ListarClientes();
+            dataGridViewClientes.DataSource = BindingSource;
+
+        }
         public bool CriarCliente()
         {
-            string ValidacaoCliente = Cliente.ValidarCliente();
-
-            if (!string.IsNullOrWhiteSpace(ValidacaoCliente))
-            {
-                return false;
-            }
-
             Cliente.Nome = textBoxNome.Text;
             Cliente.Email = textBoxEmail.Text;
             Cliente.CPF = maskedBoxCPF.Text.Replace("-", "");
             Cliente.Telefone = maskedBoxTel.Text.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
 
+            string ValidacaoCliente = Cliente.ValidarCliente();
+            if (!string.IsNullOrWhiteSpace(ValidacaoCliente))
+            {
+                labelErro.Text = ValidacaoCliente;
+                return false;
+            }
             return true;
         }
-
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
             if (!CriarCliente())
@@ -53,16 +57,6 @@ namespace Projeto_Integrador_Dominio
             LimparForm();
 
         }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            labelErro.Text = "";
-
-            BindingSource.DataSource = Cliente.ListarClientes();
-            dataGridViewClientes.DataSource = BindingSource;
-
-        }
-
         private void buttonPedidos_Click(object sender, EventArgs e)
         {
             Form_Pedido Form = new();
