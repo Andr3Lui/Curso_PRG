@@ -32,7 +32,7 @@ namespace Projeto_Integrador_Dominio
         private void buttonConPedido_Click(object sender, EventArgs e)
         {
 
-            //ainda falta o cliente
+            Pedido.Cliente = Cliente.BoxBuscCliente.
             Pedido.Servico = (Servico)comboBoxServiço.SelectedIndex;
             Pedido.Produto = (Produto)comboBoxProduto.SelectedIndex;
             Pedido.Quantidade = numericQuantidade.Text; 
