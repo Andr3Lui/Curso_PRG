@@ -67,6 +67,21 @@ namespace Projeto_Integrador_Dominio
             {
                 return;
             }
+
+            int id = (int)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
+            var cliente = Cliente.BuscarID(id);
+
+            if(cliente == null)
+            {
+                return;
+            }
+
+            Cliente = cliente;
+
+            textBoxNome.Text = Cliente.Nome;
+            textBoxEmail.Text = Cliente.Email;
+            maskedBoxCPF.Text = Cliente.CPF;
+            maskedBoxTel.Text = Cliente.Telefone;
         }
 
         private void buttonAtualizarCliente_Click(object sender, EventArgs e)

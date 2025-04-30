@@ -6,7 +6,7 @@ namespace Projeto_Integrador_Dominio.Dominio
 {
     internal class Pedido
     {
-        private RepositorioPI Repositorio = new();
+        private RepositorioPedido RepositorioPedido = new();
 
         public int Id { get; set; }
         public Cliente Cliente { get; set; }
@@ -25,15 +25,10 @@ namespace Projeto_Integrador_Dominio.Dominio
         {
             return Estado != Estado.Realizado;
         } 
-        
-        public void ListarClientes()
-        {
-            Repositorio.ListarClientes();   
-        }
 
         public void InserirPedido()
         {
-            Repositorio.InserirPedido(this);
+            RepositorioPedido.InserirPedido(this);
         }
     }
 }

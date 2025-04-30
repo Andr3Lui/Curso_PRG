@@ -7,7 +7,7 @@ namespace Projeto_Integrador_Dominio.Dominio
 {
     internal class Cliente
     {
-        private RepositorioPI RepositorioPI = new();
+        private RepositorioCliente RepositorioCliente = new();
 
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -35,10 +35,10 @@ namespace Projeto_Integrador_Dominio.Dominio
                 return "Preencha 'Nome' apenas com letras";
             }
 
-            var clienteExistente = RepositorioPI.BuscarEmail(Email);
+            var clienteExistente = RepositorioCliente.BuscarEmail(Email);
             if (clienteExistente != null && clienteExistente?.Id != Id)
             {
-                return "Email já cadastrado";
+                return "'Email' já cadastrado";
             }
 
             if (string.IsNullOrWhiteSpace(Email))
@@ -51,10 +51,10 @@ namespace Projeto_Integrador_Dominio.Dominio
                 return "Insira um 'Email' válido";
             }
 
-            clienteExistente = RepositorioPI.BuscarTelefone(Telefone);
+            clienteExistente = RepositorioCliente.BuscarTelefone(Telefone);
             if(clienteExistente != null && clienteExistente?.Id != Id)
             {
-                return "Telefone já cadastrado";
+                return "'Telefone' já cadastrado";
             }
 
             if (string.IsNullOrWhiteSpace(Telefone))
@@ -65,6 +65,12 @@ namespace Projeto_Integrador_Dominio.Dominio
             if (Telefone.Length != 11)
             {
                 return "número de 'Telefone' inválido";
+            }
+
+            clienteExistente = RepositorioCliente.BuscarCPF(CPF);
+            if (clienteExistente != null && clienteExistente?.Id != Id)
+            {
+                return "'CPF' já cadastrado";
             }
 
             if (string.IsNullOrWhiteSpace(CPF))
@@ -82,27 +88,27 @@ namespace Projeto_Integrador_Dominio.Dominio
 
         public Cliente? BuscarID(int Id)
         {
-            return RepositorioPI.BuscarID(Id);
+            return RepositorioCliente.BuscarID(Id);
         }
 
         public void InserirCliente()
         {
-            RepositorioPI.InserirCliente(this);
+            RepositorioCliente.InserirCliente(this);
         }
 
         public List<Cliente> ListarClientes()
         {
-            return RepositorioPI.ListarClientes();
+            return RepositorioCliente.ListarClientes();
         }
 
         public void EditarCliente()
         {
-             RepositorioPI.EditarCliente(this);
+            RepositorioCliente.EditarCliente(this);
         }
 
         public void RemoverCliente(int id)
         {
-            RepositorioPI.RemoverCliente(id);
+            RepositorioCliente.RemoverCliente(id);
         }
     } 
 
