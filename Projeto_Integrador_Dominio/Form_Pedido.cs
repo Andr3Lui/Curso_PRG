@@ -25,14 +25,16 @@ namespace Projeto_Integrador_Dominio
         {
             labelErro.Text = "";
         }
+
         private void buttonBuscar_Click(object sender, EventArgs e)
         {
             
         }
+
         private void buttonConPedido_Click(object sender, EventArgs e)
         {
 
-            Pedido.Cliente = Cliente.BoxBuscCliente.
+            //Pedido.Cliente = Cliente.BoxBuscCliente.Text,
             Pedido.Servico = (Servico)comboBoxServiço.SelectedIndex;
             Pedido.Produto = (Produto)comboBoxProduto.SelectedIndex;
             Pedido.Quantidade = numericQuantidade.Text; 

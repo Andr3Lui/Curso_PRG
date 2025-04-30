@@ -41,6 +41,9 @@
             dataGridViewClientes = new DataGridView();
             buttonPedidos = new Button();
             pictureBox1 = new PictureBox();
+            buttonEditarCliente = new Button();
+            buttonAtualizarCliente = new Button();
+            buttonDeletarCliente = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -140,7 +143,7 @@
             // 
             // buttonPedidos
             // 
-            buttonPedidos.Location = new Point(73, 533);
+            buttonPedidos.Location = new Point(73, 551);
             buttonPedidos.Name = "buttonPedidos";
             buttonPedidos.Size = new Size(100, 30);
             buttonPedidos.TabIndex = 11;
@@ -157,11 +160,44 @@
             pictureBox1.TabIndex = 12;
             pictureBox1.TabStop = false;
             // 
+            // buttonEditarCliente
+            // 
+            buttonEditarCliente.Location = new Point(451, 401);
+            buttonEditarCliente.Name = "buttonEditarCliente";
+            buttonEditarCliente.Size = new Size(75, 23);
+            buttonEditarCliente.TabIndex = 13;
+            buttonEditarCliente.Text = "Editar";
+            buttonEditarCliente.UseVisualStyleBackColor = true;
+            buttonEditarCliente.Click += buttonEditarCliente_Click;
+            // 
+            // buttonAtualizarCliente
+            // 
+            buttonAtualizarCliente.Location = new Point(451, 439);
+            buttonAtualizarCliente.Name = "buttonAtualizarCliente";
+            buttonAtualizarCliente.Size = new Size(75, 23);
+            buttonAtualizarCliente.TabIndex = 14;
+            buttonAtualizarCliente.Text = "Atualizar";
+            buttonAtualizarCliente.UseVisualStyleBackColor = true;
+            buttonAtualizarCliente.Click += buttonAtualizarCliente_Click;
+            // 
+            // buttonDeletarCliente
+            // 
+            buttonDeletarCliente.Location = new Point(451, 483);
+            buttonDeletarCliente.Name = "buttonDeletarCliente";
+            buttonDeletarCliente.Size = new Size(75, 23);
+            buttonDeletarCliente.TabIndex = 15;
+            buttonDeletarCliente.Text = "Deletar";
+            buttonDeletarCliente.UseVisualStyleBackColor = true;
+            buttonDeletarCliente.Click += buttonDeletarCliente_Click;
+            // 
             // Form_Clientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(975, 653);
+            Controls.Add(buttonDeletarCliente);
+            Controls.Add(buttonAtualizarCliente);
+            Controls.Add(buttonEditarCliente);
             Controls.Add(pictureBox1);
             Controls.Add(buttonPedidos);
             Controls.Add(dataGridViewClientes);
@@ -199,5 +235,8 @@
         private DataGridView dataGridViewClientes;
         private Button buttonPedidos;
         private PictureBox pictureBox1;
+        private Button buttonEditarCliente;
+        private Button buttonAtualizarCliente;
+        private Button buttonDeletarCliente;
     }
 }

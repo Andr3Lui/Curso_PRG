@@ -20,6 +20,7 @@ namespace Projeto_Integrador_Dominio
             maskedBoxTel.Clear();
             labelErro.Text = "";
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             labelErro.Text = "";
@@ -28,11 +29,12 @@ namespace Projeto_Integrador_Dominio
             dataGridViewClientes.DataSource = BindingSource;
 
         }
+
         public bool CriarCliente()
         {
             Cliente.Nome = textBoxNome.Text;
             Cliente.Email = textBoxEmail.Text;
-            Cliente.CPF = maskedBoxCPF.Text.Replace("-", "");
+            Cliente.CPF = maskedBoxCPF.Text.Replace("-", "").Replace(" ", "").Replace(",", "").Replace(",", "");
             Cliente.Telefone = maskedBoxTel.Text.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
 
             string ValidacaoCliente = Cliente.ValidarCliente();
@@ -43,6 +45,7 @@ namespace Projeto_Integrador_Dominio
             }
             return true;
         }
+
         private void buttonCadastrar_Click(object sender, EventArgs e)
         {
             if (!CriarCliente())
@@ -57,15 +60,47 @@ namespace Projeto_Integrador_Dominio
             LimparForm();
 
         }
+
+        private void buttonEditarCliente_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewClientes.SelectedRows.Count == 0 || dataGridViewClientes.SelectedRows[0].Index < 0)
+            {
+                return;
+            }
+        }
+
+        private void buttonAtualizarCliente_Click(object sender, EventArgs e)
+        {
+            if (!CriarCliente())
+            {
+                return;
+            }
+
+            Cliente.EditarCliente();
+            BindingSource.DataSource = Cliente.ListarClientes();
+            dataGridViewClientes.DataSource = BindingSource;
+        }
+
+        private void buttonDeletarCliente_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewClientes.SelectedRows.Count == 0 || dataGridViewClientes.SelectedRows[0].Index < 0)
+            {
+                return;
+            }
+
+            int id = (int)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
+
+            Cliente.RemoverCliente(id);
+            
+            BindingSource.DataSource = Cliente.ListarClientes();
+            dataGridViewClientes.DataSource = BindingSource;
+        }
+
         private void buttonPedidos_Click(object sender, EventArgs e)
         {
             Form_Pedido Form = new();
             Form.ShowDialog();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

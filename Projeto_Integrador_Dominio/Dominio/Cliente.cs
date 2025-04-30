@@ -16,10 +16,7 @@ namespace Projeto_Integrador_Dominio.Dominio
         public string CPF { get; set; }
 
 
-        public bool ValidarIdCliente()
-        {
-            return Id > 0;
-        }
+        
 
         public string ValidarCliente()
         {
@@ -38,27 +35,54 @@ namespace Projeto_Integrador_Dominio.Dominio
                 return "Preencha 'Nome' apenas com letras";
             }
 
+            var clienteExistente = RepositorioPI.BuscarEmail(Email);
+            if (clienteExistente != null && clienteExistente?.Id != Id)
+            {
+                return "Email já cadastrado";
+            }
+
             if (string.IsNullOrWhiteSpace(Email))
             {
                 return "'Email' não foi preenchido";
             }
 
-            //if (Email.Contains("@"))
-            //{
-            //    return "Insira um 'Email' válido";
-            //}
+            if (!Email.Contains("@") || !Email.EndsWith(".com"))
+            {
+                return "Insira um 'Email' válido";
+            }
+
+            clienteExistente = RepositorioPI.BuscarTelefone(Telefone);
+            if(clienteExistente != null && clienteExistente?.Id != Id)
+            {
+                return "Telefone já cadastrado";
+            }
+
+            if (string.IsNullOrWhiteSpace(Telefone))
+            {
+                return "'Telefone' não foi preenchido";
+            }
 
             if (Telefone.Length != 11)
             {
                 return "número de 'Telefone' inválido";
             }
 
-            if (CPF.Length < 11)
+            if (string.IsNullOrWhiteSpace(CPF))
+            {
+                return "'CPF' não foi preenchido";
+            }
+
+            if (CPF.Length != 11)
             {
                 return "CPF invalido";
             }
 
             return string.Empty;
+        }
+
+        public Cliente? BuscarID(int Id)
+        {
+            return RepositorioPI.BuscarID(Id);
         }
 
         public void InserirCliente()
@@ -69,6 +93,16 @@ namespace Projeto_Integrador_Dominio.Dominio
         public List<Cliente> ListarClientes()
         {
             return RepositorioPI.ListarClientes();
+        }
+
+        public void EditarCliente()
+        {
+             RepositorioPI.EditarCliente(this);
+        }
+
+        public void RemoverCliente(int id)
+        {
+            RepositorioPI.RemoverCliente(id);
         }
     } 
 
