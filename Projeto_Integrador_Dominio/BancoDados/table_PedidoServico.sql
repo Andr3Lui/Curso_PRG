@@ -7,3 +7,5 @@ CREATE TABLE PedidoServico (
     FOREIGN KEY (id_pedido)
         REFERENCES pedido (id)
 );
+
+-- DROP TABLE PedidoServico;

@@ -11,7 +11,7 @@ namespace Projeto_Integrador_Dominio.Dominio
         public int Id { get; set; }
         public Cliente Cliente { get; set; }
         public Produto Produto { get; set; }
-        public string Quantidade { get; set; }
+        public int Quantidade { get; set; }
         public Servico Servico { get; set; }
         public DateTime DataDoPedido  { get; set; }
         public Estado Estado { get; set; }

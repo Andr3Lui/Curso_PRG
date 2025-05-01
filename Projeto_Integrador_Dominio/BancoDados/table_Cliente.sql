@@ -5,3 +5,5 @@ CREATE TABLE cliente (
     cpf VARCHAR(11) NOT NULL UNIQUE,
     telefone VARCHAR(11) NOT NULL UNIQUE
 );
+
+-- DROP TABLE cliente;

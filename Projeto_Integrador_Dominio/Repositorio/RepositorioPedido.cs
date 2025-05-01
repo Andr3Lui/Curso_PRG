@@ -26,7 +26,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
 
         }
 
-        public List<Pedido> BuscarPedidosPendentes()
+        public List<Pedido> ListarPedidosPendentes()
         {
             var pedidos = new List<Pedido>();
 
@@ -46,7 +46,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
                             {
                                 Id = reader.GetInt32("id"),
                                 Produto = (Produto)reader.GetByte("produto"),
-                                Quantidade = reader.GetString("quantidade"),
+                                Quantidade = reader.GetInt32("quantidade"),
                                 Servico = (Servico)reader.GetByte("servico"),
                                 DataDoPedido = reader.GetDateTime("dataDoPedido"),
                                 Estado = (Estado)reader.GetByte("estado"),
@@ -66,7 +66,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
             return pedidos;
         }
 
-        public void AtualizarPedido(int id, bool NovoEstado)
+        public void AtualizarPedido(Pedido pedido)
         {
             using (var con = DataBase.GetConnection())
             {
@@ -76,8 +76,8 @@ namespace Projeto_Integrador_Dominio.Repositorio
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@ped.estado", NovoEstado);
-                    cmd.Parameters.AddWithValue("@ped.id", id);
+                    cmd.Parameters.AddWithValue("@ped.estado", pedido.Estado);
+                    cmd.Parameters.AddWithValue("@ped.id", pedido.Id);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -89,15 +89,65 @@ namespace Projeto_Integrador_Dominio.Repositorio
             {
                 con.Open();
 
-                string query = $"DELETE FROM pedido p WHERE p.estado = {Estado.Pendente}";
+                string query = $"DELETE FROM pedido p WHERE id = @id";
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("id", NovoPedido.Id);
-                    cmd.Parameters.AddWithValue("estado", NovoPedido.Estado);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
+
+        public Pedido? BuscarIdPedido(Pedido pedido)
+        {
+            string query = "SELECT c *, id_cliente FROM cliente c INNER JOIN cliente ON pedido.id_cliente = cliente.id WHERE id = @id;";
+            using (var conn = DataBase.GetConnection())
+            {
+                conn.Open();
+
+                using (var cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", pedido.Id);
+                    cmd.Parameters.AddWithValue("@id_cliente", pedido.Cliente.Nome);
+                    cmd.Parameters.AddWithValue("@produto", pedido.Produto);
+                    cmd.Parameters.AddWithValue("@quantidade", pedido.Quantidade);
+                    cmd.Parameters.AddWithValue("@servico", pedido.Servico);
+                    cmd.Parameters.AddWithValue("@dataDoPedido", pedido.DataDoPedido);
+                    cmd.Parameters.AddWithValue("@estado", pedido.Estado);
+                    using var reader = cmd.ExecuteReader();
+
+                    if (!reader.Read())
+                    {
+                        return null;
+                    }
+
+                    return new Pedido
+                    {
+                        Id = reader.GetInt32("id"),
+                        Produto = (Produto)reader.GetInt32("produto"),
+                        Quantidade = reader.GetInt32("quantidade"),
+                        Servico = (Servico)reader.GetInt32("servico"),
+                        DataDoPedido = reader.GetDateTime("dataDoPedido"),
+                        Estado = (Estado)reader.GetInt32("estado"),
+
+                        Cliente = new Cliente()
+                        {
+                            Id = reader.GetInt32("cliente.id"),
+                            Nome = reader.GetString("cliente.nome"),
+                            Email = reader.GetString("cliente.email"),
+                            Telefone = reader.GetString("cliente.telefone"),
+                            CPF = reader.GetString("cliente.cpf")
+                        }
+
+                    };
+                }
+            }
+
+        }
     }
 }
+
+    
+    
+
