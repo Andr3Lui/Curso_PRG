@@ -43,6 +43,7 @@ namespace Projeto_Integrador_Dominio
                 labelErro.Text = ValidacaoCliente;
                 return false;
             }
+
             return true;
         }
 

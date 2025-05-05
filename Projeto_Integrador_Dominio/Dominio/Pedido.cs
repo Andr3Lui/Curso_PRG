@@ -9,26 +9,62 @@ namespace Projeto_Integrador_Dominio.Dominio
         private RepositorioPedido RepositorioPedido = new();
 
         public int Id { get; set; }
-        public Cliente Cliente { get; set; }
+        public Cliente? Cliente { get; set; }
         public Produto Produto { get; set; }
         public int Quantidade { get; set; }
         public Servico Servico { get; set; }
         public DateTime DataDoPedido  { get; set; }
-        public Estado Estado { get; set; }
+        public Status Status { get; set; }
+        public Pagamento Pagamento { get; set; }
+        public Decimal Valor { get; set; }
 
-        public bool ValidarId()
+
+        public string ValidarPedido()
         {
-            return Id > 0;
+            if (Id < 0)
+            {
+                return "Não foi possivel gerar o pedido";
+            }
+
+            if (Produto == null && Servico == null)
+            {
+                return "Escolha um 'Serviço' ou 'Produto'";
+            }
+
+            
+            return string.Empty; 
         }
 
-        public bool ValidarEstado()
+
+        public Pedido? BuscarIdPedido()
         {
-            return Estado != Estado.Realizado;
-        } 
+            return RepositorioPedido.BuscarIdPedido(this);
+        }
 
         public void InserirPedido()
         {
             RepositorioPedido.InserirPedido(this);
         }
+
+        public void InserirItem()
+        {
+            RepositorioPedido.InserirItem();
+        }
+
+        public List<Pedido> ListarPedidosPendentes()
+        {
+            return RepositorioPedido.ListarPedidosPendentes();
+        }
+
+        public void AtualizarPedido()
+        {
+            RepositorioPedido.AtualizarPedido(this);
+        }
+
+        public void DeletarPedido()
+        {
+            RepositorioPedido.DeletarPedido(this);
+        }
+
     }
 }

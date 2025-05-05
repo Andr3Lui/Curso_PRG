@@ -107,3 +107,4 @@ D:\Curso_PRG-André\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_
 D:\Curso_PRG-André\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.genruntimeconfig.cache
 D:\Curso_PRG-André\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\ref\Projeto_Integrador_Dominio.dll
 D:\Curso_PRG-André\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.Properties.Resources.resources
+C:\Curso_Prog\Curso_PRG\Projeto_Integrador_Dominio\obj\Debug\net8.0-windows\Projeto_Integrador_Dominio.Properties.Resources.resources

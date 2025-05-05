@@ -10,10 +10,10 @@ namespace Projeto_Integrador_Dominio.Dominio
         private RepositorioCliente RepositorioCliente = new();
 
         public int Id { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Telefone { get; set; }
-        public string CPF { get; set; }
+        public string? Nome { get; set; }
+        public string? Email { get; set; }
+        public string? Telefone { get; set; }
+        public string? CPF { get; set; }
 
 
         
@@ -86,9 +86,9 @@ namespace Projeto_Integrador_Dominio.Dominio
             return string.Empty;
         }
 
-        public Cliente? BuscarID(int Id)
+        public Cliente? BuscarID(int id)
         {
-            return RepositorioCliente.BuscarID(Id);
+            return RepositorioCliente.BuscarID(id);
         }
 
         public void InserirCliente()

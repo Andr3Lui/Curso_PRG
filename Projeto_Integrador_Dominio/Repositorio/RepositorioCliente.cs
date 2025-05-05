@@ -57,6 +57,40 @@ namespace Projeto_Integrador_Dominio.Repositorio
             return clientes;
         }
 
+        public List<Cliente> BuscarCliente(string clienteDigitado)
+        {
+            List<Cliente> Cliente = [];
+
+            using (var con = DataBase.GetConnection())
+            {
+                con.Open();
+
+                string query = $"SELECT * FROM cliente WHERE nome LIKE '%@nomeDigitado%';";
+
+                using (var cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@nomeDigitado", $"{clienteDigitado}%");
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Cliente.Add(new Dominio.Cliente 
+                            {
+                                Id = reader.GetInt32("id"),
+                                Nome = reader.GetString("nome"),
+                                Email = reader.GetString("email"),
+                                Telefone = reader.GetString("telefone"),
+                                CPF = reader.GetString("cpf")
+                            });
+                        }
+                    }
+
+                    return Cliente;
+                }
+
+            }
+        }
+
         public Cliente? BuscarID(int Id)
         {
             string query = "SELECT * FROM cliente WHERE id = @param;";

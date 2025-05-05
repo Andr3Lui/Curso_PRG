@@ -8,4 +8,4 @@ CREATE TABLE PedidoProduto (
         REFERENCES pedido (id)
 );
 
--- DROP TABLE PedidoProduto;
+DROP TABLE PedidoProduto;

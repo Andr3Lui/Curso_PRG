@@ -1,6 +1,7 @@
 CREATE TABLE pedido (
     id INT PRIMARY KEY AUTO_INCREMENT,
     dataDoPedido DATETIME NOT NULL,
+    valor DECIMAL (10,2) NOT NULL,
     estado BIT DEFAULT 0,
     quantidade INT NOT NULL,
     id_cliente INT NOT NULL,
