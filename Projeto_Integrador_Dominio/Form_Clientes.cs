@@ -72,7 +72,7 @@ namespace Projeto_Integrador_Dominio
             int id = (int)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
             var cliente = Cliente.BuscarID(id);
 
-            if(cliente == null)
+            if (cliente == null)
             {
                 return;
             }
@@ -105,9 +105,8 @@ namespace Projeto_Integrador_Dominio
             }
 
             int id = (int)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
-
             Cliente.RemoverCliente(id);
-            
+
             BindingSource.DataSource = Cliente.ListarClientes();
             dataGridViewClientes.DataSource = BindingSource;
         }
@@ -118,5 +117,13 @@ namespace Projeto_Integrador_Dominio
             Form.ShowDialog();
         }
 
+        private void buttonBuscarCliente_Click(object sender, EventArgs e)
+        {
+            string clienteDigitado = (string)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
+
+            Cliente.BuscarCliente(clienteDigitado);
+            BindingSource.DataSource = Cliente.ListarClientes();
+            dataGridViewClientes.DataSource = BindingSource;
+        }
     }
 }

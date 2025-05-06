@@ -35,7 +35,6 @@ namespace Projeto_Integrador_Dominio.Dominio
             return string.Empty; 
         }
 
-
         public Pedido? BuscarIdPedido()
         {
             return RepositorioPedido.BuscarIdPedido(this);
@@ -49,6 +48,16 @@ namespace Projeto_Integrador_Dominio.Dominio
         public void InserirItem()
         {
             RepositorioPedido.InserirItem();
+        }
+
+        public void RemoverItem()
+        {
+            RepositorioPedido.RemoverItem();
+        }
+
+        public List<Pedido> ListarItens()
+        {
+            return RepositorioPedido.ListarItens();
         }
 
         public List<Pedido> ListarPedidosPendentes()

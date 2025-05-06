@@ -2,6 +2,7 @@
 
 
 using Projeto_Integrador_Dominio.Repositorio;
+using System.Web;
 
 namespace Projeto_Integrador_Dominio.Dominio
 {
@@ -94,6 +95,11 @@ namespace Projeto_Integrador_Dominio.Dominio
         public void InserirCliente()
         {
             RepositorioCliente.InserirCliente(this);
+        }
+
+        public List<Cliente> BuscarCliente(string clienteDigitado)
+        {
+            return RepositorioCliente.BuscarCliente(clienteDigitado);
         }
 
         public List<Cliente> ListarClientes()

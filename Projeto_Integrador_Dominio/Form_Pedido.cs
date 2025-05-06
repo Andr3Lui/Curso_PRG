@@ -7,6 +7,7 @@ namespace Projeto_Integrador_Dominio
     {
         private readonly BindingSource BindingSource = [];
         private Pedido Pedido = new();
+        private Cliente Cliente = new();
 
         public Form_Pedido()
         {
@@ -24,7 +25,7 @@ namespace Projeto_Integrador_Dominio
 
         private void Form_Pedido_Load(object sender, EventArgs e)
         {
-            BindingSource.DataSource = Pedido.ListarItem();
+            BindingSource.DataSource = Pedido.ListarItens();
             dataGridViewItem.DataSource = BindingSource;
 
             labelErro.Text = "";
@@ -52,16 +53,23 @@ namespace Projeto_Integrador_Dominio
 
         private void buttonAdicionarItem_Click(object sender, EventArgs e)
         {
-            
+            if (!CriarPedido())
+            {
+                return;
+            }
 
+            Pedido.InserirItem();
+            BindingSource.DataSource = Pedido.ListarItens();
+            dataGridViewItem.DataSource = BindingSource;
         }
 
-
-
-        private void buttonBuscar_Click(object sender, EventArgs e)
+        private void buttonBuscar_Click(object sender, EventArgs e)//MEXER
         {
+            string clienteDigitado = (string)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
 
-
+            Cliente.BuscarCliente(clienteDigitado);
+            BindingSource.DataSource = Cliente.ListarClientes();
+            dataGridViewClientes.DataSource = BindingSource;
         }
 
         private void buttonConPedido_Click(object sender, EventArgs e)
@@ -72,9 +80,6 @@ namespace Projeto_Integrador_Dominio
             }
 
             Pedido.InserirPedido();
-            BindingSource.DataSource = Pedido.ListarPedidosPendentes();
-            //dataGridViewPedidos.DataSource = BindingSource;
-
             LimparForm();
         }
     }

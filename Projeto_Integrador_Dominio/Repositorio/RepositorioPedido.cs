@@ -22,7 +22,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
                     cmd.Parameters.AddWithValue("@quantidade", pedido.Quantidade);
                     cmd.Parameters.AddWithValue("@servico", pedido.Servico);
                     cmd.Parameters.AddWithValue("@dataDoPedido", pedido.DataDoPedido);
-                    cmd.Parameters.AddWithValue("@estado", pedido.Estado);
+                    cmd.Parameters.AddWithValue("@estado", pedido.Status);
                     using var reader = cmd.ExecuteReader();
 
                     if (!reader.Read())
@@ -37,7 +37,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
                         Quantidade = reader.GetInt32("quantidade"),
                         Servico = (Servico)reader.GetInt32("servico"),
                         DataDoPedido = reader.GetDateTime("dataDoPedido"),
-                        Estado = (Estado)reader.GetInt32("estado"),
+                        Status = (Status)reader.GetInt32("estado"),
 
                         Cliente = new Cliente()
                         {
@@ -60,13 +60,13 @@ namespace Projeto_Integrador_Dominio.Repositorio
             {
                 con.Open();
 
-                string query = $"INSERT INTO pedido p(c.nome, p.dataDoPedido, p.estado) VALUES(@c.nome, @p.dataDoPedido, {Estado.Pendente}) INNER JOIN cliente c ON p.id_cliente c.id;";
+                string query = $"INSERT INTO pedido p(c.nome, p.dataDoPedido, p.estado) VALUES(@c.nome, @p.dataDoPedido, {Status.Pendente}) INNER JOIN cliente c ON p.id_cliente c.id;";
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@c.nome", NovoPedido.Cliente.Nome);
                     cmd.Parameters.AddWithValue("@p.dataDoPedido", NovoPedido.DataDoPedido);
-                    cmd.Parameters.AddWithValue("@estado", NovoPedido.Estado);
+                    cmd.Parameters.AddWithValue("@estado", NovoPedido.Status);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -78,10 +78,23 @@ namespace Projeto_Integrador_Dominio.Repositorio
 
         }
 
-        public void BuscarCliente()
+        public void RemoverItem()
         {
 
-        } 
+        }
+
+        public List<Pedido> ListarItens()
+        {
+            var item = new List<Pedido>();
+
+            using (var conn = DataBase.GetConnection())
+            {
+                conn.Open();
+
+
+            }
+            return item;   
+        }
 
         public List<Pedido> ListarPedidosPendentes()
         {
@@ -133,7 +146,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@ped.estado", pedido.Estado);
+                    cmd.Parameters.AddWithValue("@ped.estado", pedido.Status);
                     cmd.Parameters.AddWithValue("@ped.id", pedido.Id);
                     cmd.ExecuteNonQuery();
                 }
@@ -155,7 +168,6 @@ namespace Projeto_Integrador_Dominio.Repositorio
                 }
             }
         }
-
     }
 }
 

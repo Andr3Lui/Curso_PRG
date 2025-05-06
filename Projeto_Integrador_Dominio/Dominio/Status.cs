@@ -2,7 +2,7 @@
 
 namespace Projeto_Integrador_Dominio.Dominio
 {
-    internal enum Pagamento
+    internal enum Status
     {
         Pendente,
         Realizado    
