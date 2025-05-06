@@ -21,18 +21,25 @@ namespace Projeto_Integrador_Dominio.Dominio
 
         public string ValidarPedido()
         {
-            if (Id < 0)
+
+            if (string.IsNullOrWhiteSpace(Cliente?.Nome))
             {
-                return "Não foi possivel gerar o pedido";
+                return "Selecione um 'Cliente'";
             }
 
-            if (Produto == null && Servico == null)
+            if (Cliente.Nome.Contains('@') || Cliente.Nome.Any(char.IsNumber) || Cliente.Nome.Any(char.IsPunctuation) || Cliente.Nome.Any(char.IsSymbol))
+            {
+                return "Preencha 'Cliente' apenas com letras";
+            }
+
+            if (Produto < 0 && Servico < 0)
             {
                 return "Escolha um 'Serviço' ou 'Produto'";
             }
 
             
-            return string.Empty; 
+
+            return string.Empty;
         }
 
         public Pedido? BuscarIdPedido()

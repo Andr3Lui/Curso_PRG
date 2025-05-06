@@ -17,7 +17,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
                 using (var cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", pedido.Id);
-                    cmd.Parameters.AddWithValue("@id_cliente", pedido.Cliente.Nome);
+                    cmd.Parameters.AddWithValue("@id_cliente", pedido.Cliente?.Nome);
                     cmd.Parameters.AddWithValue("@produto", pedido.Produto);
                     cmd.Parameters.AddWithValue("@quantidade", pedido.Quantidade);
                     cmd.Parameters.AddWithValue("@servico", pedido.Servico);

@@ -1,9 +1,8 @@
 CREATE TABLE produto (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
-    valor INT NOT NULL,
-    estoque INT NOT NULL,
-    produtoCategoria INT NOT NULL
+    valor DECIMAL(10,2) NOT NULL,
+    estoque INT NOT NULL
 );
 
 DROP TABLE produto;

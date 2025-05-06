@@ -6,4 +6,4 @@ CREATE TABLE cliente (
     telefone VARCHAR(11) NOT NULL UNIQUE
 );
 
--- DROP TABLE cliente;
+DROP TABLE cliente;

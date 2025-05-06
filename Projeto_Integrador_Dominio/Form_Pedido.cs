@@ -5,9 +5,9 @@ namespace Projeto_Integrador_Dominio
 {
     public partial class Form_Pedido : Form
     {
-        private readonly BindingSource BindingSource = [];
-        private Pedido Pedido = new();
-        private Cliente Cliente = new();
+            private Pedido Pedido = new();
+            private Cliente Cliente = new();    
+            private readonly BindingSource BindingSource = [];
 
         public Form_Pedido()
         {
@@ -25,6 +25,9 @@ namespace Projeto_Integrador_Dominio
 
         private void Form_Pedido_Load(object sender, EventArgs e)
         {
+            BindingSource.DataSource = Cliente.ListarClientes();
+            dataGridViewItem.DataSource = BindingSource;
+
             BindingSource.DataSource = Pedido.ListarItens();
             dataGridViewItem.DataSource = BindingSource;
 
@@ -39,7 +42,6 @@ namespace Projeto_Integrador_Dominio
             Pedido.Quantidade = numericQuantidade.TabIndex;
             Pedido.DataDoPedido = DateTime.Now;
             Pedido.Status = Status.Pendente;
-            Pedido.Pagamento = (Pagamento)comboBoxPagamento.SelectedIndex;
 
             string ValidacaoPedido = Pedido.ValidarPedido();
             if (!string.IsNullOrWhiteSpace(ValidacaoPedido))
@@ -63,13 +65,9 @@ namespace Projeto_Integrador_Dominio
             dataGridViewItem.DataSource = BindingSource;
         }
 
-        private void buttonBuscar_Click(object sender, EventArgs e)//MEXER
+        private void buttonBuscar_Click(object sender, EventArgs e) 
         {
-            string clienteDigitado = (string)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
-
-            Cliente.BuscarCliente(clienteDigitado);
-            BindingSource.DataSource = Cliente.ListarClientes();
-            dataGridViewClientes.DataSource = BindingSource;
+            dataGridViewClientes.DataSource = Cliente.BuscarCliente(Cliente.Nome);
         }
 
         private void buttonConPedido_Click(object sender, EventArgs e)

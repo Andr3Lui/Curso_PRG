@@ -74,7 +74,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
                     {
                         while (reader.Read())
                         {
-                            Cliente.Add(new Dominio.Cliente 
+                            Cliente.Add(new Cliente 
                             {
                                 Id = reader.GetInt32("id"),
                                 Nome = reader.GetString("nome"),
@@ -84,11 +84,10 @@ namespace Projeto_Integrador_Dominio.Repositorio
                             });
                         }
                     }
-
-                    return Cliente;
                 }
-
             }
+
+            return Cliente;
         }
 
         public Cliente? BuscarID(int Id)

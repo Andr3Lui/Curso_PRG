@@ -25,13 +25,13 @@ namespace Projeto_Integrador_Dominio
         {
             labelErro.Text = "";
 
-            BindingSource.DataSource = Cliente.ListarClientes();
-            dataGridViewClientes.DataSource = BindingSource;
+            dataGridViewCliente.DataSource = Cliente.ListarClientes();
 
         }
 
         public bool CriarCliente()
         {
+            
             Cliente.Nome = textBoxNome.Text;
             Cliente.Email = textBoxEmail.Text;
             Cliente.CPF = maskedBoxCPF.Text.Replace("-", "").Replace(" ", "").Replace(",", "").Replace(",", "");
@@ -56,7 +56,7 @@ namespace Projeto_Integrador_Dominio
 
             Cliente.InserirCliente();
             BindingSource.DataSource = Cliente.ListarClientes();
-            dataGridViewClientes.DataSource = BindingSource;
+            dataGridViewCliente.DataSource = BindingSource;
 
             LimparForm();
 
@@ -64,12 +64,12 @@ namespace Projeto_Integrador_Dominio
 
         private void buttonEditarCliente_Click(object sender, EventArgs e)
         {
-            if (dataGridViewClientes.SelectedRows.Count == 0 || dataGridViewClientes.SelectedRows[0].Index < 0)
+            if (dataGridViewCliente.SelectedRows.Count == 0 || dataGridViewCliente.SelectedRows[0].Index < 0)
             {
                 return;
             }
 
-            int id = (int)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
+            int id = (int)dataGridViewCliente.SelectedRows[0].Cells[0].Value;
             var cliente = Cliente.BuscarID(id);
 
             if (cliente == null)
@@ -94,21 +94,21 @@ namespace Projeto_Integrador_Dominio
 
             Cliente.EditarCliente();
             BindingSource.DataSource = Cliente.ListarClientes();
-            dataGridViewClientes.DataSource = BindingSource;
+            dataGridViewCliente.DataSource = BindingSource;
         }
 
         private void buttonDeletarCliente_Click(object sender, EventArgs e)
         {
-            if (dataGridViewClientes.SelectedRows.Count == 0 || dataGridViewClientes.SelectedRows[0].Index < 0)
+            if (dataGridViewCliente.SelectedRows.Count == 0 || dataGridViewCliente.SelectedRows[0].Index < 0)
             {
                 return;
             }
 
-            int id = (int)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
+            int id = (int)dataGridViewCliente.SelectedRows[0].Cells[0].Value;
             Cliente.RemoverCliente(id);
 
             BindingSource.DataSource = Cliente.ListarClientes();
-            dataGridViewClientes.DataSource = BindingSource;
+            dataGridViewCliente.DataSource = BindingSource;
         }
 
         private void buttonPedidos_Click(object sender, EventArgs e)
@@ -119,11 +119,9 @@ namespace Projeto_Integrador_Dominio
 
         private void buttonBuscarCliente_Click(object sender, EventArgs e)
         {
-            string clienteDigitado = (string)dataGridViewClientes.SelectedRows[0].Cells[0].Value;
 
-            Cliente.BuscarCliente(clienteDigitado);
-            BindingSource.DataSource = Cliente.ListarClientes();
-            dataGridViewClientes.DataSource = BindingSource;
+            var listarClientes = Cliente.BuscarCliente(textBoxBuscar.Text);
+            dataGridViewCliente.DataSource = listarClientes;
         }
     }
 }
