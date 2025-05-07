@@ -59,13 +59,13 @@ namespace Projeto_Integrador_Dominio.Repositorio
 
         public List<Cliente> BuscarCliente(string clienteDigitado)
         {
-            List<Cliente> Cliente = [];
+            List<Cliente> buscarCliente = [];
 
             using (var con = DataBase.GetConnection())
             {
                 con.Open();
 
-                string query = $"SELECT * FROM cliente WHERE nome LIKE '%@nomeDigitado%';";
+                string query = "SELECT * FROM cliente WHERE nome LIKE @nomeDigitado;";
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
@@ -74,7 +74,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
                     {
                         while (reader.Read())
                         {
-                            Cliente.Add(new Cliente 
+                            buscarCliente.Add(new Cliente()
                             {
                                 Id = reader.GetInt32("id"),
                                 Nome = reader.GetString("nome"),
@@ -87,7 +87,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
                 }
             }
 
-            return Cliente;
+            return buscarCliente;
         }
 
         public Cliente? BuscarID(int Id)

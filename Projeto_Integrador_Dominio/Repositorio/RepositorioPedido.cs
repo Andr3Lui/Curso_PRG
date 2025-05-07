@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Projeto_Integrador_Dominio.BancoDados;
 using Projeto_Integrador_Dominio.Dominio;
+using System.Drawing;
 
 
 namespace Projeto_Integrador_Dominio.Repositorio
@@ -33,9 +34,9 @@ namespace Projeto_Integrador_Dominio.Repositorio
                     return new Pedido
                     {
                         Id = reader.GetInt32("id"),
-                        Produto = (Produto)reader.GetInt32("produto"),
+                        Produto = reader.GetString("produto"),
                         Quantidade = reader.GetInt32("quantidade"),
-                        Servico = (Servico)reader.GetInt32("servico"),
+                        Servico = reader.GetString("servico"),
                         DataDoPedido = reader.GetDateTime("dataDoPedido"),
                         Status = (Status)reader.GetInt32("estado"),
 
@@ -73,9 +74,27 @@ namespace Projeto_Integrador_Dominio.Repositorio
 
         }
 
-        public void InserirItem()
+        public void InserirItem(Pedido item)
         {
-
+            using (var con = DataBase.GetConnection())
+            {
+                con.Open();
+                string queryProduto = "INSERT INTO PedidoProduto(id_produto, id_pedido) VALUES(@id_produto, @id_pedido);";
+                using (var cmd = new MySqlCommand(queryProduto, con))
+                {
+                    cmd.Parameters.AddWithValue("@id_produto", item.Produto);
+                    cmd.Parameters.AddWithValue("@id_pedido", item);
+                    cmd.ExecuteNonQuery();
+                }
+                string queryServico = "INSERT INTO PedidoServico(id_servico, id_pedido) VALUES(@id_servico, @id_pedido);";
+                using (var cmd = new MySqlCommand(queryServico, con))
+                {
+                    cmd.Parameters.AddWithValue("@id_servico", item.Servico);
+                    cmd.Parameters.AddWithValue("@id_pedido", item);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            
         }
 
         public void RemoverItem()
@@ -115,9 +134,9 @@ namespace Projeto_Integrador_Dominio.Repositorio
                             pedidos.Add(new Pedido
                             {
                                 Id = reader.GetInt32("id"),
-                                Produto = (Produto)reader.GetByte("produto"),
+                                Produto = reader.GetString("produto"),
                                 Quantidade = reader.GetInt32("quantidade"),
-                                Servico = (Servico)reader.GetByte("servico"),
+                                Servico = reader.GetString("servico"),
                                 DataDoPedido = reader.GetDateTime("dataDoPedido"),
                                 Status = (Status)reader.GetByte("estado"),
                                 Cliente = new Cliente()

@@ -5,9 +5,8 @@ namespace Projeto_Integrador_Dominio
 {
     public partial class Form_Pedido : Form
     {
-            private Pedido Pedido = new();
-            private Cliente Cliente = new();    
-            private readonly BindingSource BindingSource = [];
+        private Pedido Pedido = new();
+        private Cliente Cliente = new();
 
         public Form_Pedido()
         {
@@ -21,24 +20,21 @@ namespace Projeto_Integrador_Dominio
             comboBoxProduto.Text = "";
             numericQuantidade.Text = "";
             labelErro.Text = "";
-        } 
+        }
 
         private void Form_Pedido_Load(object sender, EventArgs e)
         {
-            BindingSource.DataSource = Cliente.ListarClientes();
-            dataGridViewItem.DataSource = BindingSource;
-
-            BindingSource.DataSource = Pedido.ListarItens();
-            dataGridViewItem.DataSource = BindingSource;
+            dataGridViewCliente.DataSource = Cliente.ListarClientes();
+            dataGridViewItem.DataSource = Pedido.ListarItens();
 
             labelErro.Text = "";
         }
 
         public bool CriarPedido()
         {
-            Pedido.Cliente.Nome = BoxBuscCliente.Text; 
-            Pedido.Produto = (Produto)comboBoxProduto.SelectedIndex;
-            Pedido.Servico = (Servico)comboBoxServico.SelectedIndex;
+            Pedido.Cliente.Nome = BoxBuscCliente.Text;
+            Pedido.Produto = comboBoxProduto.Text;
+            Pedido.Servico = comboBoxServico.Text;
             Pedido.Quantidade = numericQuantidade.TabIndex;
             Pedido.DataDoPedido = DateTime.Now;
             Pedido.Status = Status.Pendente;
@@ -52,6 +48,15 @@ namespace Projeto_Integrador_Dominio
 
             return true;
         }
+        private void buttonSelecionar_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCliente.SelectedRows[0].Index > 0)
+            {
+                return;
+            }
+
+            
+        }
 
         private void buttonAdicionarItem_Click(object sender, EventArgs e)
         {
@@ -59,15 +64,7 @@ namespace Projeto_Integrador_Dominio
             {
                 return;
             }
-
-            Pedido.InserirItem();
-            BindingSource.DataSource = Pedido.ListarItens();
-            dataGridViewItem.DataSource = BindingSource;
-        }
-
-        private void buttonBuscar_Click(object sender, EventArgs e) 
-        {
-            dataGridViewClientes.DataSource = Cliente.BuscarCliente(Cliente.Nome);
+            dataGridViewItem.DataSource = Pedido.ListarItens();
         }
 
         private void buttonConPedido_Click(object sender, EventArgs e)
@@ -80,5 +77,11 @@ namespace Projeto_Integrador_Dominio
             Pedido.InserirPedido();
             LimparForm();
         }
+
+        private void BoxBuscCliente_TextChanged(object sender, EventArgs e)
+        {
+            dataGridViewCliente.DataSource = Cliente.BuscarCliente(BoxBuscCliente.Text);
+        }
+
     }
 }

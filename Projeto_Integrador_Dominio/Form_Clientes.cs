@@ -1,11 +1,11 @@
 using Projeto_Integrador_Dominio.Dominio;
+using System.Runtime.InteropServices;
 
 namespace Projeto_Integrador_Dominio
 {
     public partial class Form_Clientes : Form
     {
         private Cliente Cliente = new();
-        private readonly BindingSource BindingSource = [];
 
         public Form_Clientes()
         {
@@ -31,7 +31,7 @@ namespace Projeto_Integrador_Dominio
 
         public bool CriarCliente()
         {
-            
+
             Cliente.Nome = textBoxNome.Text;
             Cliente.Email = textBoxEmail.Text;
             Cliente.CPF = maskedBoxCPF.Text.Replace("-", "").Replace(" ", "").Replace(",", "").Replace(",", "");
@@ -55,8 +55,7 @@ namespace Projeto_Integrador_Dominio
             }
 
             Cliente.InserirCliente();
-            BindingSource.DataSource = Cliente.ListarClientes();
-            dataGridViewCliente.DataSource = BindingSource;
+            dataGridViewCliente.DataSource = Cliente.ListarClientes();
 
             LimparForm();
 
@@ -93,8 +92,7 @@ namespace Projeto_Integrador_Dominio
             }
 
             Cliente.EditarCliente();
-            BindingSource.DataSource = Cliente.ListarClientes();
-            dataGridViewCliente.DataSource = BindingSource;
+            dataGridViewCliente.DataSource = Cliente.ListarClientes();
         }
 
         private void buttonDeletarCliente_Click(object sender, EventArgs e)
@@ -107,21 +105,22 @@ namespace Projeto_Integrador_Dominio
             int id = (int)dataGridViewCliente.SelectedRows[0].Cells[0].Value;
             Cliente.RemoverCliente(id);
 
-            BindingSource.DataSource = Cliente.ListarClientes();
-            dataGridViewCliente.DataSource = BindingSource;
+            dataGridViewCliente.DataSource = Cliente.ListarClientes();
         }
 
+        private void buttonBuscarCliente_Click(object sender, EventArgs e)
+        {
+            dataGridViewCliente.DataSource = Cliente.BuscarCliente(textBoxBuscar.Text);
+        }
         private void buttonPedidos_Click(object sender, EventArgs e)
         {
             Form_Pedido Form = new();
             Form.ShowDialog();
         }
 
-        private void buttonBuscarCliente_Click(object sender, EventArgs e)
+        private void textBoxBuscar_TextChanged(object sender, EventArgs e)
         {
-
-            var listarClientes = Cliente.BuscarCliente(textBoxBuscar.Text);
-            dataGridViewCliente.DataSource = listarClientes;
+            dataGridViewCliente.DataSource = Cliente.BuscarCliente(textBoxBuscar.Text);
         }
     }
 }

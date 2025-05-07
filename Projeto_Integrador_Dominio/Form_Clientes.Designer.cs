@@ -52,44 +52,39 @@
             // 
             // maskedBoxTel
             // 
-            maskedBoxTel.Location = new Point(14, 609);
-            maskedBoxTel.Margin = new Padding(3, 4, 3, 4);
+            maskedBoxTel.Location = new Point(12, 457);
             maskedBoxTel.Mask = "(00)00000-0000";
             maskedBoxTel.Name = "maskedBoxTel";
-            maskedBoxTel.Size = new Size(115, 27);
+            maskedBoxTel.Size = new Size(101, 23);
             maskedBoxTel.TabIndex = 0;
             // 
             // maskedBoxCPF
             // 
-            maskedBoxCPF.Location = new Point(151, 609);
-            maskedBoxCPF.Margin = new Padding(3, 4, 3, 4);
+            maskedBoxCPF.Location = new Point(132, 457);
             maskedBoxCPF.Mask = "000.000.000-00";
             maskedBoxCPF.Name = "maskedBoxCPF";
-            maskedBoxCPF.Size = new Size(114, 27);
+            maskedBoxCPF.Size = new Size(100, 23);
             maskedBoxCPF.TabIndex = 1;
             // 
             // textBoxNome
             // 
-            textBoxNome.Location = new Point(15, 535);
-            textBoxNome.Margin = new Padding(3, 4, 3, 4);
+            textBoxNome.Location = new Point(13, 401);
             textBoxNome.Name = "textBoxNome";
-            textBoxNome.Size = new Size(114, 27);
+            textBoxNome.Size = new Size(100, 23);
             textBoxNome.TabIndex = 2;
             // 
             // textBoxEmail
             // 
-            textBoxEmail.Location = new Point(151, 535);
-            textBoxEmail.Margin = new Padding(3, 4, 3, 4);
+            textBoxEmail.Location = new Point(132, 401);
             textBoxEmail.Name = "textBoxEmail";
-            textBoxEmail.Size = new Size(114, 27);
+            textBoxEmail.Size = new Size(100, 23);
             textBoxEmail.TabIndex = 3;
             // 
             // buttonCadastrar
             // 
-            buttonCadastrar.Location = new Point(83, 663);
-            buttonCadastrar.Margin = new Padding(3, 4, 3, 4);
+            buttonCadastrar.Location = new Point(73, 497);
             buttonCadastrar.Name = "buttonCadastrar";
-            buttonCadastrar.Size = new Size(114, 40);
+            buttonCadastrar.Size = new Size(100, 30);
             buttonCadastrar.TabIndex = 4;
             buttonCadastrar.Text = "Cadastrar";
             buttonCadastrar.UseVisualStyleBackColor = true;
@@ -98,64 +93,62 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(151, 585);
+            label1.Location = new Point(132, 439);
             label1.Name = "label1";
-            label1.Size = new Size(33, 20);
+            label1.Size = new Size(28, 15);
             label1.TabIndex = 5;
             label1.Text = "CPF";
             // 
             // labelErro
             // 
             labelErro.AutoSize = true;
-            labelErro.Location = new Point(14, 839);
+            labelErro.Location = new Point(12, 629);
             labelErro.Name = "labelErro";
-            labelErro.Size = new Size(50, 20);
+            labelErro.Size = new Size(38, 15);
             labelErro.TabIndex = 6;
             labelErro.Text = "label2";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(14, 585);
+            label3.Location = new Point(12, 439);
             label3.Name = "label3";
-            label3.Size = new Size(66, 20);
+            label3.Size = new Size(51, 15);
             label3.TabIndex = 7;
             label3.Text = "Telefone";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(151, 511);
+            label4.Location = new Point(132, 383);
             label4.Name = "label4";
-            label4.Size = new Size(52, 20);
+            label4.Size = new Size(41, 15);
             label4.TabIndex = 8;
             label4.Text = "E-mail";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(15, 511);
+            label5.Location = new Point(13, 383);
             label5.Name = "label5";
-            label5.Size = new Size(50, 20);
+            label5.Size = new Size(40, 15);
             label5.TabIndex = 9;
             label5.Text = "Nome";
             // 
             // dataGridViewCliente
             // 
             dataGridViewCliente.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCliente.Location = new Point(626, 457);
-            dataGridViewCliente.Margin = new Padding(3, 4, 3, 4);
+            dataGridViewCliente.Location = new Point(548, 343);
             dataGridViewCliente.Name = "dataGridViewCliente";
             dataGridViewCliente.RowHeadersWidth = 51;
-            dataGridViewCliente.Size = new Size(474, 357);
+            dataGridViewCliente.Size = new Size(415, 268);
             dataGridViewCliente.TabIndex = 10;
             // 
             // buttonPedidos
             // 
-            buttonPedidos.Location = new Point(83, 735);
-            buttonPedidos.Margin = new Padding(3, 4, 3, 4);
+            buttonPedidos.Location = new Point(73, 551);
             buttonPedidos.Name = "buttonPedidos";
-            buttonPedidos.Size = new Size(114, 40);
+            buttonPedidos.Size = new Size(100, 30);
             buttonPedidos.TabIndex = 11;
             buttonPedidos.Text = "Pedidos";
             buttonPedidos.UseVisualStyleBackColor = true;
@@ -164,19 +157,17 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.Adobe_Express___file__1___1_;
-            pictureBox1.Location = new Point(226, -3);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Location = new Point(198, -2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(477, 433);
+            pictureBox1.Size = new Size(417, 325);
             pictureBox1.TabIndex = 12;
             pictureBox1.TabStop = false;
             // 
             // buttonEditarCliente
             // 
-            buttonEditarCliente.Location = new Point(515, 535);
-            buttonEditarCliente.Margin = new Padding(3, 4, 3, 4);
+            buttonEditarCliente.Location = new Point(451, 401);
             buttonEditarCliente.Name = "buttonEditarCliente";
-            buttonEditarCliente.Size = new Size(86, 31);
+            buttonEditarCliente.Size = new Size(75, 23);
             buttonEditarCliente.TabIndex = 13;
             buttonEditarCliente.Text = "Editar";
             buttonEditarCliente.UseVisualStyleBackColor = true;
@@ -184,10 +175,9 @@
             // 
             // buttonAtualizarCliente
             // 
-            buttonAtualizarCliente.Location = new Point(515, 585);
-            buttonAtualizarCliente.Margin = new Padding(3, 4, 3, 4);
+            buttonAtualizarCliente.Location = new Point(451, 439);
             buttonAtualizarCliente.Name = "buttonAtualizarCliente";
-            buttonAtualizarCliente.Size = new Size(86, 31);
+            buttonAtualizarCliente.Size = new Size(75, 23);
             buttonAtualizarCliente.TabIndex = 14;
             buttonAtualizarCliente.Text = "Atualizar";
             buttonAtualizarCliente.UseVisualStyleBackColor = true;
@@ -195,10 +185,9 @@
             // 
             // buttonDeletarCliente
             // 
-            buttonDeletarCliente.Location = new Point(515, 635);
-            buttonDeletarCliente.Margin = new Padding(3, 4, 3, 4);
+            buttonDeletarCliente.Location = new Point(451, 476);
             buttonDeletarCliente.Name = "buttonDeletarCliente";
-            buttonDeletarCliente.Size = new Size(86, 31);
+            buttonDeletarCliente.Size = new Size(75, 23);
             buttonDeletarCliente.TabIndex = 15;
             buttonDeletarCliente.Text = "Deletar";
             buttonDeletarCliente.UseVisualStyleBackColor = true;
@@ -206,9 +195,10 @@
             // 
             // buttonBuscarCliente
             // 
-            buttonBuscarCliente.Location = new Point(1011, 405);
+            buttonBuscarCliente.Location = new Point(885, 304);
+            buttonBuscarCliente.Margin = new Padding(3, 2, 3, 2);
             buttonBuscarCliente.Name = "buttonBuscarCliente";
-            buttonBuscarCliente.Size = new Size(89, 27);
+            buttonBuscarCliente.Size = new Size(78, 20);
             buttonBuscarCliente.TabIndex = 16;
             buttonBuscarCliente.Text = "Buscar";
             buttonBuscarCliente.UseVisualStyleBackColor = true;
@@ -216,16 +206,18 @@
             // 
             // textBoxBuscar
             // 
-            textBoxBuscar.Location = new Point(626, 405);
+            textBoxBuscar.Location = new Point(548, 304);
+            textBoxBuscar.Margin = new Padding(3, 2, 3, 2);
             textBoxBuscar.Name = "textBoxBuscar";
-            textBoxBuscar.Size = new Size(359, 27);
+            textBoxBuscar.Size = new Size(315, 23);
             textBoxBuscar.TabIndex = 17;
+            textBoxBuscar.TextChanged += textBoxBuscar_TextChanged;
             // 
             // Form_Clientes
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1114, 871);
+            ClientSize = new Size(975, 653);
             Controls.Add(textBoxBuscar);
             Controls.Add(buttonBuscarCliente);
             Controls.Add(buttonDeletarCliente);
@@ -244,7 +236,6 @@
             Controls.Add(textBoxNome);
             Controls.Add(maskedBoxCPF);
             Controls.Add(maskedBoxTel);
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Form_Clientes";
             Text = "Form1";
             Load += Form1_Load;

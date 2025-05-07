@@ -10,13 +10,13 @@ namespace Projeto_Integrador_Dominio.Dominio
 
         public int Id { get; set; }
         public Cliente? Cliente { get; set; }
-        public Produto Produto { get; set; }
+        public string? Produto { get; set; }
         public int Quantidade { get; set; }
-        public Servico Servico { get; set; }
+        public string? Servico { get; set; }
         public DateTime DataDoPedido  { get; set; }
         public Status Status { get; set; }
         public Pagamento Pagamento { get; set; }
-        public Decimal Valor { get; set; }
+        public decimal Valor { get; set; }
 
 
         public string ValidarPedido()
@@ -32,7 +32,7 @@ namespace Projeto_Integrador_Dominio.Dominio
                 return "Preencha 'Cliente' apenas com letras";
             }
 
-            if (Produto < 0 && Servico < 0)
+            if (string.IsNullOrWhiteSpace(Produto) && string.IsNullOrWhiteSpace(Servico))
             {
                 return "Escolha um 'Serviço' ou 'Produto'";
             }
@@ -52,9 +52,9 @@ namespace Projeto_Integrador_Dominio.Dominio
             RepositorioPedido.InserirPedido(this);
         }
 
-        public void InserirItem()
+        public void InserirItem(int item)
         {
-            RepositorioPedido.InserirItem();
+            RepositorioPedido.InserirItem(this);
         }
 
         public void RemoverItem()

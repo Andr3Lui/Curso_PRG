@@ -4,7 +4,7 @@ namespace Projeto_Integrador_Dominio.BancoDados
 {
     internal class DataBase
     {
-        private static readonly string ConnectionString = "datasource=localhost;username=root;password=1234;database=senac_pi;";
+        private static readonly string ConnectionString = "datasource=localhost;username=root;password=;database=senac_pi;";
 
         public static MySqlConnection GetConnection()
         {

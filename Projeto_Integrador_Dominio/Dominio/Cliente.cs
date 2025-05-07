@@ -1,6 +1,7 @@
 ﻿
 
 
+using MySqlX.XDevAPI;
 using Projeto_Integrador_Dominio.Repositorio;
 using System.Web;
 
@@ -105,7 +106,7 @@ namespace Projeto_Integrador_Dominio.Dominio
         public List<Cliente> ListarClientes()
         {
             return RepositorioCliente.ListarClientes();
-        }
+        }        
 
         public void EditarCliente()
         {
