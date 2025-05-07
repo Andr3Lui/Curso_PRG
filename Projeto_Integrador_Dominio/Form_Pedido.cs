@@ -32,7 +32,7 @@ namespace Projeto_Integrador_Dominio
 
         public bool CriarPedido()
         {
-            Pedido.Cliente.Nome = BoxBuscCliente.Text;
+            Cliente.Nome = BoxBuscCliente.Text;
             Pedido.Produto = comboBoxProduto.Text;
             Pedido.Servico = comboBoxServico.Text;
             Pedido.Quantidade = numericQuantidade.TabIndex;
@@ -50,25 +50,39 @@ namespace Projeto_Integrador_Dominio
         }
         private void buttonSelecionar_Click(object sender, EventArgs e)
         {
-            if (dataGridViewCliente.SelectedRows[0].Index > 0)
+            if (dataGridViewCliente.SelectedRows.Count == 0 || dataGridViewCliente.SelectedRows[0].Index < 0)
             {
                 return;
             }
 
-            
+            int id = (int)dataGridViewCliente.SelectedRows[0].Cells[0].Value;
+            var cliente = Cliente.BuscarID(id);
+
+            if (cliente == null)
+            {
+                return;
+            }
+
+            Cliente = cliente;
+
+            BoxBuscCliente.Text = Cliente.Nome;
         }
 
         private void buttonAdicionarItem_Click(object sender, EventArgs e)
         {
-            if (!CriarPedido())
+            if(comboBoxProduto.SelectedIndex != 0 || comboBoxServico.SelectedIndex != 0)
             {
                 return;
             }
+
+            Pedido.InserirItem();
             dataGridViewItem.DataSource = Pedido.ListarItens();
         }
 
         private void buttonConPedido_Click(object sender, EventArgs e)
         {
+
+
             if (!CriarPedido())
             {
                 return;

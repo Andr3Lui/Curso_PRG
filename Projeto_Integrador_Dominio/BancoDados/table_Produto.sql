@@ -6,3 +6,8 @@ CREATE TABLE produto (
 );
 
 DROP TABLE produto;
+insert into produto(nome, valor, estoque) values("pente", "3.00 ", "12"), ("Shampoo", "12.00 ", "20"), ("Condicionador", "10.00", "20"); 
+
+
+
+select * from produto

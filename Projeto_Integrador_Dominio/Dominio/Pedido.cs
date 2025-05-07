@@ -22,15 +22,20 @@ namespace Projeto_Integrador_Dominio.Dominio
         public string ValidarPedido()
         {
 
-            if (string.IsNullOrWhiteSpace(Cliente?.Nome))
+            if (Cliente?.Nome == null)
             {
                 return "Selecione um 'Cliente'";
             }
 
-            if (Cliente.Nome.Contains('@') || Cliente.Nome.Any(char.IsNumber) || Cliente.Nome.Any(char.IsPunctuation) || Cliente.Nome.Any(char.IsSymbol))
-            {
-                return "Preencha 'Cliente' apenas com letras";
-            }
+            //if (string.IsNullOrWhiteSpace(Cliente.Nome) || !Cliente.Nome.Contains(' ') )
+            //{
+            //    return "Selecione um 'Cliente'";
+            //}
+
+            //if (Cliente.Nome.Contains('@') || Cliente.Nome.Any(char.IsNumber) || Cliente.Nome.Any(char.IsPunctuation) || Cliente.Nome.Any(char.IsSymbol))
+            //{
+            //    return "Preencha 'Cliente' apenas com letras";
+            //}
 
             if (string.IsNullOrWhiteSpace(Produto) && string.IsNullOrWhiteSpace(Servico))
             {
@@ -52,9 +57,9 @@ namespace Projeto_Integrador_Dominio.Dominio
             RepositorioPedido.InserirPedido(this);
         }
 
-        public void InserirItem(int item)
+        public void InserirItem()
         {
-            RepositorioPedido.InserirItem(this);
+             RepositorioPedido.InserirItem(this);
         }
 
         public void RemoverItem()

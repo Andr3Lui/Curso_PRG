@@ -83,14 +83,14 @@ namespace Projeto_Integrador_Dominio.Repositorio
                 using (var cmd = new MySqlCommand(queryProduto, con))
                 {
                     cmd.Parameters.AddWithValue("@id_produto", item.Produto);
-                    cmd.Parameters.AddWithValue("@id_pedido", item);
+                    cmd.Parameters.AddWithValue("@id_pedido", item.Id);
                     cmd.ExecuteNonQuery();
                 }
                 string queryServico = "INSERT INTO PedidoServico(id_servico, id_pedido) VALUES(@id_servico, @id_pedido);";
                 using (var cmd = new MySqlCommand(queryServico, con))
                 {
                     cmd.Parameters.AddWithValue("@id_servico", item.Servico);
-                    cmd.Parameters.AddWithValue("@id_pedido", item);
+                    cmd.Parameters.AddWithValue("@id_pedido", item.Id);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -104,15 +104,34 @@ namespace Projeto_Integrador_Dominio.Repositorio
 
         public List<Pedido> ListarItens()
         {
-            var item = new List<Pedido>();
+            var Item = new List<Pedido>();
 
             using (var conn = DataBase.GetConnection())
             {
                 conn.Open();
 
+                //string query = "SELEC";
 
+                //using (var cmd = new MySqlCommand(query, conn))
+                //{
+                //    using (var reader = cmd.ExecuteReader())
+                //    {
+                //        while (reader.Read())
+                //        {
+                //            Item.Add(new Cliente
+                //            {
+                //                Id = reader.GetInt32("id"),
+                //                Nome = reader.GetString("nome"),
+                //                Email = reader.GetString("email"),
+                //                Telefone = reader.GetString("telefone"),
+                //                CPF = reader.GetString("cpf")
+                //            });
+                //        }
+                //        ;
+                //    }
+                //}
             }
-            return item;   
+            return ListarItens();
         }
 
         public List<Pedido> ListarPedidosPendentes()
