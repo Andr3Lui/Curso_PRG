@@ -15,4 +15,4 @@ SELECT c * id_cliente FROM cliente c INNER JOIN cliente ON pedido.id_cliente = c
 
 UPDATE pedido SET id_cliente = @id_cliente, dataDoPedido = @dataDoPedido, telefone = @telefone, cpf = @cpf  WHERE id = @id;
 
-c
+SELECT id_cliente AS cliente, servico, produto, quantidade, dataDoPedido FROM pedido INNER JOIN cliente ON pedido.id_cliente = cliente.id;

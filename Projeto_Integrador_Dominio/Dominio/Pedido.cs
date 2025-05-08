@@ -57,33 +57,6 @@ namespace Projeto_Integrador_Dominio.Dominio
             RepositorioPedido.InserirPedido(this);
         }
 
-        public List<Produto> listarProduto(string produtoDigitado)
-        {
-            return RepositorioPedido.listarProduto(produtoDigitado);
-        }
-
-        //public Produto InserirProduto()
-        //{
-        //     RepositorioPedido.InserirProduto();
-        //}
-
-        //public void 
-
-        //public Servico InserirServico()
-        //{
-        //    RepositorioPedido.InserirServico(this);
-        //}
-
-        public List<Pedido> ListarItem()
-        {
-             return RepositorioPedido.ListarItem();
-        }
-
-        public void RemoverItem(int Id)
-        {
-            RepositorioPedido.RemoverItem(Id);
-        }
-
         public List<Pedido> ListarPedidoPendentes()
         {
             return RepositorioPedido.ListarPedidoPendentes();
@@ -99,5 +72,51 @@ namespace Projeto_Integrador_Dominio.Dominio
             RepositorioPedido.DeletarPedido(this);
         }
 
+        /*
+        public Produto InserirProduto()
+        {
+            RepositorioPedido.InserirProduto();
+        }
+
+        public void
+
+        public Servico InserirServico()
+        {
+            RepositorioPedido.InserirServico(this);
+        }
+        */
+
+        //PRODUTO
+        public List<Produto> ListarProduto()//listar todos os servico
+        {
+            return RepositorioPedido.ListarProduto();
+        }  
+
+        public List<Produto> BuscarProduto(string produtoDigitado) //buscar produto digitado no campo 'Produto'
+        {
+            return RepositorioPedido.BuscarProduto(produtoDigitado);
+        }
+        
+        //SERVICO
+        public List<Servico> ListarServico()//listar todos os servico 
+        {
+            return RepositorioPedido.ListarServico();
+        } 
+
+        public List<Servico> BuscarServico(string servicoDigitado) //buscar servico digitado no campo 'Servico'
+        {
+            return RepositorioPedido.BuscarServico(servicoDigitado);
+        }
+
+        //ITENS
+        public List<Pedido> ListarItem()
+        {
+             return RepositorioPedido.ListarItem();
+        }
+
+        public void RemoverItem(int Id)
+        {
+            RepositorioPedido.RemoverItem(Id);
+        }
     }
 }

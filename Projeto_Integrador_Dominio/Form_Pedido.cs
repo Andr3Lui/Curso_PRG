@@ -7,20 +7,20 @@ namespace Projeto_Integrador_Dominio
     {
         private readonly BindingSource BindingSource = [];
         private Pedido Pedido = new();
+        private Cliente Cliente = new();
         private Produto Produto = new();
         private Servico Servico = new();
-        private Cliente Cliente = new();
 
         public Form_Pedido()
         {
             InitializeComponent();
         }
 
-        public void LimparForm()
+        public void LimparForm()//Feito
         {
             BoxBuscCliente.Clear();
-            comboBoxServico.Text = "";
-            comboBoxProduto.Text = "";
+            textBoxProduto.Text = "";
+            textBoxServico.Text = "";
             numericQuantidade.Text = "";
             labelErro.Text = "";
         }
@@ -30,14 +30,15 @@ namespace Projeto_Integrador_Dominio
             labelErro.Text = "";
 
             dataGridViewCliente.DataSource = Cliente.ListarClientes();
-            dataGridViewItem.DataSource = Pedido.ListarItem();
+            dataGridViewServico.DataSource = Pedido.ListarServico();
+            dataGridViewProduto.DataSource = Pedido.ListarProduto();
         }
 
-        public bool CriarPedido()
+        public bool CriarPedido()//Feito
         {
             Cliente.Nome = BoxBuscCliente.Text;
-            Produto.Nome = comboBoxProduto.Text;
-            Servico.Nome = comboBoxServico.Text;
+            Produto.Nome = textBoxProduto.Text;
+            Servico.Nome = textBoxServico.Text;
             Pedido.Quantidade = numericQuantidade.TabIndex;
             Pedido.DataDoPedido = DateTime.Now;
             Pedido.Estado = Estado.Pendente;
@@ -52,7 +53,7 @@ namespace Projeto_Integrador_Dominio
             return true;
         }
 
-        private void buttonSelecionar_Click(object sender, EventArgs e)
+        private void buttonSelecionar_Click(object sender, EventArgs e)//Incompleto
         {
             if (dataGridViewCliente.SelectedRows.Count == 0 || dataGridViewCliente.SelectedRows[0].Index < 0)
             {
@@ -70,29 +71,17 @@ namespace Projeto_Integrador_Dominio
             Cliente = cliente;
 
             BoxBuscCliente.Text = Cliente.Nome;
-        }
+        } 
 
         private void buttonAdicionarItem_Click(object sender, EventArgs e)
         {
-            if (comboBoxProduto.SelectedIndex <= 0)
-            {
-                return;
-            }
 
-            //Pedido.InserirProduto();
-
-            if (comboBoxServico.SelectedIndex <= 0)
-            {
-                return;
-            }
-
-            //Pedido.InserirServico();
 
             dataGridViewItem.DataSource = Pedido.ListarItem();
 
-        }
+        } //Incompleto
 
-        private void buttonConPedido_Click(object sender, EventArgs e)
+        private void buttonConPedido_Click(object sender, EventArgs e) //Feito
         {
             if (!CriarPedido())
             {
@@ -103,19 +92,19 @@ namespace Projeto_Integrador_Dominio
             LimparForm();
         }
 
-        private void BoxBuscCliente_TextChanged(object sender, EventArgs e)
+        private void BoxBuscCliente_TextChanged(object sender, EventArgs e)//Feito
         {
             dataGridViewCliente.DataSource = Cliente.BuscarCliente(BoxBuscCliente.Text);
         }
 
-        private void comboBoxServico_SelectedIndexChanged(object sender, EventArgs e)
+        private void textBoxProduto_TextChanged(object sender, EventArgs e)//Feito
         {
-            dataGridViewServico.DataSource = Pedido.listarProduto(comboBoxServico.Text);
+            dataGridViewProduto.DataSource = Pedido.BuscarProduto(textBoxProduto.Text);
         }
 
-        private void comboBoxProduto_SelectedIndexChanged(object sender, EventArgs e)
+        private void textBoxServico_TextChanged(object sender, EventArgs e)//Feito
         {
-            dataGridViewServico.DataSource = Pedido.listarProduto(comboBoxProduto.Text);
+            dataGridViewServico.DataSource = Pedido.BuscarServico(textBoxServico.Text);
         }
     }
 }

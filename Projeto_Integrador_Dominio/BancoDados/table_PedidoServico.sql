@@ -9,3 +9,7 @@ CREATE TABLE PedidoServico (
 );
 
  DROP TABLE PedidoServico;
+ 
+ SELECT * FROM servico;
+ 
+ INSERT INTO servico (nome, valor) VALUES("Corte", "15.00"), ("Sobrancelha", "10.00"), ("Hidratação", "20.00");
