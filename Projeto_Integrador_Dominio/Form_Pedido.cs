@@ -5,7 +5,10 @@ namespace Projeto_Integrador_Dominio
 {
     public partial class Form_Pedido : Form
     {
+        private readonly BindingSource BindingSource = [];
         private Pedido Pedido = new();
+        private Produto Produto = new();
+        private Servico Servico = new();
         private Cliente Cliente = new();
 
         public Form_Pedido()
@@ -24,20 +27,20 @@ namespace Projeto_Integrador_Dominio
 
         private void Form_Pedido_Load(object sender, EventArgs e)
         {
-            dataGridViewCliente.DataSource = Cliente.ListarClientes();
-            dataGridViewItem.DataSource = Pedido.ListarItens();
-
             labelErro.Text = "";
+
+            dataGridViewCliente.DataSource = Cliente.ListarClientes();
+            dataGridViewItem.DataSource = Pedido.ListarItem();
         }
 
         public bool CriarPedido()
         {
             Cliente.Nome = BoxBuscCliente.Text;
-            Pedido.Produto = comboBoxProduto.Text;
-            Pedido.Servico = comboBoxServico.Text;
+            Produto.Nome = comboBoxProduto.Text;
+            Servico.Nome = comboBoxServico.Text;
             Pedido.Quantidade = numericQuantidade.TabIndex;
             Pedido.DataDoPedido = DateTime.Now;
-            Pedido.Status = Status.Pendente;
+            Pedido.Estado = Estado.Pendente;
 
             string ValidacaoPedido = Pedido.ValidarPedido();
             if (!string.IsNullOrWhiteSpace(ValidacaoPedido))
@@ -48,6 +51,7 @@ namespace Projeto_Integrador_Dominio
 
             return true;
         }
+
         private void buttonSelecionar_Click(object sender, EventArgs e)
         {
             if (dataGridViewCliente.SelectedRows.Count == 0 || dataGridViewCliente.SelectedRows[0].Index < 0)
@@ -70,19 +74,26 @@ namespace Projeto_Integrador_Dominio
 
         private void buttonAdicionarItem_Click(object sender, EventArgs e)
         {
-            if(comboBoxProduto.SelectedIndex != 0 || comboBoxServico.SelectedIndex != 0)
+            if (comboBoxProduto.SelectedIndex <= 0)
             {
                 return;
             }
 
-            Pedido.InserirItem();
-            dataGridViewItem.DataSource = Pedido.ListarItens();
+            //Pedido.InserirProduto();
+
+            if (comboBoxServico.SelectedIndex <= 0)
+            {
+                return;
+            }
+
+            //Pedido.InserirServico();
+
+            dataGridViewItem.DataSource = Pedido.ListarItem();
+
         }
 
         private void buttonConPedido_Click(object sender, EventArgs e)
         {
-
-
             if (!CriarPedido())
             {
                 return;
@@ -97,5 +108,14 @@ namespace Projeto_Integrador_Dominio
             dataGridViewCliente.DataSource = Cliente.BuscarCliente(BoxBuscCliente.Text);
         }
 
+        private void comboBoxServico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGridViewServico.DataSource = Pedido.listarProduto(comboBoxServico.Text);
+        }
+
+        private void comboBoxProduto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGridViewServico.DataSource = Pedido.listarProduto(comboBoxProduto.Text);
+        }
     }
 }

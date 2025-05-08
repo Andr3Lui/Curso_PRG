@@ -10,11 +10,11 @@ namespace Projeto_Integrador_Dominio.Dominio
 
         public int Id { get; set; }
         public Cliente? Cliente { get; set; }
-        public string? Produto { get; set; }
+        public Produto? Produto { get; set; }
         public int Quantidade { get; set; }
-        public string? Servico { get; set; }
+        public Servico? Servico { get; set; }
         public DateTime DataDoPedido  { get; set; }
-        public Status Status { get; set; }
+        public Estado Estado { get; set; }
         public Pagamento Pagamento { get; set; }
         public decimal Valor { get; set; }
 
@@ -37,7 +37,7 @@ namespace Projeto_Integrador_Dominio.Dominio
             //    return "Preencha 'Cliente' apenas com letras";
             //}
 
-            if (string.IsNullOrWhiteSpace(Produto) && string.IsNullOrWhiteSpace(Servico))
+            if (string.IsNullOrWhiteSpace(Produto?.Nome) && string.IsNullOrWhiteSpace(Servico?.Nome))
             {
                 return "Escolha um 'Serviço' ou 'Produto'";
             }
@@ -57,24 +57,36 @@ namespace Projeto_Integrador_Dominio.Dominio
             RepositorioPedido.InserirPedido(this);
         }
 
-        public void InserirItem()
+        public List<Produto> listarProduto(string produtoDigitado)
         {
-             RepositorioPedido.InserirItem(this);
+            return RepositorioPedido.listarProduto(produtoDigitado);
         }
 
-        public void RemoverItem()
+        //public Produto InserirProduto()
+        //{
+        //     RepositorioPedido.InserirProduto();
+        //}
+
+        //public void 
+
+        //public Servico InserirServico()
+        //{
+        //    RepositorioPedido.InserirServico(this);
+        //}
+
+        public List<Pedido> ListarItem()
         {
-            RepositorioPedido.RemoverItem();
+             return RepositorioPedido.ListarItem();
         }
 
-        public List<Pedido> ListarItens()
+        public void RemoverItem(int Id)
         {
-            return RepositorioPedido.ListarItens();
+            RepositorioPedido.RemoverItem(Id);
         }
 
-        public List<Pedido> ListarPedidosPendentes()
+        public List<Pedido> ListarPedidoPendentes()
         {
-            return RepositorioPedido.ListarPedidosPendentes();
+            return RepositorioPedido.ListarPedidoPendentes();
         }
 
         public void AtualizarPedido()

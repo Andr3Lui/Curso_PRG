@@ -44,15 +44,19 @@
             dataGridViewItem = new DataGridView();
             buttonRemoverItem = new Button();
             dataGridViewCliente = new DataGridView();
+            dataGridViewServico = new DataGridView();
+            dataGridViewProduto = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewItem).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCliente).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewServico).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewProduto).BeginInit();
             SuspendLayout();
             // 
             // labelErro
             // 
             labelErro.AutoSize = true;
-            labelErro.Location = new Point(29, 474);
+            labelErro.Location = new Point(527, 450);
             labelErro.Name = "labelErro";
             labelErro.Size = new Size(38, 15);
             labelErro.TabIndex = 0;
@@ -71,7 +75,7 @@
             // 
             // numericQuantidade
             // 
-            numericQuantidade.Location = new Point(178, 286);
+            numericQuantidade.Location = new Point(178, 341);
             numericQuantidade.Margin = new Padding(3, 2, 3, 2);
             numericQuantidade.Name = "numericQuantidade";
             numericQuantidade.Size = new Size(131, 23);
@@ -80,27 +84,27 @@
             // comboBoxProduto
             // 
             comboBoxProduto.FormattingEnabled = true;
-            comboBoxProduto.Items.AddRange(new object[] { "Shampoo", "Condicionador", "Mascara Hidratacao", "Oleo Revitalizador", "Amarrador", "Maquiagem", "Hidratante Labial" });
-            comboBoxProduto.Location = new Point(29, 286);
+            comboBoxProduto.Location = new Point(29, 341);
             comboBoxProduto.Margin = new Padding(3, 2, 3, 2);
             comboBoxProduto.Name = "comboBoxProduto";
             comboBoxProduto.Size = new Size(133, 23);
             comboBoxProduto.TabIndex = 4;
+            comboBoxProduto.SelectedIndexChanged += comboBoxProduto_SelectedIndexChanged;
             // 
             // comboBoxServico
             // 
             comboBoxServico.FormattingEnabled = true;
-            comboBoxServico.Items.AddRange(new object[] { "Sobrancelha", "Corte", "Escova", "Progressiva", "Hidração", "Luzes", "Tintura" });
-            comboBoxServico.Location = new Point(29, 244);
+            comboBoxServico.Location = new Point(29, 201);
             comboBoxServico.Margin = new Padding(3, 2, 3, 2);
             comboBoxServico.Name = "comboBoxServico";
             comboBoxServico.Size = new Size(133, 23);
             comboBoxServico.TabIndex = 5;
+            comboBoxServico.SelectedIndexChanged += comboBoxServico_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(29, 227);
+            label1.Location = new Point(29, 184);
             label1.Name = "label1";
             label1.Size = new Size(45, 15);
             label1.TabIndex = 6;
@@ -109,7 +113,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(29, 269);
+            label2.Location = new Point(29, 324);
             label2.Name = "label2";
             label2.Size = new Size(50, 15);
             label2.TabIndex = 7;
@@ -118,7 +122,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(178, 269);
+            label3.Location = new Point(178, 324);
             label3.Name = "label3";
             label3.Size = new Size(69, 15);
             label3.TabIndex = 8;
@@ -155,7 +159,7 @@
             // 
             // buttonAdicionarItem
             // 
-            buttonAdicionarItem.Location = new Point(132, 322);
+            buttonAdicionarItem.Location = new Point(132, 471);
             buttonAdicionarItem.Margin = new Padding(3, 2, 3, 2);
             buttonAdicionarItem.Name = "buttonAdicionarItem";
             buttonAdicionarItem.Size = new Size(82, 22);
@@ -186,7 +190,7 @@
             // 
             // buttonRemoverItem
             // 
-            buttonRemoverItem.Location = new Point(132, 350);
+            buttonRemoverItem.Location = new Point(132, 498);
             buttonRemoverItem.Name = "buttonRemoverItem";
             buttonRemoverItem.Size = new Size(82, 23);
             buttonRemoverItem.TabIndex = 19;
@@ -200,14 +204,36 @@
             dataGridViewCliente.Margin = new Padding(3, 2, 3, 2);
             dataGridViewCliente.Name = "dataGridViewCliente";
             dataGridViewCliente.RowHeadersWidth = 51;
-            dataGridViewCliente.Size = new Size(370, 134);
+            dataGridViewCliente.Size = new Size(370, 108);
             dataGridViewCliente.TabIndex = 20;
+            // 
+            // dataGridViewServico
+            // 
+            dataGridViewServico.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewServico.Location = new Point(29, 228);
+            dataGridViewServico.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewServico.Name = "dataGridViewServico";
+            dataGridViewServico.RowHeadersWidth = 51;
+            dataGridViewServico.Size = new Size(370, 81);
+            dataGridViewServico.TabIndex = 21;
+            // 
+            // dataGridViewProduto
+            // 
+            dataGridViewProduto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewProduto.Location = new Point(29, 368);
+            dataGridViewProduto.Margin = new Padding(3, 2, 3, 2);
+            dataGridViewProduto.Name = "dataGridViewProduto";
+            dataGridViewProduto.RowHeadersWidth = 51;
+            dataGridViewProduto.Size = new Size(370, 81);
+            dataGridViewProduto.TabIndex = 22;
             // 
             // Form_Pedido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(952, 582);
+            Controls.Add(dataGridViewProduto);
+            Controls.Add(dataGridViewServico);
             Controls.Add(dataGridViewCliente);
             Controls.Add(buttonRemoverItem);
             Controls.Add(dataGridViewItem);
@@ -231,6 +257,8 @@
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewItem).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCliente).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewServico).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewProduto).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -253,5 +281,7 @@
         private DataGridView dataGridViewItem;
         private Button buttonRemoverItem;
         private DataGridView dataGridViewCliente;
+        private DataGridView dataGridViewServico;
+        private DataGridView dataGridViewProduto;
     }
 }
