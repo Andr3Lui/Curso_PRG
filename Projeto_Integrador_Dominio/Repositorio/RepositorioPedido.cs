@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Projeto_Integrador_Dominio.BancoDados;
 using Projeto_Integrador_Dominio.Dominio;
-using System.Drawing;
 
 
 namespace Projeto_Integrador_Dominio.Repositorio
@@ -80,7 +79,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
 
                 using (var cmd = new MySqlCommand(query, con))
                 {
-                    cmd.Parameters.AddWithValue("@c.nome", NovoPedido.Cliente.Nome);
+                    cmd.Parameters.AddWithValue("@c.nome", NovoPedido.Cliente?.Nome);
                     cmd.Parameters.AddWithValue("@p.dataDoPedido", NovoPedido.DataDoPedido);
                     cmd.Parameters.AddWithValue("@estado", NovoPedido.Estado);
                     cmd.ExecuteNonQuery();
@@ -101,6 +100,8 @@ namespace Projeto_Integrador_Dominio.Repositorio
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@estado", Estado.Pendente);
+
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -177,7 +178,6 @@ namespace Projeto_Integrador_Dominio.Repositorio
         }
 
         //PRODUTO
-
         public List<Produto> ListarProduto()
         {
             var produto = new List<Produto>();
@@ -239,13 +239,13 @@ namespace Projeto_Integrador_Dominio.Repositorio
             return buscarProduto;
         }
 
-        public void InserirProduto(int produto, int pedido)
+        public void InserirProduto(int pedido, int produto)
         {
             using (var con = DataBase.GetConnection())
             {
                 con.Open();
-                string queryProduto = "INSERT INTO PedidoProduto(id_produto, id_pedido) VALUES(@id_produto, @id_pedido) ;";
-                using (var cmd = new MySqlCommand(queryProduto, con))
+                string query = "INSERT INTO PedidoProduto(id_produto, id_pedido) VALUES(@id_produto, @id_pedido) ;";
+                using (var cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@id_produto", produto);
                     cmd.Parameters.AddWithValue("@id_pedido", pedido);
@@ -334,23 +334,24 @@ namespace Projeto_Integrador_Dominio.Repositorio
         }
 
         //ITENS
-        public List<Pedido> ListarItem()
+        public List<Pedido> ListarItens()
         {
-            var pedidos = new List<Pedido>();
+            var pedido = new List<Pedido>();
 
             using (var conn = DataBase.GetConnection())
             {
                 conn.Open();
 
-                string query = $"SELECT id_cliente AS cliente, servico, produto, quantidade, dataDoPedido FROM pedido INNER JOIN cliente ON pedido.id_cliente = cliente.id;";
+                string query = $"SELECT produto.nome, produto.valor FROM pedidoproduto INNER JOIN pedido ON pedido.id = pedidoproduto.id_produto INNER JOIN produto ON produto.id = pedidoproduto.id_produto INNER JOIN servico ON servico.id = pedidoservico.id_servico INNER JOIN cliente ON cliente.id = pedido.id_cliente  WHERE pedido.id = @pedido;";
 
                 using (var cmd = new MySqlCommand(query, conn))
                 {
+                    cmd.Parameters.AddWithValue("@pedido", $"{pedido}%");
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            pedidos.Add(new Pedido
+                            pedido.Add(new Pedido
                             {
                                 Id = reader.GetInt32("id"),
                                 Quantidade = reader.GetInt32("quantidade"),
@@ -387,7 +388,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
                     }
                 }
             }
-            return pedidos; 
+            return pedido; 
         }
 
         public void RemoverItem(int Id)

@@ -10,6 +10,8 @@ namespace Projeto_Integrador_Dominio
         private Cliente Cliente = new();
         private Produto Produto = new();
         private Servico Servico = new();
+        private List<Servico> servicoSelecionado = [];
+        private List<Produto> produtoSelecionado = [];
 
         public Form_Pedido()
         {
@@ -25,13 +27,14 @@ namespace Projeto_Integrador_Dominio
             labelErro.Text = "";
         }
 
-        private void Form_Pedido_Load(object sender, EventArgs e)
+        private void Form_Pedido_Load(object sender, EventArgs e)//Incompleto
         {
             labelErro.Text = "";
 
             dataGridViewCliente.DataSource = Cliente.ListarClientes();
             dataGridViewServico.DataSource = Pedido.ListarServico();
             dataGridViewProduto.DataSource = Pedido.ListarProduto();
+            dataGridViewItem.DataSource = Pedido.ListarPedidoPendentes();
         }
 
         public bool CriarPedido()//Feito
@@ -71,17 +74,33 @@ namespace Projeto_Integrador_Dominio
             Cliente = cliente;
 
             BoxBuscCliente.Text = Cliente.Nome;
-        } 
+        }
 
-        private void buttonAdicionarItem_Click(object sender, EventArgs e)
+        private void buttonAdicionarItem_Click(object sender, EventArgs e)//Feito
         {
+            
+            if (dataGridViewProduto.SelectedRows.Count < 0 && dataGridViewServico.SelectedRows.Count < 0)
+            {
+                labelErro.Text = "Selecione um 'Produto' ou 'Servico'.";
+                return;
+            }
+
+            var produtoEscolhido = dataGridViewProduto.SelectedRows[0];
+            var produtoDigitado = Pedido.BuscarProduto((string)produtoEscolhido.Cells[1].Value);
+            produtoSelecionado.AddRange(produtoDigitado);
 
 
-            dataGridViewItem.DataSource = Pedido.ListarItem();
+            var servicoEscolhido = dataGridViewServico.SelectedRows[0];
+            var servicoDigitado = Pedido.BuscarServico((string)servicoEscolhido.Cells[1].Value);
+            servicoSelecionado.AddRange(servicoDigitado);
+            
+            dataGridViewItem.DataSource = null;
+            dataGridViewItem.DataSource = produtoEscolhido; 
+            dataGridViewItem.DataSource = servicoEscolhido;
 
-        } //Incompleto
+        }
 
-        private void buttonConPedido_Click(object sender, EventArgs e) //Feito
+        private void buttonConPedido_Click(object sender, EventArgs e)//Feito
         {
             if (!CriarPedido())
             {

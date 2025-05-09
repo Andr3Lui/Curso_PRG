@@ -22,28 +22,6 @@ namespace Projeto_Integrador_Dominio.Dominio
         public string ValidarPedido()
         {
 
-            if (Cliente?.Nome == null)
-            {
-                return "Selecione um 'Cliente'";
-            }
-
-            //if (string.IsNullOrWhiteSpace(Cliente.Nome) || !Cliente.Nome.Contains(' ') )
-            //{
-            //    return "Selecione um 'Cliente'";
-            //}
-
-            //if (Cliente.Nome.Contains('@') || Cliente.Nome.Any(char.IsNumber) || Cliente.Nome.Any(char.IsPunctuation) || Cliente.Nome.Any(char.IsSymbol))
-            //{
-            //    return "Preencha 'Cliente' apenas com letras";
-            //}
-
-            if (string.IsNullOrWhiteSpace(Produto?.Nome) && string.IsNullOrWhiteSpace(Servico?.Nome))
-            {
-                return "Escolha um 'Serviço' ou 'Produto'";
-            }
-
-            
-
             return string.Empty;
         }
 
@@ -87,6 +65,8 @@ namespace Projeto_Integrador_Dominio.Dominio
         */
 
         //PRODUTO
+
+
         public List<Produto> ListarProduto()//listar todos os servico
         {
             return RepositorioPedido.ListarProduto();
@@ -96,8 +76,18 @@ namespace Projeto_Integrador_Dominio.Dominio
         {
             return RepositorioPedido.BuscarProduto(produtoDigitado);
         }
-        
+
+        public void InserirProduto(int idProduto)
+        {
+            RepositorioPedido.InserirProduto(this.Id, idProduto);
+        }
+
         //SERVICO
+        public void InserirServico(int pedido, int servico)
+        {
+            RepositorioPedido.InserirProduto(pedido, servico);
+        }
+
         public List<Servico> ListarServico()//listar todos os servico 
         {
             return RepositorioPedido.ListarServico();
@@ -109,9 +99,9 @@ namespace Projeto_Integrador_Dominio.Dominio
         }
 
         //ITENS
-        public List<Pedido> ListarItem()
+        public List<Pedido> ListarItens()
         {
-             return RepositorioPedido.ListarItem();
+             return RepositorioPedido.ListarItens();
         }
 
         public void RemoverItem(int Id)
