@@ -37,7 +37,7 @@
             BoxBuscCliente = new TextBox();
             label4 = new Label();
             buttonConPedido = new Button();
-            buttonAdicionarItem = new Button();
+            buttonAdicionarProduto = new Button();
             buttonCancelar = new Button();
             dataGridViewItem = new DataGridView();
             buttonRemoverItem = new Button();
@@ -46,6 +46,9 @@
             dataGridViewProduto = new DataGridView();
             textBoxProduto = new TextBox();
             textBoxServico = new TextBox();
+            buttonAdicionarServico = new Button();
+            labelClienteSelecionado = new Label();
+            labelValorTotal = new Label();
             ((System.ComponentModel.ISupportInitialize)numericQuantidade).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewItem).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCliente).BeginInit();
@@ -56,7 +59,7 @@
             // labelErro
             // 
             labelErro.AutoSize = true;
-            labelErro.Location = new Point(554, 434);
+            labelErro.Location = new Point(160, 503);
             labelErro.Name = "labelErro";
             labelErro.Size = new Size(38, 15);
             labelErro.TabIndex = 0;
@@ -64,7 +67,7 @@
             // 
             // buttonSelecionar
             // 
-            buttonSelecionar.Location = new Point(267, 38);
+            buttonSelecionar.Location = new Point(388, 82);
             buttonSelecionar.Margin = new Padding(3, 2, 3, 2);
             buttonSelecionar.Name = "buttonSelecionar";
             buttonSelecionar.Size = new Size(82, 22);
@@ -75,16 +78,16 @@
             // 
             // numericQuantidade
             // 
-            numericQuantidade.Location = new Point(178, 341);
+            numericQuantidade.Location = new Point(87, 394);
             numericQuantidade.Margin = new Padding(3, 2, 3, 2);
             numericQuantidade.Name = "numericQuantidade";
-            numericQuantidade.Size = new Size(131, 23);
+            numericQuantidade.Size = new Size(295, 23);
             numericQuantidade.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(29, 184);
+            label1.Location = new Point(12, 167);
             label1.Name = "label1";
             label1.Size = new Size(45, 15);
             label1.TabIndex = 6;
@@ -93,7 +96,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(29, 324);
+            label2.Location = new Point(12, 282);
             label2.Name = "label2";
             label2.Size = new Size(50, 15);
             label2.TabIndex = 7;
@@ -102,7 +105,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(178, 324);
+            label3.Location = new Point(12, 396);
             label3.Name = "label3";
             label3.Size = new Size(69, 15);
             label3.TabIndex = 8;
@@ -110,17 +113,17 @@
             // 
             // BoxBuscCliente
             // 
-            BoxBuscCliente.Location = new Point(31, 38);
+            BoxBuscCliente.Location = new Point(62, 25);
             BoxBuscCliente.Margin = new Padding(3, 2, 3, 2);
             BoxBuscCliente.Name = "BoxBuscCliente";
-            BoxBuscCliente.Size = new Size(232, 23);
+            BoxBuscCliente.Size = new Size(320, 23);
             BoxBuscCliente.TabIndex = 9;
             BoxBuscCliente.TextChanged += BoxBuscCliente_TextChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(31, 21);
+            label4.Location = new Point(12, 28);
             label4.Name = "label4";
             label4.Size = new Size(44, 15);
             label4.TabIndex = 10;
@@ -128,7 +131,7 @@
             // 
             // buttonConPedido
             // 
-            buttonConPedido.Location = new Point(635, 252);
+            buttonConPedido.Location = new Point(803, 421);
             buttonConPedido.Margin = new Padding(3, 2, 3, 2);
             buttonConPedido.Name = "buttonConPedido";
             buttonConPedido.Size = new Size(137, 27);
@@ -137,50 +140,52 @@
             buttonConPedido.UseVisualStyleBackColor = true;
             buttonConPedido.Click += buttonConPedido_Click;
             // 
-            // buttonAdicionarItem
+            // buttonAdicionarProduto
             // 
-            buttonAdicionarItem.Location = new Point(132, 471);
-            buttonAdicionarItem.Margin = new Padding(3, 2, 3, 2);
-            buttonAdicionarItem.Name = "buttonAdicionarItem";
-            buttonAdicionarItem.Size = new Size(82, 22);
-            buttonAdicionarItem.TabIndex = 13;
-            buttonAdicionarItem.Text = "Adicionar";
-            buttonAdicionarItem.UseVisualStyleBackColor = true;
-            buttonAdicionarItem.Click += buttonAdicionarItem_Click;
+            buttonAdicionarProduto.Location = new Point(388, 338);
+            buttonAdicionarProduto.Margin = new Padding(3, 2, 3, 2);
+            buttonAdicionarProduto.Name = "buttonAdicionarProduto";
+            buttonAdicionarProduto.Size = new Size(82, 22);
+            buttonAdicionarProduto.TabIndex = 13;
+            buttonAdicionarProduto.Text = "Adicionar >";
+            buttonAdicionarProduto.UseVisualStyleBackColor = true;
+            buttonAdicionarProduto.Click += buttonAdicionarItem_Click;
             // 
             // buttonCancelar
             // 
-            buttonCancelar.Location = new Point(672, 284);
+            buttonCancelar.Location = new Point(868, 546);
             buttonCancelar.Margin = new Padding(3, 2, 3, 2);
             buttonCancelar.Name = "buttonCancelar";
             buttonCancelar.Size = new Size(72, 25);
             buttonCancelar.TabIndex = 14;
             buttonCancelar.Text = "Cancelar";
             buttonCancelar.UseVisualStyleBackColor = true;
+            buttonCancelar.Click += buttonCancelar_Click;
             // 
             // dataGridViewItem
             // 
             dataGridViewItem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewItem.Location = new Point(527, 38);
+            dataGridViewItem.Location = new Point(476, 73);
             dataGridViewItem.Margin = new Padding(3, 2, 3, 2);
             dataGridViewItem.Name = "dataGridViewItem";
             dataGridViewItem.RowHeadersWidth = 51;
-            dataGridViewItem.Size = new Size(370, 194);
+            dataGridViewItem.Size = new Size(464, 344);
             dataGridViewItem.TabIndex = 15;
             // 
             // buttonRemoverItem
             // 
-            buttonRemoverItem.Location = new Point(132, 498);
+            buttonRemoverItem.Location = new Point(476, 422);
             buttonRemoverItem.Name = "buttonRemoverItem";
             buttonRemoverItem.Size = new Size(82, 23);
             buttonRemoverItem.TabIndex = 19;
             buttonRemoverItem.Text = "Remover";
             buttonRemoverItem.UseVisualStyleBackColor = true;
+            buttonRemoverItem.Click += buttonRemoverItem_Click;
             // 
             // dataGridViewCliente
             // 
             dataGridViewCliente.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCliente.Location = new Point(29, 65);
+            dataGridViewCliente.Location = new Point(12, 52);
             dataGridViewCliente.Margin = new Padding(3, 2, 3, 2);
             dataGridViewCliente.Name = "dataGridViewCliente";
             dataGridViewCliente.RowHeadersWidth = 51;
@@ -190,7 +195,7 @@
             // dataGridViewServico
             // 
             dataGridViewServico.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewServico.Location = new Point(29, 228);
+            dataGridViewServico.Location = new Point(12, 191);
             dataGridViewServico.Margin = new Padding(3, 2, 3, 2);
             dataGridViewServico.Name = "dataGridViewServico";
             dataGridViewServico.RowHeadersWidth = 51;
@@ -200,7 +205,7 @@
             // dataGridViewProduto
             // 
             dataGridViewProduto.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewProduto.Location = new Point(29, 368);
+            dataGridViewProduto.Location = new Point(12, 309);
             dataGridViewProduto.Margin = new Padding(3, 2, 3, 2);
             dataGridViewProduto.Name = "dataGridViewProduto";
             dataGridViewProduto.RowHeadersWidth = 51;
@@ -209,27 +214,59 @@
             // 
             // textBoxProduto
             // 
-            textBoxProduto.Location = new Point(29, 341);
+            textBoxProduto.Location = new Point(68, 279);
             textBoxProduto.Margin = new Padding(3, 2, 3, 2);
             textBoxProduto.Name = "textBoxProduto";
-            textBoxProduto.Size = new Size(132, 23);
+            textBoxProduto.Size = new Size(314, 23);
             textBoxProduto.TabIndex = 23;
             textBoxProduto.TextChanged += textBoxProduto_TextChanged;
             // 
             // textBoxServico
             // 
-            textBoxServico.Location = new Point(29, 201);
+            textBoxServico.Location = new Point(63, 164);
             textBoxServico.Margin = new Padding(3, 2, 3, 2);
             textBoxServico.Name = "textBoxServico";
-            textBoxServico.Size = new Size(130, 23);
+            textBoxServico.Size = new Size(319, 23);
             textBoxServico.TabIndex = 24;
             textBoxServico.TextChanged += textBoxServico_TextChanged;
+            // 
+            // buttonAdicionarServico
+            // 
+            buttonAdicionarServico.Location = new Point(388, 220);
+            buttonAdicionarServico.Margin = new Padding(3, 2, 3, 2);
+            buttonAdicionarServico.Name = "buttonAdicionarServico";
+            buttonAdicionarServico.Size = new Size(82, 22);
+            buttonAdicionarServico.TabIndex = 25;
+            buttonAdicionarServico.Text = "Adicionar >";
+            buttonAdicionarServico.UseVisualStyleBackColor = true;
+            buttonAdicionarServico.Click += buttonAdicionarServico_Click;
+            // 
+            // labelClienteSelecionado
+            // 
+            labelClienteSelecionado.AutoSize = true;
+            labelClienteSelecionado.Location = new Point(476, 41);
+            labelClienteSelecionado.Name = "labelClienteSelecionado";
+            labelClienteSelecionado.Size = new Size(113, 15);
+            labelClienteSelecionado.TabIndex = 26;
+            labelClienteSelecionado.Text = "Cliente selecionado:";
+            // 
+            // labelValorTotal
+            // 
+            labelValorTotal.AutoSize = true;
+            labelValorTotal.Location = new Point(476, 56);
+            labelValorTotal.Name = "labelValorTotal";
+            labelValorTotal.Size = new Size(63, 15);
+            labelValorTotal.TabIndex = 27;
+            labelValorTotal.Text = "Valor total:";
             // 
             // Form_Pedido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(952, 582);
+            Controls.Add(labelValorTotal);
+            Controls.Add(labelClienteSelecionado);
+            Controls.Add(buttonAdicionarServico);
             Controls.Add(textBoxServico);
             Controls.Add(textBoxProduto);
             Controls.Add(dataGridViewProduto);
@@ -238,7 +275,7 @@
             Controls.Add(buttonRemoverItem);
             Controls.Add(dataGridViewItem);
             Controls.Add(buttonCancelar);
-            Controls.Add(buttonAdicionarItem);
+            Controls.Add(buttonAdicionarProduto);
             Controls.Add(buttonConPedido);
             Controls.Add(label4);
             Controls.Add(BoxBuscCliente);
@@ -272,7 +309,7 @@
         private TextBox BoxBuscCliente;
         private Label label4;
         private Button buttonConPedido;
-        private Button buttonAdicionarItem;
+        private Button buttonAdicionarProduto;
         private Button buttonCancelar;
         private DataGridView dataGridViewItem;
         private Button buttonRemoverItem;
@@ -281,5 +318,8 @@
         private DataGridView dataGridViewProduto;
         private TextBox textBoxProduto;
         private TextBox textBoxServico;
+        private Button buttonAdicionarServico;
+        private Label labelClienteSelecionado;
+        private Label labelValorTotal;
     }
 }

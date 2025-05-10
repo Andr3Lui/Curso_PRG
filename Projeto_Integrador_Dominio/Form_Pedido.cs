@@ -5,13 +5,13 @@ namespace Projeto_Integrador_Dominio
 {
     public partial class Form_Pedido : Form
     {
-        private readonly BindingSource BindingSource = [];
-        private Pedido Pedido = new();
         private Cliente Cliente = new();
-        private Produto Produto = new();
-        private Servico Servico = new();
-        private List<Servico> servicoSelecionado = [];
-        private List<Produto> produtoSelecionado = [];
+        private Pedido Pedido = new();
+
+        private List<Produto> Produtos = [];
+        private List<Servico> Servicos = [];
+
+        private List<PedidoItem> itensSelecionados = [];
 
         public Form_Pedido()
         {
@@ -23,28 +23,74 @@ namespace Projeto_Integrador_Dominio
             BoxBuscCliente.Clear();
             textBoxProduto.Text = "";
             textBoxServico.Text = "";
-            numericQuantidade.Text = "";
+            numericQuantidade.Value = 0;
             labelErro.Text = "";
+
+            itensSelecionados.Clear();
+            AtualizarItems();
         }
 
-        private void Form_Pedido_Load(object sender, EventArgs e)//Incompleto
+        private void AtualizarItems()
+        {
+            labelErro.Text = "";
+            labelValorTotal.Text = $"Valor total: R$ {CalcularValorPedido()}";
+
+            dataGridViewItem.DataSource = null;
+            dataGridViewItem.DataSource = itensSelecionados;
+        }
+
+        private void Form_Pedido_Load(object sender, EventArgs e) //Feito
         {
             labelErro.Text = "";
 
             dataGridViewCliente.DataSource = Cliente.ListarClientes();
-            dataGridViewServico.DataSource = Pedido.ListarServico();
-            dataGridViewProduto.DataSource = Pedido.ListarProduto();
-            dataGridViewItem.DataSource = Pedido.ListarPedidoPendentes();
+
+            Servicos = Pedido.ListarServico();
+            dataGridViewServico.DataSource = Servicos;
+
+            Produtos = Pedido.ListarProduto();
+            dataGridViewProduto.DataSource = Produtos;
         }
 
-        public bool CriarPedido()//Feito
+        private decimal CalcularValorPedido()
         {
-            Cliente.Nome = BoxBuscCliente.Text;
-            Produto.Nome = textBoxProduto.Text;
-            Servico.Nome = textBoxServico.Text;
-            Pedido.Quantidade = numericQuantidade.TabIndex;
+            decimal valor = 0;
+
+            itensSelecionados.ForEach(item => 
+            {
+                if (item.IdProduto != null)
+                {
+                    var produto = Produtos.Find(produto => produto.Id == item.IdProduto);
+                    if (produto != null && item.Quantidade != null)
+                    {
+                        valor += produto.Valor * ((int) item.Quantidade);
+                    }
+
+                    return;
+                }
+
+                if (item.IdServico != null)
+                {
+                    var servico = Servicos.Find(servico => servico.Id == item.IdServico);
+                    if (servico != null)
+                    {
+                        valor += servico.Valor;
+                    }
+
+                    return;
+                }
+
+            });
+
+            return valor;
+        }
+
+        private bool CriarPedido() //OK
+        {
+            Pedido.Valor = CalcularValorPedido();
             Pedido.DataDoPedido = DateTime.Now;
             Pedido.Estado = Estado.Pendente;
+            Pedido.Cliente = Cliente;
 
             string ValidacaoPedido = Pedido.ValidarPedido();
             if (!string.IsNullOrWhiteSpace(ValidacaoPedido))
@@ -56,10 +102,11 @@ namespace Projeto_Integrador_Dominio
             return true;
         }
 
-        private void buttonSelecionar_Click(object sender, EventArgs e)//Incompleto
+        private void buttonSelecionar_Click(object sender, EventArgs e)//Feito
         {
             if (dataGridViewCliente.SelectedRows.Count == 0 || dataGridViewCliente.SelectedRows[0].Index < 0)
             {
+                labelErro.Text = "Selecione um 'Cliente'.";
                 return;
             }
 
@@ -73,31 +120,7 @@ namespace Projeto_Integrador_Dominio
 
             Cliente = cliente;
 
-            BoxBuscCliente.Text = Cliente.Nome;
-        }
-
-        private void buttonAdicionarItem_Click(object sender, EventArgs e)//Feito
-        {
-            
-            if (dataGridViewProduto.SelectedRows.Count < 0 && dataGridViewServico.SelectedRows.Count < 0)
-            {
-                labelErro.Text = "Selecione um 'Produto' ou 'Servico'.";
-                return;
-            }
-
-            var produtoEscolhido = dataGridViewProduto.SelectedRows[0];
-            var produtoDigitado = Pedido.BuscarProduto((string)produtoEscolhido.Cells[1].Value);
-            produtoSelecionado.AddRange(produtoDigitado);
-
-
-            var servicoEscolhido = dataGridViewServico.SelectedRows[0];
-            var servicoDigitado = Pedido.BuscarServico((string)servicoEscolhido.Cells[1].Value);
-            servicoSelecionado.AddRange(servicoDigitado);
-            
-            dataGridViewItem.DataSource = null;
-            dataGridViewItem.DataSource = produtoEscolhido; 
-            dataGridViewItem.DataSource = servicoEscolhido;
-
+            labelClienteSelecionado.Text = $"Cliente selecionado: {Cliente.Nome}";
         }
 
         private void buttonConPedido_Click(object sender, EventArgs e)//Feito
@@ -107,7 +130,7 @@ namespace Projeto_Integrador_Dominio
                 return;
             }
 
-            Pedido.InserirPedido();
+            Pedido.InserirPedido(itensSelecionados);
             LimparForm();
         }
 
@@ -124,6 +147,81 @@ namespace Projeto_Integrador_Dominio
         private void textBoxServico_TextChanged(object sender, EventArgs e)//Feito
         {
             dataGridViewServico.DataSource = Pedido.BuscarServico(textBoxServico.Text);
+        }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)
+        {
+            Form_Clientes f = new Form_Clientes();
+            f.Show();
+            this.Hide();
+        }
+
+        private void buttonAdicionarServico_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewServico.SelectedRows.Count == 0 || dataGridViewServico.SelectedRows[0].Index < 0)
+            {
+                labelErro.Text = "Selecione um 'Servico'.";
+                return;
+            }
+
+            var id = (int)dataGridViewServico.SelectedRows[0].Cells[0].Value;
+
+            itensSelecionados.Add(new PedidoItem()
+            {
+                IdServico = id,
+            });
+
+            AtualizarItems();
+        }
+
+        private void buttonAdicionarItem_Click(object sender, EventArgs e)//Feito
+        {
+            if (dataGridViewProduto.SelectedRows.Count == 0 || dataGridViewProduto.SelectedRows[0].Index < 0)
+            {
+                labelErro.Text = "Selecione um 'Produto'.";
+                return;
+            }
+
+            if (numericQuantidade.Value <= 0)
+            {
+                labelErro.Text = "A quantidade do 'Produto' deve ser maior que zero.";
+                return;
+            }
+
+            var id = (int)dataGridViewProduto.SelectedRows[0].Cells[0].Value;
+            var qtd = (int)numericQuantidade.Value;
+
+            itensSelecionados.Add(new PedidoItem()
+            {
+                IdProduto = id,
+                Quantidade = qtd
+            });
+
+            AtualizarItems();
+        }
+
+        private void buttonRemoverItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewItem.SelectedRows.Count == 0 || dataGridViewItem.SelectedRows[0].Index < 0)
+            {
+                labelErro.Text = "Selecione um 'Item' lista.";
+                return;
+            }
+
+            var servicoId = dataGridViewItem.SelectedRows[0].Cells[1]?.Value;
+            var produtoId = dataGridViewItem.SelectedRows[0].Cells[2]?.Value;
+
+            if (servicoId != null)
+            {
+                itensSelecionados.RemoveAt(itensSelecionados.FindIndex(i => i.IdServico == (int) servicoId));
+            }
+
+            if (produtoId != null)
+            {
+                itensSelecionados.RemoveAt(itensSelecionados.FindIndex(i => i.IdProduto == (int) produtoId));
+            }
+
+            AtualizarItems();
         }
     }
 }

@@ -13,3 +13,5 @@ CREATE TABLE PedidoServico (
  SELECT * FROM servico;
  
  INSERT INTO servico (nome, valor) VALUES("Corte", "15.00"), ("Sobrancelha", "10.00"), ("Hidratação", "20.00");
+ 
+ INSERT INTO PedidoServico (id_servico, id_pedido) VALUES (@id_servico, @id_pedido);

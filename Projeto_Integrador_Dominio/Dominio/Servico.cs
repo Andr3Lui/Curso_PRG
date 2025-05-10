@@ -10,7 +10,7 @@ namespace Projeto_Integrador_Dominio.Dominio
     {
         public int Id { get; set; }
         public string? Nome { get; set; }
-        public Decimal Valor { get; set; }
+        public decimal Valor { get; set; }
 
     }
 }

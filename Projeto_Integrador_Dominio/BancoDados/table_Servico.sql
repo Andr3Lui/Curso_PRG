@@ -5,3 +5,7 @@ CREATE TABLE servico (
 );
 
 DROP TABLE servico;
+
+INSERT INTO servico (nome, valor) VALUES ("Corte", "15.00"), ("Hidratação", "20.00"), ("Sobrancelha", "10.00");
+
+SELECT * FROM servico;

@@ -9,10 +9,7 @@ namespace Projeto_Integrador_Dominio.Dominio
         private RepositorioPedido RepositorioPedido = new();
 
         public int Id { get; set; }
-        public Cliente? Cliente { get; set; }
-        public Produto? Produto { get; set; }
-        public int Quantidade { get; set; }
-        public Servico? Servico { get; set; }
+        public Cliente Cliente { get; set; }
         public DateTime DataDoPedido  { get; set; }
         public Estado Estado { get; set; }
         public Pagamento Pagamento { get; set; }
@@ -21,18 +18,22 @@ namespace Projeto_Integrador_Dominio.Dominio
 
         public string ValidarPedido()
         {
+            if (Cliente == null || Cliente.Id <= 0)
+            {
+                return "Cliente é obrigatório";
+            }
 
             return string.Empty;
         }
 
-        public Pedido? BuscarIdPedido()
-        {
-            return RepositorioPedido.BuscarIdPedido(this);
-        }
+        //public Pedido? BuscarIdPedido()
+        //{
+        //    return RepositorioPedido.BuscarIdPedido(this);
+        //}
 
-        public void InserirPedido()
+        public void InserirPedido(List<PedidoItem> itensSelecionados)
         {
-            RepositorioPedido.InserirPedido(this);
+            RepositorioPedido.InserirPedido(this, itensSelecionados);
         }
 
         public List<Pedido> ListarPedidoPendentes()
@@ -77,9 +78,9 @@ namespace Projeto_Integrador_Dominio.Dominio
             return RepositorioPedido.BuscarProduto(produtoDigitado);
         }
 
-        public void InserirProduto(int idProduto)
+        public void InserirProduto(int idPedido,int idProduto)
         {
-            RepositorioPedido.InserirProduto(this.Id, idProduto);
+            RepositorioPedido.InserirProduto(idPedido, idProduto);
         }
 
         //SERVICO
