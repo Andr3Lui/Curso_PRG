@@ -11,7 +11,6 @@ namespace Projeto_Integrador_Dominio.Dominio
         public int Id { get; set; }
         public Cliente Cliente { get; set; }
         public DateTime DataDoPedido  { get; set; }
-        public Estado Estado { get; set; }
         public Pagamento Pagamento { get; set; }
         public decimal Valor { get; set; }
 
@@ -26,48 +25,14 @@ namespace Projeto_Integrador_Dominio.Dominio
             return string.Empty;
         }
 
-        //public Pedido? BuscarIdPedido()
-        //{
-        //    return RepositorioPedido.BuscarIdPedido(this);
-        //}
 
+        //PEDIDO
         public void InserirPedido(List<PedidoItem> itensSelecionados)
         {
             RepositorioPedido.InserirPedido(this, itensSelecionados);
         }
 
-        public List<Pedido> ListarPedidoPendentes()
-        {
-            return RepositorioPedido.ListarPedidoPendentes();
-        }
-
-        public void AtualizarPedido()
-        {
-            RepositorioPedido.AtualizarPedido(this);
-        }
-
-        public void DeletarPedido()
-        {
-            RepositorioPedido.DeletarPedido(this);
-        }
-
-        /*
-        public Produto InserirProduto()
-        {
-            RepositorioPedido.InserirProduto();
-        }
-
-        public void
-
-        public Servico InserirServico()
-        {
-            RepositorioPedido.InserirServico(this);
-        }
-        */
-
         //PRODUTO
-
-
         public List<Produto> ListarProduto()//listar todos os servico
         {
             return RepositorioPedido.ListarProduto();
@@ -78,17 +43,7 @@ namespace Projeto_Integrador_Dominio.Dominio
             return RepositorioPedido.BuscarProduto(produtoDigitado);
         }
 
-        public void InserirProduto(int idPedido,int idProduto)
-        {
-            RepositorioPedido.InserirProduto(idPedido, idProduto);
-        }
-
         //SERVICO
-        public void InserirServico(int pedido, int servico)
-        {
-            RepositorioPedido.InserirProduto(pedido, servico);
-        }
-
         public List<Servico> ListarServico()//listar todos os servico 
         {
             return RepositorioPedido.ListarServico();
@@ -99,15 +54,5 @@ namespace Projeto_Integrador_Dominio.Dominio
             return RepositorioPedido.BuscarServico(servicoDigitado);
         }
 
-        //ITENS
-        public List<Pedido> ListarItens()
-        {
-             return RepositorioPedido.ListarItens();
-        }
-
-        public void RemoverItem(int Id)
-        {
-            RepositorioPedido.RemoverItem(Id);
-        }
     }
 }

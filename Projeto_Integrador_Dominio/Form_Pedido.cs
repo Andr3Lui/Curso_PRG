@@ -1,4 +1,5 @@
-﻿using Projeto_Integrador_Dominio.Dominio;
+﻿using Mysqlx;
+using Projeto_Integrador_Dominio.Dominio;
 
 
 namespace Projeto_Integrador_Dominio
@@ -30,16 +31,16 @@ namespace Projeto_Integrador_Dominio
             AtualizarItems();
         }
 
-        private void AtualizarItems()
+        private void AtualizarItems() //OK
         {
             labelErro.Text = "";
-            labelValorTotal.Text = $"Valor total: R$ {CalcularValorPedido()}";
+            textBoxValorTotal.Text = $"R$ {CalcularValorPedido()}";
 
             dataGridViewItem.DataSource = null;
             dataGridViewItem.DataSource = itensSelecionados;
         }
 
-        private void Form_Pedido_Load(object sender, EventArgs e) //Feito
+        private void Form_Pedido_Load(object sender, EventArgs e) //OK
         {
             labelErro.Text = "";
 
@@ -52,7 +53,7 @@ namespace Projeto_Integrador_Dominio
             dataGridViewProduto.DataSource = Produtos;
         }
 
-        private decimal CalcularValorPedido()
+        private decimal CalcularValorPedido()//OK
         {
             decimal valor = 0;
 
@@ -85,11 +86,12 @@ namespace Projeto_Integrador_Dominio
             return valor;
         }
 
-        private bool CriarPedido() //OK
+        private bool CriarPedido()//OK
         {
             Pedido.Valor = CalcularValorPedido();
+            Pedido.Pagamento = (Pagamento)comboBoxFormasPagamento.SelectedIndex;
             Pedido.DataDoPedido = DateTime.Now;
-            Pedido.Estado = Estado.Pendente;
+            
             Pedido.Cliente = Cliente;
 
             string ValidacaoPedido = Pedido.ValidarPedido();
@@ -102,11 +104,12 @@ namespace Projeto_Integrador_Dominio
             return true;
         }
 
-        private void buttonSelecionar_Click(object sender, EventArgs e)//Feito
+        private void buttonSelecionar_Click(object sender, EventArgs e)//OK
         {
             if (dataGridViewCliente.SelectedRows.Count == 0 || dataGridViewCliente.SelectedRows[0].Index < 0)
             {
                 labelErro.Text = "Selecione um 'Cliente'.";
+                labelErro.ForeColor = Color.Red;
                 return;
             }
 
@@ -121,9 +124,10 @@ namespace Projeto_Integrador_Dominio
             Cliente = cliente;
 
             labelClienteSelecionado.Text = $"Cliente selecionado: {Cliente.Nome}";
+            labelClienteSelecionado.ForeColor = Color.Blue;
         }
 
-        private void buttonConPedido_Click(object sender, EventArgs e)//Feito
+        private void buttonConPedido_Click(object sender, EventArgs e)//OK
         {
             if (!CriarPedido())
             {
@@ -134,33 +138,12 @@ namespace Projeto_Integrador_Dominio
             LimparForm();
         }
 
-        private void BoxBuscCliente_TextChanged(object sender, EventArgs e)//Feito
-        {
-            dataGridViewCliente.DataSource = Cliente.BuscarCliente(BoxBuscCliente.Text);
-        }
-
-        private void textBoxProduto_TextChanged(object sender, EventArgs e)//Feito
-        {
-            dataGridViewProduto.DataSource = Pedido.BuscarProduto(textBoxProduto.Text);
-        }
-
-        private void textBoxServico_TextChanged(object sender, EventArgs e)//Feito
-        {
-            dataGridViewServico.DataSource = Pedido.BuscarServico(textBoxServico.Text);
-        }
-
-        private void buttonCancelar_Click(object sender, EventArgs e)
-        {
-            Form_Clientes f = new Form_Clientes();
-            f.Show();
-            this.Hide();
-        }
-
-        private void buttonAdicionarServico_Click(object sender, EventArgs e)
+        private void buttonAdicionarServico_Click(object sender, EventArgs e)//OK
         {
             if (dataGridViewServico.SelectedRows.Count == 0 || dataGridViewServico.SelectedRows[0].Index < 0)
             {
                 labelErro.Text = "Selecione um 'Servico'.";
+                labelErro.ForeColor = Color.Red;
                 return;
             }
 
@@ -174,17 +157,19 @@ namespace Projeto_Integrador_Dominio
             AtualizarItems();
         }
 
-        private void buttonAdicionarItem_Click(object sender, EventArgs e)//Feito
+        private void buttonAdicionarItem_Click(object sender, EventArgs e)//OK
         {
             if (dataGridViewProduto.SelectedRows.Count == 0 || dataGridViewProduto.SelectedRows[0].Index < 0)
             {
                 labelErro.Text = "Selecione um 'Produto'.";
+                labelErro.ForeColor = Color.Red;
                 return;
             }
 
             if (numericQuantidade.Value <= 0)
             {
                 labelErro.Text = "A quantidade do 'Produto' deve ser maior que zero.";
+                labelErro.ForeColor = Color.Red;
                 return;
             }
 
@@ -200,11 +185,12 @@ namespace Projeto_Integrador_Dominio
             AtualizarItems();
         }
 
-        private void buttonRemoverItem_Click(object sender, EventArgs e)
+        private void buttonRemoverItem_Click(object sender, EventArgs e)//OK
         {
             if (dataGridViewItem.SelectedRows.Count == 0 || dataGridViewItem.SelectedRows[0].Index < 0)
             {
                 labelErro.Text = "Selecione um 'Item' lista.";
+                labelErro.ForeColor = Color.Red;
                 return;
             }
 
@@ -222,6 +208,28 @@ namespace Projeto_Integrador_Dominio
             }
 
             AtualizarItems();
+        }
+
+        private void buttonCancelar_Click(object sender, EventArgs e)//OK
+        {
+            Form_Clientes f = new Form_Clientes();
+            f.Show();
+            this.Hide();
+        }
+
+        private void BoxBuscCliente_TextChanged(object sender, EventArgs e)//OK
+        {
+            dataGridViewCliente.DataSource = Cliente.BuscarCliente(BoxBuscCliente.Text);
+        }
+
+        private void textBoxProduto_TextChanged(object sender, EventArgs e)//OK
+        {
+            dataGridViewProduto.DataSource = Pedido.BuscarProduto(textBoxProduto.Text);
+        }
+
+        private void textBoxServico_TextChanged(object sender, EventArgs e)//OK
+        {
+            dataGridViewServico.DataSource = Pedido.BuscarServico(textBoxServico.Text);
         }
     }
 }

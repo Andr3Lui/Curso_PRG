@@ -112,6 +112,7 @@ namespace Projeto_Integrador_Dominio
         {
             dataGridViewCliente.DataSource = Cliente.BuscarCliente(textBoxBuscar.Text);
         }
+
         private void textBoxBuscar_TextChanged(object sender, EventArgs e)
         {
             dataGridViewCliente.DataSource = Cliente.BuscarCliente(textBoxBuscar.Text);
@@ -124,5 +125,6 @@ namespace Projeto_Integrador_Dominio
             this.Hide();
         }
 
+        
     }
 }

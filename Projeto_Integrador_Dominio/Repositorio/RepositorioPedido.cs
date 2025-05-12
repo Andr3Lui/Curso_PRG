@@ -7,68 +7,7 @@ namespace Projeto_Integrador_Dominio.Repositorio
 {
     internal class RepositorioPedido
     {
-
         //PEDIDO
-        //public Pedido? BuscarIdPedido(Pedido pedido)
-        //{
-        //    string query = "SELECT c *, id_cliente FROM cliente c INNER JOIN cliente ON pedido.id_cliente = cliente.id WHERE id = @id;";
-        //    using (var conn = DataBase.GetConnection())
-        //    {
-        //        conn.Open();
-
-        //        using (var cmd = new MySqlCommand(query, conn))
-        //        {
-        //            cmd.Parameters.AddWithValue("@id", pedido.Id);
-        //            cmd.Parameters.AddWithValue("@id_cliente", pedido.Cliente?.Nome);
-        //            cmd.Parameters.AddWithValue("@produto", pedido.Produto);
-        //            cmd.Parameters.AddWithValue("@quantidade", pedido.Quantidade);
-        //            cmd.Parameters.AddWithValue("@servico", pedido.Servico);
-        //            cmd.Parameters.AddWithValue("@dataDoPedido", pedido.DataDoPedido);
-        //            cmd.Parameters.AddWithValue("@estado", pedido.Estado);
-        //            using var reader = cmd.ExecuteReader();
-
-        //            if (!reader.Read())
-        //            {
-        //                return null;
-        //            }
-
-        //            return new Pedido
-        //            {
-        //                Id = reader.GetInt32("id"),
-        //                Quantidade = reader.GetInt32("quantidade"),
-        //                DataDoPedido = reader.GetDateTime("dataDoPedido"),
-        //                Estado = (Estado)reader.GetInt32("estado"),
-
-        //                Produto = new Produto() 
-        //                {
-        //                    Id = reader.GetInt32("id"),
-        //                    Nome = reader.GetString("nome"),
-        //                    Valor = reader.GetDecimal("valor"),
-        //                    Estoque = reader.GetInt32("estoque")
-        //                },
-
-        //                Servico = new Servico() 
-        //                {
-        //                    Id = reader.GetInt32("id"),
-        //                    Nome = reader.GetString("nome"),
-        //                    Valor = reader.GetDecimal("valor"),
-        //                },
-
-        //                Cliente = new Cliente()
-        //                {
-        //                    Id = reader.GetInt32("cliente.id"),
-        //                    Nome = reader.GetString("cliente.nome"),
-        //                    Email = reader.GetString("cliente.email"),
-        //                    Telefone = reader.GetString("cliente.telefone"),
-        //                    CPF = reader.GetString("cliente.cpf")
-        //                }
-
-        //            };
-        //        }
-        //    }
-
-        //}
-
         public void InserirPedido(Pedido pedido, List<PedidoItem> itensSelecionados)
         {
             int id = 0;
@@ -77,23 +16,21 @@ namespace Projeto_Integrador_Dominio.Repositorio
             con.Open();
 
             // Criar um pedido
-            var insertPedido = "INSERT INTO pedido (dataDoPedido, valor, estado, id_cliente) VALUES (@dataDoPedido, @valor, @estado, @id_cliente);";
+            var insertPedido = "INSERT INTO pedido (dataDoPedido, valor, id_cliente) VALUES (@dataDoPedido, @valor, @id_cliente);";
             using (var cmd = new MySqlCommand(insertPedido, con))
             {
                 cmd.Parameters.AddWithValue("@dataDoPedido", pedido.DataDoPedido);
                 cmd.Parameters.AddWithValue("@valor", pedido.Valor);
-                cmd.Parameters.AddWithValue("@estado", pedido.Estado);
                 cmd.Parameters.AddWithValue("@id_cliente", pedido.Cliente.Id);
                 cmd.ExecuteNonQuery();
             }
 
             // Buscar o Id desse pedido
-            var buscarPedidoCriado = "SELECT id FROM pedido WHERE dataDoPedido = @dataDoPedido AND valor = @valor AND estado = @estado AND id_cliente = @id_cliente;";
+            var buscarPedidoCriado = "SELECT id FROM pedido WHERE dataDoPedido = @dataDoPedido AND valor = @valor AND id_cliente = @id_cliente;";
             using (var cmd = new MySqlCommand(buscarPedidoCriado, con))
             {
                 cmd.Parameters.AddWithValue("@dataDoPedido", $"{pedido.DataDoPedido.Year}-{pedido.DataDoPedido.Month}-{pedido.DataDoPedido.Day} {pedido.DataDoPedido.Hour}:{pedido.DataDoPedido.Minute}:{pedido.DataDoPedido.Second}");
                 cmd.Parameters.AddWithValue("@valor", pedido.Valor);
-                cmd.Parameters.AddWithValue("@estado", (int) pedido.Estado);
                 cmd.Parameters.AddWithValue("@id_cliente", pedido.Cliente.Id);
                 using var reader = cmd.ExecuteReader();
 
@@ -120,79 +57,6 @@ namespace Projeto_Integrador_Dominio.Repositorio
                 cmd.Parameters.AddWithValue("@id_pedido", id);
                 cmd.ExecuteNonQuery();
             });
-        }
-
-        public List<Pedido> ListarPedidoPendentes()
-        {
-            var pedidos = new List<Pedido>();
-
-            using (var conn = DataBase.GetConnection())
-            {
-                conn.Open();
-
-                string query = $"SELECT * FROM pedido INNER JOIN cliente ON pedido.id_cliente = cliente.id WHERE estado = @estado;";
-
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@estado", Estado.Pendente);
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            pedidos.Add(new Pedido
-                            {
-                                Id = reader.GetInt32("id"),
-                                DataDoPedido = reader.GetDateTime("dataDoPedido"),
-                                Estado = (Estado)reader.GetByte("estado"),
-
-                                Cliente = new Cliente()
-                                {
-                                    Id = reader.GetInt32("cliente.id"),
-                                    Nome = reader.GetString("cliente.nome"),
-                                    Email = reader.GetString("cliente.email"),
-                                    Telefone = reader.GetString("cliente.telefone"),
-                                    CPF = reader.GetString("cliente.cpf")
-                                },
-                            });
-                        };
-                    }
-                }
-            }
-            return pedidos;
-        }
-
-        public void AtualizarPedido(Pedido pedido)
-        {
-            using (var con = DataBase.GetConnection())
-            {
-                con.Open();
-
-                string query = "UPDATE pedido ped SET ped.estado = @ped.estado WHERE ped.id = @ped.id;";
-
-                using (var cmd = new MySqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("@ped.estado", pedido.Estado);
-                    cmd.Parameters.AddWithValue("@ped.id", pedido.Id);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public void DeletarPedido(Pedido Pedido)
-        {
-            using (var con = DataBase.GetConnection())
-            {
-                con.Open();
-
-                string query = $"DELETE FROM pedido p WHERE id = @id";
-
-                using (var cmd = new MySqlCommand(query, con))
-                {
-                    cmd.Parameters.AddWithValue("id", Pedido.Id);
-                    cmd.ExecuteNonQuery();
-                }
-            }
         }
 
         //PRODUTO
@@ -350,72 +214,6 @@ namespace Projeto_Integrador_Dominio.Repositorio
             }
 
         }
-
-        //ITENS
-        public List<Pedido> ListarItens()
-        {
-            var pedido = new List<Pedido>();
-
-            using (var conn = DataBase.GetConnection())
-            {
-                conn.Open();
-
-                string query = $"SELECT produto.nome, produto.valor FROM pedidoproduto INNER JOIN pedido ON pedido.id = pedidoproduto.id_produto INNER JOIN produto ON produto.id = pedidoproduto.id_produto INNER JOIN servico ON servico.id = pedidoservico.id_servico INNER JOIN cliente ON cliente.id = pedido.id_cliente  WHERE pedido.id = @pedido;";
-
-                using (var cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@pedido", $"{pedido}%");
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            pedido.Add(new Pedido
-                            {
-                                Id = reader.GetInt32("id"),
-                                DataDoPedido = reader.GetDateTime("dataDoPedido"),
-                                Estado = (Estado)reader.GetByte("estado"),
-                                Pagamento = (Pagamento)reader.GetByte("pagamento"),
-                                Valor = reader.GetDecimal("valor"),
-                                Cliente = new Cliente()
-                                {
-                                    Id = reader.GetInt32("cliente.id"),
-                                    Nome = reader.GetString("cliente.nome"),
-                                    Email = reader.GetString("cliente.email"),
-                                    Telefone = reader.GetString("cliente.telefone"),
-                                    CPF = reader.GetString("cliente.cpf")
-                                },
-                            });
-                        };
-                    }
-                }
-            }
-            return pedido;
-        }
-
-        public void RemoverItem(int Id)
-        {
-            using (var con = DataBase.GetConnection())
-            {
-                con.Open();
-
-                string queryProduto = "DELETE FROM PedidoProduto WHERE id = @id";
-                string queryServico = "DELETE FROM PedidoServico WHERE id = @id";
-
-                using (var cmd = new MySqlCommand(queryProduto, con))
-                {
-                    cmd.Parameters.AddWithValue("@id", Id);
-                    cmd.ExecuteNonQuery();
-                }
-
-                using (var cmd = new MySqlCommand(queryServico, con))
-                {
-                    cmd.Parameters.AddWithValue("@id", Id);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-
     }
 }
 
